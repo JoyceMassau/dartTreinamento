@@ -8,3 +8,9 @@ PS: se salvarmos o arquivo não com a extensão .dart, mas com a extensão .txt 
     void main() {
   
     }
+
+----
+
+#### Variáveis do tipo String
+
+Dart não faz distinção entre aspas simples ou duplas
