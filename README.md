@@ -36,3 +36,13 @@ Agora, se você quer transformar um número de uma String para um tipo numérico
     double.parse(nome_da_variável);
 
     int.parse(nome_da_variável);
+
+----
+
+#### Operação Ternária: Condicional If simplificado
+
+> O número é maior que 10? Se sim, faça X, se não, faça Y.
+
+Podemos traduzir essa frase para nosso código da seguinte maneira:
+
+    número > 10 ? X : Y;
