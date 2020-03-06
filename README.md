@@ -312,4 +312,61 @@ Podemos levar a lógica do saque para dentro de nossa classe, para não precisar
     }
 
 > • • •
+
 Para fazer isso, levar a lógica, as funcionalidades, para dentro da classe, utilizamos de *Métodos*
+- Primeiro, devemos declarar o *tipo* da operação que iremos fazer. No momento utilizaremos o tipo *void*, que não tem retorno
+    void saque
+- Colocar dentro dos parênteses os atributos que preciso para essa operação
+    void saque(double valorDoSaque)
+- Colocar abre e fecha chaves, pois dentro iremos trazer o if onde verificávamos o saque anteriormente  
+    void saque(double valorDoSaque) {  }
+- Porém, ao fazermos isso veremos que o código vai alegar erro, falando que os atributos não existem, não foram definidos dentro da classe
+    void saque(double valorDoSaque) {
+        print("Saldo da ${contaDaAmanda.titular}: ${contaDaAmanda.saldo}");
+        if (contaDaAmanda.saldo - saqueDaAmanda < -100) {
+        print("Sem Saldo suficiente");
+        } else {
+        print("Sacando $saqueDaAmanda reais");
+        contaDaAmanda.saldo -= saqueDaAmanda;
+        }
+        print("Saldo da ${contaDaAmanda.titular}: ${contaDaAmanda.saldo}\n");
+    }
+- Dentro da minha classe eu quero que a classe em si seja referenciada por ela mesma. Não estaremos mais nos referindo à _contaDaAmanda_ ou ao _saqueDaAmanda
+    void saque(double valorDoSaque) {
+    print("Saldo da ${conta.titular}: ${conta.saldo}");
+    if (conta.saldo - saque < -100) {
+      print("Sem Saldo suficiente");
+    } else {
+      print("Sacando $saque reais");
+      conta.saldo -= saque;
+    }
+    print("Saldo da ${conta.titular}: ${conta.saldo}\n");
+  }
+- Para, da classe ter ela mesma como referência, ainda faremos outra mudança, vamos usar a palavra reservada *this* em lugar do conta
+    void saque(double valorDoSaque) {
+        print("Saldo da ${this.titular}: ${this.saldo}");
+        if (this.saldo - saque < -100) {
+        print("Sem Saldo suficiente");
+        } else {
+        print("Sacando $saque reais");
+        this.saldo -= saque;
+        }
+        print("Saldo da ${this.titular}: ${this.saldo}\n");
+    }
+- Como estamos verificando o quanto está sendo sacado para sabermos se podemos ou não sacar, onde passávamos o *saque* precisamos alterar para o que passamos como atributo, o *valorDoSaque
+    void saque(double valorDoSaque) {
+        print("Saldo da ${this.titular}: ${this.saldo}");
+        if (this.saldo - valorDoSaque < -100) {
+        print("Sem Saldo suficiente");
+        } else {
+        print("Sacando $valorDoSaque reais");
+        this.saldo -= valorDoSaque;
+        }
+        print("Saldo da ${this.titular}: ${this.saldo}\n");
+    }
+- Agora podemos remover a linha onde inicializamos a variavel com o valor do saque
+    double saqueDaAmanda = 80.0;
+
+- Pois agora, para sacar, precisamos chamar o método, vamos utilizar valores direto
+    contaDaAmanda.saque(20.0);
+    print("Saldo da ${contaDaAmanda.titular}: ${contaDaAmanda.saldo}");
