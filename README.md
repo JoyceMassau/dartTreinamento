@@ -242,3 +242,74 @@ Cada objeto no Dart tem uma informação chamada HasCode, que é como se fosse u
     print(conta2.hashCode);
 
 ----
+
+#### AULA 03 - Criando métodos
+Supondo que a Amanda deseja sacar dinheiro. Se ela sacar R$20,00 terá atingido o limite dela. Vamos supor que ela possui R$100,00 de cheque especial. que é o que o banco dá de empréstimo para irmos além do limite da conta bancária
+- A Amanda tendo R$20,00, se quiser sacar R$80,00, o saldo dela ficaria com -60
+Para passarmos isso ao código, vamos definir quanto vai ser o saque que Amanda vai fazer
+    double saque = 80.0;
+
+Para verificarmos se essa operação vai ser validada, considerando um cheque especial de R$100,00, precisamos pensar nessa condição. O resultaddo será -60
+    void main() {
+        ContaCorrente contaDaAmanda = ContaCorrente();
+        contaDaAmanda.titular = "Amanda";
+
+        double saque = 80.0;
+        print("Saldo da ${contaDaAmanda.titular}: ${contaDaAmanda.saldo}");
+        if (contaDaAmanda.saldo - saque < -100) {
+            print("Sem Saldo suficiente");
+        } else {
+            print("Sacando $saque reais");
+            contaDaAmanda.saldo -= saque;
+        }
+            print("Saldo da ${contaDaAmanda.titular}: ${contaDaAmanda.saldo}");
+        }
+
+        class ContaCorrente {
+            String titular;
+            int agencia;
+            int conta;
+            double saldo = 20.0;
+    }
+
+----
+
+Podemos levar a lógica do saque para dentro de nossa classe, para não precisarmos fazer repetição de código cada vez que uma nova pessoa for fazer um saque. Sem isso, caso tivéssemos uma pessoa além de amanda sacando dinheiro, precisaríamos fazer assim, muita repetição de código
+    void main() {
+        ContaCorrente contaDaAmanda = ContaCorrente();
+        contaDaAmanda.titular = "Amanda";
+
+        double saqueDaAmanda = 80.0;
+        print("Saldo da ${contaDaAmanda.titular}: ${contaDaAmanda.saldo}");
+        if (contaDaAmanda.saldo - saqueDaAmanda < -100) {
+            print("Sem Saldo suficiente");
+        } else {
+            print("Sacando $saqueDaAmanda reais");
+            contaDaAmanda.saldo -= saqueDaAmanda;
+        }
+            print("Saldo da ${contaDaAmanda.titular}: ${contaDaAmanda.saldo}");
+        }
+
+        ContaCorrente contaDoTiago = ContaCorrente();
+        contaDoTiago.titular = "Tiago";
+
+        double saqueDoTiago = 20.0;
+        print("Saldo da ${contaDoTiago.titular}: ${contaDoTiago.saldo}");
+        if (contaDoTiago.saldo - saqueDoTiago < -100) {
+            print("Sem Saldo suficiente");
+        } else {
+            print("Sacando $saqueDoTiago reais");
+            contaDoTiago.saldo -= saqueDoTiago;
+        }
+            print("Saldo da ${contaDoTiago.titular}: ${contaDoTiago.saldo}");
+        }
+
+        class ContaCorrente {
+            String titular;
+            int agencia;
+            int conta;
+            double saldo = 20.0;
+    }
+
+> • • •
+Para fazer isso, levar a lógica, as funcionalidades, para dentro da classe, utilizamos de *Métodos*
