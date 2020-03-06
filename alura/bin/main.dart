@@ -9,13 +9,14 @@ void main() {
 
   ContaCorrente contaDoTiago = ContaCorrente();
   contaDoTiago.titular = "Tiago";
-
+/*
   print("Titular: ${contaDaAmanda.titular}");
   print("Agência: ${contaDaAmanda.agencia}");
   print("Conta: ${contaDaAmanda.conta}");
   print("Saldo: ${contaDaAmanda.saldo}\n");
-
+*/
   print("Saldo da ${contaDaAmanda.titular}: ${contaDaAmanda.saldo}");
+  contaDaAmanda.deposito(130.0);
   contaDaAmanda.saque(20.0);
   print("Saldo da ${contaDaAmanda.titular}: ${contaDaAmanda.saldo}");
 
@@ -38,4 +39,9 @@ class ContaCorrente {
     print("Saldo da ${this.titular}: ${this.saldo}\n");
   }
 
+  double deposito(double ValorDoDeposito) {
+    this.saldo += ValorDoDeposito;
+    return this.saldo;
+  }
+  
 }

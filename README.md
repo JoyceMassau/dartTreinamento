@@ -370,3 +370,30 @@ Para fazer isso, levar a lógica, as funcionalidades, para dentro da classe, uti
 - Pois agora, para sacar, precisamos chamar o método, vamos utilizar valores direto
     contaDaAmanda.saque(20.0);
     print("Saldo da ${contaDaAmanda.titular}: ${contaDaAmanda.saldo}");
+
+----
+
+##### Métodos com Retorno
+Adicionaremos dinheiro à conta, criando função de depósito
+    void deposito(double ValorDoDeposito) { }
+
+- Dentro da função colocaremos *this*, que vai referenciar a própria função        void deposito(double ValorDoDeposito) {
+    this.saldo += ValorDoDeposito;
+  }
+
+##### Realizando depósito
+    contaDaAmanda.deposito(130.0);
+
+##### Realizando depósito
+Para isso vamos alterar a função do depósito para que ela retorne algo, atribuindo a ela um tipo diferente de função, que não seja um void
+    void deposito(double ValorDoDeposito) { }
+    
+    double deposito(double ValorDoDeposito) { }
+
+- Essa função, que não é void, necessita de um retorno 
+    double deposito(double ValorDoDeposito) {
+        this.saldo += ValorDoDeposito;
+        return this.saldo;
+    }
+
+----    
