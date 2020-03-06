@@ -16,14 +16,25 @@ void main() {
   print("Conta: ${contaDaAmanda.conta}");
   print("Saldo: ${contaDaAmanda.saldo}");
 
-  ContaCorrente contaDoTiago = ContaCorrente();
-  contaDoTiago.titular = "Tiago";
-  contaDoTiago.agencia = 123;
-  contaDoTiago.conta = 2;
+  ContaCorrente conta1 = ContaCorrente();
+  ContaCorrente conta2 = ContaCorrente();
+ 
+  conta1.titular = "Felipe";
+  conta1.agencia = 123;
+  conta1.conta = 1;
 
-  print("Conta: ${contaDoTiago.conta}");
-  print("Saldo: ${contaDoTiago.saldo}");
+  conta2.titular = "Felipe";
+  conta2.agencia = 123;
+  conta2.conta = 1;
+
+  print(conta1.hashCode);
+  print(conta2.hashCode);
+  print(conta1.titular==conta2.titular);
+  print(conta1.agencia==conta2.agencia);
+  print(conta1.conta==conta2.conta);
+  print(conta1.saldo==conta2.saldo);
 }
+
 class ContaCorrente {
   String titular;
   int agencia;

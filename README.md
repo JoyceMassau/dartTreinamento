@@ -122,16 +122,24 @@ Passamos os parênteses pois atributos são opcionais, podemos ou não inicializ
 
 Agora, se rodarmos o código novamente o resultado não será mais null, será uma instância da conta corrente.
 
+----
+
 ##### Acessando Propriedades do objeto
 Para acessar as propriedades colocamos nossa variável _conta_ seguida de um _ponto_ 
+
+----
 
 ##### Atribuindo valor às Propriedades do objeto
 Para atribuir um valor à uma pripriedade, após o nome da variável e o ponto, colocamos um sinal de igualdade e passamos o valor. Se for uma string, passamos entre aspas
     conta.titular = "Timóteo";
 
+----
+
 ##### Imprimindo o valor às Propriedades do objeto
 No print, após o nome da variável, passamos um _ponto_ e o atributo que desejamos acessar o valor
     print(conta.titular);
+
+----
 
 ##### Atribuindo valor a cada Propriedade. Consigo imprimi-las apenas passando a variável ?
 Tenhamos em mente o exemplo abaixo, onde para cada atributos definimos um valor. Repare que dentro do print não estamos passando a variavel _ponto_ o atributo, mas apenas a variável
@@ -146,12 +154,16 @@ Tenhamos em mente o exemplo abaixo, onde para cada atributos definimos um valor.
 
 Ao tentarmos rodar este código ele não irá imprimir de uma só vez todos os valores de atributos pertencentes àquela conta, em lugar disso só irá printar que ela é uma instância de ContaCorrente   
 
+----
+
 ##### Acessando Propriedades e printando em uma string
 Se fizermos da forma abaixo, só irá printar que a instância de ContaCorrente tem um atributo chamado "titular"
     print("Titular: $conta.titular");
 
 A forma correta de fazer essa operação é imprimindo o objeto e o atributo dentro de chaves
     print("Titular: ${conta.titular}");
+
+----
 
 ##### Valores padrão
 Vamos supor que todas as contas correntes iniciam sempre com zero reais, com excessão de quando a pessoa no ato da abertura da conta já deseja depositar. Zero será o valor padrão. Para simularmos isso, criaremos uma nova instâcia para a conta da Amanda
@@ -161,7 +173,7 @@ Vamos supor que todas as contas correntes iniciam sempre com zero reais, com exc
         contaDaAmanda.titular = "Amanda";
         contaDaAmanda.agencia = 123;
         contaDaAmanda.conta = 1;
-        *contaDaAmanda.saldo = 0.0;*
+        contaDaAmanda.saldo = 0.0;
 
         print("Titular: ${contaDaAmanda.titular}");
         print("Agência: ${contaDaAmanda.agencia}");
@@ -172,7 +184,7 @@ Vamos supor que todas as contas correntes iniciam sempre com zero reais, com exc
         String titular;
         int agencia;
         int conta;
-        *double saldo;*
+        double saldo;
     }
 
 É igual à   
@@ -182,7 +194,7 @@ Vamos supor que todas as contas correntes iniciam sempre com zero reais, com exc
         contaDaAmanda.titular = "Amanda";
         contaDaAmanda.agencia = 123;
         contaDaAmanda.conta = 1;
-        *contaDaAmanda.saldo;*
+        contaDaAmanda.saldo;
 
         print("Titular: ${contaDaAmanda.titular}");
         print("Agência: ${contaDaAmanda.agencia}");
@@ -193,7 +205,40 @@ Vamos supor que todas as contas correntes iniciam sempre com zero reais, com exc
         String titular;
         int agencia;
         int conta;
-        *double saldo = 0.0;*
+        double saldo = 0.0;
     }
 
 Porém, caso não passarmos nenhum valor padrão à classe ContaCorrente e nem ao atributo saldo da instância ContaCorrenteAmanda, o saldo dela será Null. Para evitar isso é importante sempre inicializarmos os valores de nossos atributos, ao menos dos que já sabemos o valor
+
+----
+
+##### Igualdade entre objetos de duas classes
+Criaremos dois objetos, porém com as mesmas informaçãoes em cada atributo
+
+    
+    ContaCorrente conta1 = ContaCorrente();
+    conta1.titular = "Felipe";
+    conta1.agencia = 123;
+    conta1.conta = 1;
+
+    ContaCorrente conta2 = ContaCorrente();
+    conta2.titular = "Felipe";
+    conta2.agencia = 123;
+    conta2.conta = 1;
+
+Se utilizarmos um operador de igualdade para comparar essas duas contas ele retornará que é *falso* afirmar que essas informações são iguais    
+    print(conta1==conta2);
+
+E ainda, se utilizarmos um operador de igualdade não para comparar ambas as contas, mas para comparar o valor dos atributos entre elas, ele retornará que é *verdade* afirmar que elas são iguais
+    print(conta1.titular==conta2.titular);
+    print(conta1.agencia==conta2.agencia);
+    print(conta1.conta==conta2.conta);
+    print(conta1.saldo==conta2.saldo);
+
+Com isso, queremos dizer que os objetos em si não são iguais, porém as propriedades dos objetos não são iguais. Da mesma forma, podemos ter dois copos em nossa cozinha, que podem ser da mesma marca, da mesma cor e mesmo modelo, mas são objetos diferentes um do outro
+
+Cada objeto no Dart tem uma informação chamada HasCode, que é como se fosse uma identificação daquele objeto. Para acessá-lo e verificarmos que objetos diferentes tem HashCodes diferentes fazemos como faríamos para acessar qualquer atributo
+    print(conta1.hashCode);
+    print(conta2.hashCode);
+
+----
