@@ -63,10 +63,17 @@ Tudo que tiver um cifrão seguido de chaves dentro de uma string o Dart vai calc
 
 | ContaCorrente |
 | ------------- |
-| `titular`   *String* |
+| `titular`   *Cliente* |
 | `agencia`   *int* |
 | `conta`   *int* |
 | `saldo`   *double* |
+| `chequeEspecial`   *double* |
+
+| Cliente |
+| ------------- |
+| `nome`   *String* |
+| `cpf`   *String* |
+| `profissao`   *String* |
 
 - **saldo:** Não devemos nunca usar ponto flutuante para representar valores monetários. Utilize double
 
@@ -400,4 +407,178 @@ Para isso vamos alterar a função do depósito para que ela retorne algo, atrib
 
 ##### Realizando transferência bancária utilizando métodos
 Para isso precisamos informar o valor que será transferido e a conta
-- 
+
+----
+
+##### AULA 04 - Destrinchando classes
+
+Vejamos como estava antes nosso diagrama de Classes:
+
+> Diagrama de classes antes:
+
+| ContaCorrente |
+| ------------- |
+| `titular`   *String* |
+| `agencia`   *int* |
+| `conta`   *int* |
+| `saldo`   *double* |
+| `chequeEspecial`   *double* |
+
+| Cliente |
+| ------------- |
+| `nome`   *String* |
+| `cpf`   *String* |
+| `profissao`   *String* |
+
+Ocorre que pode haver mais de um cliente com o mesmo nome
+- Precisamos destrinchar essa classe em outra classe, que se chamará Cliente, e nela usar o identificador único para cada cliente, que será seu CPF
+- Na classe contaCorrente o tipo do titular não será mais uma String, será o tipo Cliente
+
+> Diagrama de classes agora:
+
+| ContaCorrente |
+| ------------- |
+| `titular`   *Cliente* |
+| `agencia`   *int* |
+| `conta`   *int* |
+| `saldo`   *double* |
+| `chequeEspecial`   *double* |
+
+| Cliente |
+| ------------- |
+| `nome`   *String* |
+| `cpf`   *String* |
+| `profissao`   *String* |
+
+> • • •
+
+- Entre a main() e a contaCorrente criaremos uma nova classe clamada Cliente
+
+    void main() {
+        • • •
+    }
+
+    class Cliente {
+    }
+
+    class ContaCorrente {
+        String titular;
+        int agencia;
+        int conta;
+        double saldo = 20.0;
+        double chequeEspecial = -100.0;
+
+        • • •
+    }
+
+> • • •
+
+Definimos o os atributos da classe Cliente
+    class Cliente {
+        String nome;
+        String cpf;
+        String profissao;
+    }
+
+> • • •
+
+Alteramos o tipo do atributo nome da classe contaCorrente. Ele não será mais uma String, será agora um tipo Cliente
+    void main() {
+        • • •
+    }
+
+    class Cliente {
+        String nome;
+        String cpf;
+        String profissao;
+    }
+
+    class ContaCorrente {
+        Cliente titular;
+        int agencia;
+        int conta;
+        double saldo = 20.0;
+        double chequeEspecial = -100.0;
+
+        • • •
+    }
+
+> • • •
+
+O programa apresentará erro informando que uma variável do tipo String não pode ser atribuído a variável do tipo Cliente
+
+    void main() {
+        ContaCorrente contaDaAmanda = ContaCorrente();
+        ContaCorrente contaDoTiago = ContaCorrente();
+        contaDaAmanda.titular = "Amanda";
+    }
+
+> • • •
+
+Para corrigir, devemos instanciar o objeto Cliente, assim poderemos acessar todos os seus atributos, inclusive o nome, conforme desejamos, e popularmos com suas respectivas informações
+
+    Cliente amanda = Cliente();
+    amanda.nome = "Amanda";
+    amanda.cpf = "123.456.789-00";
+    amanda.profissao = "Programadora Dart";
+
+> • • •
+
+Como colocamos essas informações dentro da contaCorrente ? Desta forma:
+- Diremos que o atributo titular da classe contaCorrente é igual à amanda
+- amanda é a variável do tipo Cliente que está armazenando todas as informações
+
+    contaDaAmanda.titular = amanda;
+
+> • • •
+
+Como exibimos as informações agora?
+Se imprimirmos como antes, nos retornará erro falando que titular é uma instância do tipo Cliente, em lugar de imprimir o nome do titular:
+    print("Titular: ${contaDaAmanda.titular}");
+
+Porém, podemos colocar mais um ponto para termos acesso aos campos do Cliente
+    print("Titular: ${contaDaAmanda.titular.nome}");
+
+----    
+
+##### Organizar o código com a pasta Lib
+Podemos ter arquivos que irão organizar as nossas classes 
+- Crie um novo arquivo (new file). Geralmente, para ficar mais fácil de identificar, colocamos o nome da classe como o nome do arquivo: cliente.dart
+- Cole o conteúdo da classe Cliente dentro do arquivo anteriormente criado: 
+    class Cliente {
+    String nome;
+    String cpf;
+    String profissao;
+    }
+
+- Crie um novo arquivo (new file) chamado contaCorrente.dart
+- Cole o conteúdo da classe Cliente dentro do arquivo anteriormente criado: 
+    class contaCorrente {
+        Cliente titular;
+        int agencia;
+        int conta;
+        double saldo = 20.0;
+        double chequeEspecial = -100.0;
+
+        • • •
+    }
+
+> • • •
+
+A mudança fará com que apareçam erros, como ao passar o cursor sobre Cliente titular, dentro da classe contaCorrente, aparecerá "Classe Cliente indefinida". Isso significa que o Dart não conseguiu encontrar a classe Cliente dentro desse arquivo, pois movemos o arquivo para outro lugar
+Para que o Dart volte a reconhecer, precisamos importar a classe presente em outro arquivos, usando o import, dentro da contacorrente.dart, e importando o arquivos do cliente
+    import 'cliente.dart';
+    class ContaCorrente {
+        • • •
+    }
+
+> • • •
+Precisamos importar para resolver os erros na Main() também. Ocorre que não conseguiremos fazer como antes, importando diretamente a contaCorrente, pois a main está dentro da pasta *bin* e a contaCorrente dentro da pasta *lib*, não estão dentro da mesma estrutura de pastas
+    import '../lib/contacorrente.dart';
+    import '../lib/cliente.dart';
+    void main() {
+        • • •
+    }
+
+> • • •
+Agora, em cada arquivo escreveremos apenas código pertinente à essa classe.
