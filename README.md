@@ -601,17 +601,20 @@ Podemos, em lugar disso
 - Acessar as propriedades da classe usando ..
 - Só passar ponto e vírgula no final    
 
+    ```
     Cliente tiago = Cliente()
         ..nome = "Tiago"
         ..cpf = "336.685.056-00"
         ..profissao = "Programador Dart";
         contaDoTiago.titular = tiago;        
         print("Titular: ${contaDoTiago.titular.nome}");
+        ```
 
 ----    
 
-##### Não altera código de saldo de fora da classe da Conta Corrente
+##### Getters e Setter - Não altera código de saldo de fora da classe da Conta Corrente
 Dentro da main() conseguimos alterar tudo livremente, se quisermos falar que o saldo da Amanda agora será de R$ -101, podemos, pois a main permite que alteremosa isto diretamente mesmo que já tenhamos definido que o limite do cheque especial é 100, então Amanda poderia ficar com um saldo negativo de até -100, nunca de -101
+    ```
     import '../lib/contacorrente.dart';
     import '../lib/cliente.dart';
     void main() {
@@ -619,9 +622,11 @@ Dentro da main() conseguimos alterar tudo livremente, se quisermos falar que o s
         contaDaAmanda.saldo = -101;
         print(contaDaAmanda.saldo);
     }
+    ```
 
 Para parar que isso aconteça vamos usar as propriedades: propriedade pública, privada, protegida
 - Se antes do nome de meu atributo eu passo um underline, estou dizendo que aquela propriedade é privada, como podemos fazer isso com a propriedade saldo, dentro da classe ContaCorrente
+    ```
     import 'cliente.dart';
     class ContaCorrente {
         Cliente titular;
@@ -630,50 +635,133 @@ Para parar que isso aconteça vamos usar as propriedades: propriedade pública, 
         double _saldo = 20.0;
         double chequeEspecial = -100.0;
     }
+    ```
 
 - Dessa forma, apenas dentro da conta corrente esse saldo poderá ser acessado
 - Ocorre que, mesmo dentro do arquivo ContaCorrente, aparece onde utilizo o atributo saldo, que ele está inacessível, para isso, mesmo dentro do arquivo contacorrente.dart, devo passar o underline sempre que utilizo esse atributo:
     ```
-        import 'cliente.dart';
-        class ContaCorrente {
-            Cliente titular;
-            int agencia;
-            int conta;
-            double _saldo = 20.0;
-            double chequeEspecial = -100.0;
-            bool verificaSaldo(double valor) {
-                if (this._saldo - valor < chequeEspecial) {
-                print("Sem saldo suficiente");
-                return false;
-                } else {
-                print("Movimentando $valor reais");
-                return true;
-                }
+    import 'cliente.dart';
+    class ContaCorrente {
+        Cliente titular;
+        int agencia;
+        int conta;
+        double _saldo = 20.0;
+        double chequeEspecial = -100.0;
+        bool verificaSaldo(double valor) {
+            if (this._saldo - valor < chequeEspecial) {
+            print("Sem saldo suficiente");
+            return false;
+            } else {
+            print("Movimentando $valor reais");
+            return true;
             }
-
-            bool transferencia(double valorDeTransferencia, ContaCorrente contaDestino) {
-                if (!verificaSaldo(valorDeTransferencia)) {
-                return false;
-                } else {
-                this._saldo -= valorDeTransferencia;
-                contaDestino.deposito(valorDeTransferencia);
-                return true;
-                }
-            }
-            
-            bool saque(double valorDoSaque) {
-                if (!verificaSaldo(valorDoSaque)) {
-                return false;
-                } else {
-                this._saldo -= valorDoSaque;
-                return true;
-                }
-            }
-
-            double deposito(double ValorDoDeposito) {
-                this._saldo += ValorDoDeposito;
-                return this._saldo;
-            }
-            
         }
+
+        bool transferencia(double valorDeTransferencia, ContaCorrente contaDestino) {
+            if (!verificaSaldo(valorDeTransferencia)) {
+            return false;
+            } else {
+            this._saldo -= valorDeTransferencia;
+            contaDestino.deposito(valorDeTransferencia);
+            return true;
+            }
+        }
+        
+        bool saque(double valorDoSaque) {
+            if (!verificaSaldo(valorDoSaque)) {
+            return false;
+            } else {
+            this._saldo -= valorDoSaque;
+            return true;
+            }
+        }
+
+        double deposito(double ValorDoDeposito) {
+            this._saldo += ValorDoDeposito;
+            return this._saldo;
+        }
+        
+    }
     ```
+
+- Feito isto, agora que saldo é privado, não é mais possível acontecer esse tipo de erro
+- Dentro da conta corrente até podemos mudar o valor de saldo, mas de fora dela, não adianta, o console irá retornar erro, dizendo que o saldo não foi definido:
+    ```
+    import '../lib/contacorrente.dart';
+    import '../lib/cliente.dart';
+
+    void main() {
+
+    ContaCorrente contaDaAmanda = ContaCorrente();
+    ContaCorrente contaDoTiago = ContaCorrente();
+
+    contaDaAmanda._saldo = -101;
+    print(contaDaAmanda._saldo);
+    }
+    ```    
+
+
+> • • •
+
+Para que possamos alterar o valor de saldo de dentro da main. Podemos criar métodos que vão fazer isso:
+    ```
+    import 'cliente.dart';
+
+    class ContaCorrente {
+        Cliente titular;
+        int agencia;
+        int conta;
+        double _saldo = 20.0;
+        double chequeEspecial = -100.0;
+
+        void definirSaldo(double novoSaldo) {
+            this._saldo = novoSaldo;      
+        }
+
+        • • •
+    }
+    ```
+
+Esse método irá receber o novo saldo e adicionar o novo saldo dentro do campo saldo privado:
+    ```
+    import '../lib/contacorrente.dart';
+    import '../lib/cliente.dart';
+
+    void main() {
+
+        ContaCorrente contaDaAmanda = ContaCorrente();
+        ContaCorrente contaDoTiago = ContaCorrente();
+
+        contaDaAmanda.definirSaldo(-101);
+
+        print(contaDaAmanda._saldo);
+    }
+    ```
+
+- Como acesso e imprimo esse valor, de saldo, que agora é privado? Em lugar de acessarmos diretamente o saldo na Main(), iremos criar outro método na classe de ContaCorrente
+- O método obterSaldo não terá parâmetro nenhum, ele não precisa obter nada, precisa apenas alterar o valor de saldo
+    ```
+    double obterSaldo() {
+        return this._saldo;
+    }
+    ```
+
+- No método main() não mais tentaremos acessar diretamente o saldo, em lugar disso, iremos acessar o obterSaldo()
+    ```
+    import '../lib/contacorrente.dart';
+    import '../lib/cliente.dart';
+
+    void main() {
+        ContaCorrente contaDaAmanda = ContaCorrente();
+        ContaCorrente contaDoTiago = ContaCorrente();
+
+        contaDaAmanda.definirSaldo(-101);
+
+        print(contaDaAmanda.obterSaldo());
+    }
+    ```
+
+> ...
+
+Porém, ao executarmos agora, o resultado será R$ -101, mas ainda não podemos deixar que o saldo seja menor que o cheque especial, que permite saldo negativo de até R$ -100
+//10.24
