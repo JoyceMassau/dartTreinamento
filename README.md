@@ -582,3 +582,26 @@ Precisamos importar para resolver os erros na Main() também. Ocorre que não co
 
 > • • •
 Agora, em cada arquivo escreveremos apenas código pertinente à essa classe.
+
+----    
+
+##### Acessando atributos em Cascata
+Não precisamos tornar a repetir o nome da propriedade, como fizemos com a contaDaAmanda:
+    Cliente amanda = Cliente();
+    amanda.nome = "Amanda";
+    amanda.cpf = "123.456.789-00";
+    amanda.profissao = "Programadora Dart";
+    contaDaAmanda.titular = amanda;
+    print("Titular: ${contaDaAmanda.titular.nome}");
+
+Podemos, em lugar disso
+- Inicializar a classe cujo nome é tiago
+- Acessar as propriedades da classe usando ..
+- Só passar ponto e vírgula no final    
+
+    Cliente tiago = Cliente()
+        ..nome = "Tiago"
+        ..cpf = "336.685.056-00"
+        ..profissao = "Programador Dart";
+        contaDoTiago.titular = tiago;        
+        print("Titular: ${contaDoTiago.titular.nome}");

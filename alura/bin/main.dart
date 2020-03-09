@@ -17,11 +17,14 @@ void main() {
   print("Titular: ${contaDaAmanda.titular.cpf}");
   print("Titular: ${contaDaAmanda.titular.profissao}");
 
-  /*
-  contaDaAmanda.agencia = 123;
-  contaDaAmanda.conta = 1;
-  contaDaAmanda.saldo;
-  contaDaAmanda.chequeEspecial = -110.0;
-  */
+  Cliente tiago = Cliente()
+  ..nome = "Tiago"
+  ..cpf = "336.685.056-00"
+  ..profissao = "Programador Dart";
+
+  contaDoTiago.titular = tiago;
+  
+  print("Titular: ${contaDoTiago.titular.nome}");
+
 }
 
