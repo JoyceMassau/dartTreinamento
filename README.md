@@ -943,3 +943,34 @@ O construtor pode acessar valores que não sejam direto do campo, e podemos trat
 		if(novaAgencia > 0) _agencia = novaAgencia; 
 	}
 	```
+
+----    
+
+##### Métodos estáticos
+Se quisermos saber quantas contas correntes existem, começaremos criando uma variável que nos informará esse valor, e a inicializando com zero
+	```
+	class ContaCorrente {
+		int totalDeContasCorrentes = 0;
+	}
+	```
+
+Após isso, somaremos no nosso método construtor sempre que haver mais uma conta corrente
+	```
+	class ContaCorrente {
+		ContaCorrente(int novaAgencia,this.conta) {
+			if(novaAgencia > 0) _agencia = novaAgencia; 
+			totalDeContasCorrentes++;
+		}	
+		• • •
+	}
+	```
+
+Usaremos na variável a palavra reservada *static*, que nos dirá que esta variável é estática dessa classe. Ela pertence à classe conta corrente, e não ao objeto conta corrente
+	```
+	static int totalDeContasCorrentes = 0;
+	```
+
+Se tentarmos printar esse resultado, o código nos dirá que esse campo estático não pode ser acessado por uma instância da classe, como _contaDaAmanda_ ou _contaDoTiago_. Para printarmos, faremos:
+	```
+	print(ContaCorrente.totalDeContasCorrentes);
+	```

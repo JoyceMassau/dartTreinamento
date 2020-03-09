@@ -4,6 +4,7 @@ class ContaCorrente {
 
   ContaCorrente(int novaAgencia,this.conta) {
     if(novaAgencia > 0) _agencia = novaAgencia; 
+    totalDeContasCorrentes++;
   }
 
 	Cliente titular;
@@ -11,6 +12,7 @@ class ContaCorrente {
 	double _saldo = 20.0;
 	double chequeEspecial = -100.0;
 	int _agencia = 145;
+  static int totalDeContasCorrentes = 0;
 
 	get agencia => _agencia;
 	set agencia(int novaAgencia) { if(novaAgencia > 0) _agencia = novaAgencia; }
