@@ -63,10 +63,17 @@ Tudo que tiver um cifrão seguido de chaves dentro de uma string o Dart vai calc
 
 | ContaCorrente |
 | ------------- |
-| `titular`   *String* |
+| `titular`   *Cliente* |
 | `agencia`   *int* |
 | `conta`   *int* |
 | `saldo`   *double* |
+| `chequeEspecial`   *double* |
+
+| Cliente |
+| ------------- |
+| `nome`   *String* |
+| `cpf`   *String* |
+| `profissao`   *String* |
 
 - **saldo:** Não devemos nunca usar ponto flutuante para representar valores monetários. Utilize double
 
@@ -400,4 +407,98 @@ Para isso vamos alterar a função do depósito para que ela retorne algo, atrib
 
 ##### Realizando transferência bancária utilizando métodos
 Para isso precisamos informar o valor que será transferido e a conta
-- 
+
+----
+
+##### AULA 04 - Destrinchando classes
+
+Vejamos como estava antes nosso diagrama de Classes:
+
+> Diagrama de classes antes:
+
+| ContaCorrente |
+| ------------- |
+| `titular`   *String* |
+| `agencia`   *int* |
+| `conta`   *int* |
+| `saldo`   *double* |
+| `chequeEspecial`   *double* |
+
+| Cliente |
+| ------------- |
+| `nome`   *String* |
+| `cpf`   *String* |
+| `profissao`   *String* |
+
+Ocorre que pode haver mais de um cliente com o mesmo nome
+- Precisamos destrinchar essa classe em outra classe, que se chamará Cliente, e nela usar o identificador único para cada cliente, que será seu CPF
+- Na classe contaCorrente o tipo do titular não será mais uma String, será o tipo Cliente
+
+> Diagrama de classes agora:
+
+| ContaCorrente |
+| ------------- |
+| `titular`   *Cliente* |
+| `agencia`   *int* |
+| `conta`   *int* |
+| `saldo`   *double* |
+| `chequeEspecial`   *double* |
+
+| Cliente |
+| ------------- |
+| `nome`   *String* |
+| `cpf`   *String* |
+| `profissao`   *String* |
+
+> • • •
+
+- Entre a main() e a contaCorrente criaremos uma nova classe clamada Cliente
+
+    void main() {
+        • • •
+    }
+
+    class Cliente {
+    }
+
+    class ContaCorrente {
+        String titular;
+        int agencia;
+        int conta;
+        double saldo = 20.0;
+        double chequeEspecial = -100.0;
+
+        • • •
+    }
+
+> • • •
+
+Definimos o os atributos da classe Cliente
+    class Cliente {
+        String nome;
+        String cpf;
+        String profissao;
+    }
+
+> • • •
+
+Alteramos o tipo do atributo nome da classe contaCorrente. Ele não será mais uma String, será agora um tipo Cliente
+    void main() {
+        • • •
+    }
+
+    class Cliente {
+        String nome;
+        String cpf;
+        String profissao;
+    }
+
+    class ContaCorrente {
+        Cliente titular;
+        int agencia;
+        int conta;
+        double saldo = 20.0;
+        double chequeEspecial = -100.0;
+
+        • • •
+    }

@@ -10,15 +10,7 @@ void main() {
 
   ContaCorrente contaDoTiago = ContaCorrente();
   contaDoTiago.titular = "Tiago";
-/*
-  print("Titular: ${contaDaAmanda.titular}");
-  print("Agência: ${contaDaAmanda.agencia}");
-  print("Conta: ${contaDaAmanda.conta}");
-  print("Saldo: ${contaDaAmanda.saldo}\n");
-*/
-  //print("Saldo da ${contaDaAmanda.titular}: ${contaDaAmanda.saldo}");
-  //contaDaAmanda.deposito(130.0);
-  //contaDaAmanda.saque(20.0);
+
   print("Saldo da ${contaDaAmanda.titular}: ${contaDaAmanda.saldo}");
   print("Saldo da ${contaDoTiago.titular}: ${contaDoTiago.saldo}");
 
@@ -28,8 +20,14 @@ void main() {
   print("Saldo da ${contaDoTiago.titular}: ${contaDoTiago.saldo}");
 }
 
+class Cliente {
+  String nome;
+  String cpf;
+  String profissao;
+}
+
 class ContaCorrente {
-  String titular;
+  Cliente titular;
   int agencia;
   int conta;
   double saldo = 20.0;
