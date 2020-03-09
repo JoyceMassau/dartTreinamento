@@ -633,6 +633,7 @@ Para parar que isso aconteça vamos usar as propriedades: propriedade pública, 
 
 - Dessa forma, apenas dentro da conta corrente esse saldo poderá ser acessado
 - Ocorre que, mesmo dentro do arquivo ContaCorrente, aparece onde utilizo o atributo saldo, que ele está inacessível, para isso, mesmo dentro do arquivo contacorrente.dart, devo passar o underline sempre que utilizo esse atributo:
+
     import 'cliente.dart';
     class ContaCorrente {
     Cliente titular;
@@ -640,7 +641,6 @@ Para parar que isso aconteça vamos usar as propriedades: propriedade pública, 
     int conta;
     double _saldo = 20.0;
     double chequeEspecial = -100.0;
-
     bool verificaSaldo(double valor) {
         if (this._saldo - valor < chequeEspecial) {
         print("Sem saldo suficiente");
