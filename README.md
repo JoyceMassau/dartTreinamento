@@ -761,7 +761,7 @@ Esse método irá receber o novo saldo e adicionar o novo saldo dentro do campo 
     }
     ```
 
-> ...
+> • • •
 
 Porém, ao executarmos agora, o resultado será R$ -101, mas ainda não podemos deixar que o saldo seja menor que o cheque especial, que permite saldo negativo de até R$ -100
 - Faremos uma verificação na função que é o nosso Getter, a definirSaldo()
@@ -774,3 +774,172 @@ Porém, ao executarmos agora, o resultado será R$ -101, mas ainda não podemos 
         }
     }
     ```
+
+----    
+
+##### Getters e Setter próprios do Dart
+_ Apagaremos os métodos definirSaldo() e obterSaldo(), criados na classe ContaCorrente 
+- na classe ContaCorrente utilizaremos a palavra reservada get, daremos um nome a ele e, dentro das chaves, solicitaremso que o Dart nos retorne a propriedade privada saldo 
+    ```
+    get saldo {
+        return _saldo;
+    }
+    ```
+- Na função main(), passaremos a conta da amanda _ponto_ o nome do nosso getter, que é _saldo_
+    ```
+    print(contaDaAmanda.saldo());
+    ```
+
+- Para implementar o setter, não preciso nem utilizar o this, ele já sabe que o contexto é a conta corrente. Basta fazer assim:
+    ```
+    set saldo(double novoSaldo) {
+        _saldo = novoSaldo;
+    }
+    ```
+
+- Dentro das funções, onde antes passávamos a propriedade privada _saldo, podemos acessar somente o saldo
+    ```
+    bool verificaSaldo(double valor) {
+		if (this.saldo - valor < chequeEspecial) {
+		print("Sem saldo suficiente");
+		return false;
+		} else {
+		print("Movimentando $valor reais");
+		return true;
+		}
+	}
+
+	bool transferencia(double valorDeTransferencia, ContaCorrente contaDestino) {
+		if (!verificaSaldo(valorDeTransferencia)) {
+		return false;
+		} else {
+		this.saldo -= valorDeTransferencia;
+		contaDestino.deposito(valorDeTransferencia);
+		return true;
+		}
+	}
+
+	bool saque(double valorDoSaque) {
+		if (!verificaSaldo(valorDoSaque)) {
+		return false;
+		} else {
+		this.saldo -= valorDoSaque;
+		return true;
+		}
+	}
+
+	double deposito(double ValorDoDeposito) {
+		this.saldo += ValorDoDeposito;
+		return this.saldo;
+	}
+    ```           
+
+- Podemos no set fazer uma verificação semelhante ao que faríamos antes
+    ```
+    set saldo(double novoSaldo) {
+		if (novoSaldo >= chequeEspecial) {
+			_saldo = novoSaldo;
+		} else {
+			print("Erro! Tentei modificar o valor de saldo para um valor menor que o cheque especial");
+		}
+	}
+    ```         
+
+----    
+
+##### Produtividade: Getters e Setter mais rápidos
+- Para exemplificar, vamos definir a agência como um atributo privado, passando o underline na frente
+    ```
+    import 'cliente.dart';
+
+    class ContaCorrente {
+        Cliente titular;
+        int _agencia;
+        int conta;
+        double _saldo = 20.0;
+        double chequeEspecial = -100.0;
+    ```
+
+- Uma maneira mais rápida de fazer um getter, pois as vezes não necessariamente queremos fazer uma verificação, como quisemos fazer no setter do saldo
+- Passaremos a palavra reservada get, definir um nome, que no caso chamaremos de agência, e, após o símbolo da setinha colocar o underline e o nome do atributo privado, ela irá substituir tanto a chave quanto o return e vai nos retorna tudo o que estiver à direita dela
+    ```
+    get agencia => _agencia;
+    ```
+- Para criar o set:
+    ```
+	set agencia(int novaAgencia) => { _agencia = novaAgencia };
+    ```    
+ou
+    ```
+    set agencia(int novaAgencia) { _agencia = novaAgencia; }
+    ```
+
+----    
+
+##### Agência com números negativos ? Contrutores
+Se atribuirmos um número negativo à agencia e executarmos, o programa executará normalmente. Porém, não existem agência cujo número seja negativo. Vamos alterar isso com o get
+- Para isso, vamos manter o nosso get, que trás os dados do campo agência
+    ```
+    class ContaCorrente {
+        Cliente titular;
+        int _agencia = 145;
+
+        get agencia => _agencia;
+    }
+    ```   
+
+- E alterar o nosso set, inserindo uma verificação
+    ```
+    set agencia(int novaAgencia) { if(novaAgencia > 0) _agencia = novaAgencia; }
+    ```
+Ao fazer isso, caso se insira um número negativo no campo da agência, ele irá ignorar este número e definir a agência com o número padrão que foi definido para ela, na classe ContaCorrente
+- Ao atribuirmos um valor de inicialização, estamos utilizando de um *Construtor*:
+    ```
+    class ContaCorrente {
+		int _agencia = 145;
+		• • •
+	}
+	```
+
+- Ele constrói o objeto de acordo com os parâmetros que passamos para ele. Ele pode conter ou não parâmetros, mas é adequado utilizar
+- Dentro da classe ContaCorrente, de preferência logo no início, passaremos os atributos que a partir de então serão obrigatórios que passemos. No nosso exemplo, passaremos a agência e a conta
+	```
+	class ContaCorrente {
+		ContaCorrente(this._agencia,this.conta);
+		• • •
+	}
+	```
+- Como esses dois atributos agora são obrigatórios, note que haverão dois erros agora na main(). Se passarmos o cursor sobre esse código, ele nos dirá que precisamos informar dois argumentos:
+	```
+	void main() {
+		ContaCorrente contaDaAmanda = ContaCorrente();
+		ContaCorrente contaDoTiago = ContaCorrente();
+		• • •
+	}
+	```
+
+- Para que o programa execute, obrigatoriamente precisaremos enviar os dois parâmetros, conforme exemplo:
+	```
+	import '../lib/contacorrente.dart';
+	import '../lib/cliente.dart';
+
+	void main() {
+		ContaCorrente contaDaAmanda = ContaCorrente(123, 169874);
+		
+		print(contaDaAmanda.conta);
+		print(contaDaAmanda.agencia);
+	}
+	```
+
+> • • •
+
+Ocorre, porém, que como no construtor estamos incluindo direto os atributos privados, se tentarmos passar como parâmetro um número de agência que seja negativo, o sistema irá executar, o que não pode acontecer, não existem números de conta que sejam negativos
+
+O construtor pode acessar valores que não sejam direto do campo, e podemos tratar dentro do construtor
+	```
+	class ContaCorrente {
+
+	ContaCorrente(int novaAgencia,this.conta) {
+		if(novaAgencia > 0) _agencia = novaAgencia; 
+	}
+	```
