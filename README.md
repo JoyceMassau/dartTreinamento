@@ -607,3 +607,72 @@ Podemos, em lugar disso
         ..profissao = "Programador Dart";
         contaDoTiago.titular = tiago;        
         print("Titular: ${contaDoTiago.titular.nome}");
+
+----    
+
+##### Não altera código de saldo de fora da classe da Conta Corrente
+Dentro da main() conseguimos alterar tudo livremente, se quisermos falar que o saldo da Amanda agora será de R$ -101, podemos, pois a main permite que alteremosa isto diretamente mesmo que já tenhamos definido que o limite do cheque especial é 100, então Amanda poderia ficar com um saldo negativo de até -100, nunca de -101
+    import '../lib/contacorrente.dart';
+    import '../lib/cliente.dart';
+    void main() {
+        ContaCorrente contaDaAmanda = ContaCorrente();
+        contaDaAmanda.saldo = -101;
+        print(contaDaAmanda.saldo);
+    }
+
+Para parar que isso aconteça vamos usar as propriedades: propriedade pública, privada, protegida
+- Se antes do nome de meu atributo eu passo um underline, estou dizendo que aquela propriedade é privada, como podemos fazer isso com a propriedade saldo, dentro da classe ContaCorrente
+    import 'cliente.dart';
+    class ContaCorrente {
+        Cliente titular;
+        int agencia;
+        int conta;
+        double _saldo = 20.0;
+        double chequeEspecial = -100.0;
+    }
+
+- Dessa forma, apenas dentro da conta corrente esse saldo poderá ser acessado
+- Ocorre que, mesmo dentro do arquivo ContaCorrente, aparece onde utilizo o atributo saldo, que ele está inacessível, para isso, mesmo dentro do arquivo contacorrente.dart, devo passar o underline sempre que utilizo esse atributo:
+    import 'cliente.dart';
+    class ContaCorrente {
+    Cliente titular;
+    int agencia;
+    int conta;
+    double _saldo = 20.0;
+    double chequeEspecial = -100.0;
+
+    bool verificaSaldo(double valor) {
+        if (this._saldo - valor < chequeEspecial) {
+        print("Sem saldo suficiente");
+        return false;
+        } else {
+        print("Movimentando $valor reais");
+        return true;
+        }
+    }
+
+    bool transferencia(double valorDeTransferencia, ContaCorrente contaDestino) {
+        if (!verificaSaldo(valorDeTransferencia)) {
+        return false;
+        } else {
+        this._saldo -= valorDeTransferencia;
+        contaDestino.deposito(valorDeTransferencia);
+        return true;
+        }
+    }
+    
+    bool saque(double valorDoSaque) {
+        if (!verificaSaldo(valorDoSaque)) {
+        return false;
+        } else {
+        this._saldo -= valorDoSaque;
+        return true;
+        }
+    }
+
+    double deposito(double ValorDoDeposito) {
+        this._saldo += ValorDoDeposito;
+        return this._saldo;
+    }
+    
+    }

@@ -4,11 +4,11 @@ class ContaCorrente {
   Cliente titular;
   int agencia;
   int conta;
-  double saldo = 20.0;
+  double _saldo = 20.0;
   double chequeEspecial = -100.0;
 
   bool verificaSaldo(double valor) {
-    if (this.saldo - valor < chequeEspecial) {
+    if (this._saldo - valor < chequeEspecial) {
       print("Sem saldo suficiente");
       return false;
     } else {
@@ -21,7 +21,7 @@ class ContaCorrente {
     if (!verificaSaldo(valorDeTransferencia)) {
       return false;
     } else {
-      this.saldo -= valorDeTransferencia;
+      this._saldo -= valorDeTransferencia;
       contaDestino.deposito(valorDeTransferencia);
       return true;
     }
@@ -31,14 +31,14 @@ class ContaCorrente {
     if (!verificaSaldo(valorDoSaque)) {
       return false;
     } else {
-      this.saldo -= valorDoSaque;
+      this._saldo -= valorDoSaque;
       return true;
     }
   }
 
   double deposito(double ValorDoDeposito) {
-    this.saldo += ValorDoDeposito;
-    return this.saldo;
+    this._saldo += ValorDoDeposito;
+    return this._saldo;
   }
   
 }
