@@ -46,8 +46,7 @@ class ContaCorrente {
   }
 
   bool transferencia(double valorDeTransferencia, ContaCorrente contaDestino) {
-    if (this.saldo - valorDeTransferencia < chequeEspecial) {
-      print("Sem saldo suficiente");
+    if (!verificaSaldo(valorDeTransferencia)) {
       return false;
     } else {
       this.saldo -= valorDeTransferencia;
@@ -56,15 +55,13 @@ class ContaCorrente {
     }
   }
   
-  void saque(double valorDoSaque) {
-    print("Saldo da ${this.titular}: ${this.saldo}");
-    if (this.saldo - valorDoSaque < chequeEspecial) {
-      print("Sem Saldo suficiente");
+  bool saque(double valorDoSaque) {
+    if (!verificaSaldo(valorDoSaque)) {
+      return false;
     } else {
-      print("Sacando $valorDoSaque reais");
       this.saldo -= valorDoSaque;
+      return true;
     }
-    print("Saldo da ${this.titular}: ${this.saldo}\n");
   }
 
   double deposito(double ValorDoDeposito) {
