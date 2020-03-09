@@ -3,11 +3,10 @@ import '../lib/cliente.dart';
 
 void main() {
 
-  ContaCorrente contaDaAmanda = ContaCorrente();
-  ContaCorrente contaDoTiago = ContaCorrente();
+	ContaCorrente contaDaAmanda = ContaCorrente();
+	ContaCorrente contaDoTiago = ContaCorrente();
 
-  contaDaAmanda.definirSaldo(-102);
-
-  print(contaDaAmanda.obterSaldo());
+	contaDaAmanda.saldo = -98;
+	print(contaDaAmanda.saldo);
 }
 

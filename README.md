@@ -774,3 +774,73 @@ Porém, ao executarmos agora, o resultado será R$ -101, mas ainda não podemos 
         }
     }
     ```
+
+----    
+
+##### Getters e Setter próprios do Dart
+_ Apagaremos os métodos definirSaldo() e obterSaldo(), criados na classe ContaCorrente 
+- na classe ContaCorrente utilizaremos a palavra reservada get, daremos um nome a ele e, dentro das chaves, solicitaremso que o Dart nos retorne a propriedade privada saldo 
+    ```
+    get saldo {
+        return _saldo;
+    }
+    ```
+- Na função main(), passaremos a conta da amanda _ponto_ o nome do nosso getter, que é _saldo_
+    ```
+    print(contaDaAmanda.saldo());
+    ```
+
+- Para implementar o setter, não preciso nem utilizar o this, ele já sabe que o contexto é a conta corrente. Basta fazer assim:
+    ```
+    set saldo(double novoSaldo) {
+        _saldo = novoSaldo;
+    }
+    ```
+
+- Dentro das funções, onde antes passávamos a propriedade privada _saldo, podemos acessar somente o saldo
+    ```
+    bool verificaSaldo(double valor) {
+		if (this.saldo - valor < chequeEspecial) {
+		print("Sem saldo suficiente");
+		return false;
+		} else {
+		print("Movimentando $valor reais");
+		return true;
+		}
+	}
+
+	bool transferencia(double valorDeTransferencia, ContaCorrente contaDestino) {
+		if (!verificaSaldo(valorDeTransferencia)) {
+		return false;
+		} else {
+		this.saldo -= valorDeTransferencia;
+		contaDestino.deposito(valorDeTransferencia);
+		return true;
+		}
+	}
+
+	bool saque(double valorDoSaque) {
+		if (!verificaSaldo(valorDoSaque)) {
+		return false;
+		} else {
+		this.saldo -= valorDoSaque;
+		return true;
+		}
+	}
+
+	double deposito(double ValorDoDeposito) {
+		this.saldo += ValorDoDeposito;
+		return this.saldo;
+	}
+    ```           
+
+- Podemos no set fazer uma verificação semelhante ao que faríamos antes
+    ```
+    set saldo(double novoSaldo) {
+		if (novoSaldo >= chequeEspecial) {
+			_saldo = novoSaldo;
+		} else {
+			print("Erro! Tentei modificar o valor de saldo para um valor menor que o cheque especial");
+		}
+	}
+    ```         
