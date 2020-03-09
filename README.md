@@ -502,3 +502,38 @@ Alteramos o tipo do atributo nome da classe contaCorrente. Ele não será mais u
 
         • • •
     }
+
+> • • •
+
+O programa apresentará erro informando que uma variável do tipo String não pode ser atribuído a variável do tipo Cliente
+
+    void main() {
+        ContaCorrente contaDaAmanda = ContaCorrente();
+        ContaCorrente contaDoTiago = ContaCorrente();
+        contaDaAmanda.titular = "Amanda";
+    }
+
+> • • •
+
+Para corrigir, devemos instanciar o objeto Cliente, assim poderemos acessar todos os seus atributos, inclusive o nome, conforme desejamos, e popularmos com suas respectivas informações
+
+    Cliente amanda = Cliente();
+    amanda.nome = "Amanda";
+    amanda.cpf = "123.456.789-00";
+    amanda.profissao = "Programadora Dart";
+
+> • • •
+
+Como colocamos essas informações dentro da contaCorrente ? Desta forma:
+- Diremos que o atributo titular da classe contaCorrente é igual à amanda
+- amanda é a variável do tipo Cliente que está armazenando todas as informações
+
+    contaDaAmanda.titular = amanda;
+
+> • • •
+
+Como exibimos as informações agora?
+Se imprimirmos como antes, nos retornará erro falando que titular é uma instância do tipo Cliente, em lugar de imprimir o nome do titular:
+    print("Titular: ${contaDaAmanda.titular}");
+
+Porém, podemos colocar mais um ponto para termos acesso aos campos do Cliente
