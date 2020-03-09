@@ -537,3 +537,48 @@ Se imprimirmos como antes, nos retornará erro falando que titular é uma instâ
     print("Titular: ${contaDaAmanda.titular}");
 
 Porém, podemos colocar mais um ponto para termos acesso aos campos do Cliente
+    print("Titular: ${contaDaAmanda.titular.nome}");
+
+----    
+
+##### Organizar o código com a pasta Lib
+Podemos ter arquivos que irão organizar as nossas classes 
+- Crie um novo arquivo (new file). Geralmente, para ficar mais fácil de identificar, colocamos o nome da classe como o nome do arquivo: cliente.dart
+- Cole o conteúdo da classe Cliente dentro do arquivo anteriormente criado: 
+    class Cliente {
+    String nome;
+    String cpf;
+    String profissao;
+    }
+
+- Crie um novo arquivo (new file) chamado contaCorrente.dart
+- Cole o conteúdo da classe Cliente dentro do arquivo anteriormente criado: 
+    class contaCorrente {
+        Cliente titular;
+        int agencia;
+        int conta;
+        double saldo = 20.0;
+        double chequeEspecial = -100.0;
+
+        • • •
+    }
+
+> • • •
+
+A mudança fará com que apareçam erros, como ao passar o cursor sobre Cliente titular, dentro da classe contaCorrente, aparecerá "Classe Cliente indefinida". Isso significa que o Dart não conseguiu encontrar a classe Cliente dentro desse arquivo, pois movemos o arquivo para outro lugar
+Para que o Dart volte a reconhecer, precisamos importar a classe presente em outro arquivos, usando o import, dentro da contacorrente.dart, e importando o arquivos do cliente
+    import 'cliente.dart';
+    class ContaCorrente {
+        • • •
+    }
+
+> • • •
+Precisamos importar para resolver os erros na Main() também. Ocorre que não conseguiremos fazer como antes, importando diretamente a contaCorrente, pois a main está dentro da pasta *bin* e a contaCorrente dentro da pasta *lib*, não estão dentro da mesma estrutura de pastas
+    import '../lib/contacorrente.dart';
+    import '../lib/cliente.dart';
+    void main() {
+        • • •
+    }
+
+> • • •
+Agora, em cada arquivo escreveremos apenas código pertinente à essa classe.
