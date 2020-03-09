@@ -6,6 +6,7 @@ void main() {
   contaDaAmanda.agencia = 123;
   contaDaAmanda.conta = 1;
   contaDaAmanda.saldo;
+  contaDaAmanda.chequeEspecial = -110.0;
 
   ContaCorrente contaDoTiago = ContaCorrente();
   contaDoTiago.titular = "Tiago";
@@ -32,9 +33,10 @@ class ContaCorrente {
   int agencia;
   int conta;
   double saldo = 20.0;
+  double chequeEspecial = -100.0;
 
   bool transferencia(double valorDeTransferencia, ContaCorrente contaDestino) {
-    if (this.saldo - valorDeTransferencia < -100) {
+    if (this.saldo - valorDeTransferencia < chequeEspecial) {
       print("Sem saldo suficiente");
       return false;
     } else {
@@ -46,7 +48,7 @@ class ContaCorrente {
   
   void saque(double valorDoSaque) {
     print("Saldo da ${this.titular}: ${this.saldo}");
-    if (this.saldo - valorDoSaque < -100) {
+    if (this.saldo - valorDoSaque < chequeEspecial) {
       print("Sem Saldo suficiente");
     } else {
       print("Sacando $valorDoSaque reais");
