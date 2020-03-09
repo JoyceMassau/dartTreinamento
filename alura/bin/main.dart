@@ -1,23 +1,14 @@
 void main() {
 
   ContaCorrente contaDaAmanda = ContaCorrente();
+  ContaCorrente contaDoTiago = ContaCorrente();
 
   contaDaAmanda.titular = "Amanda";
   contaDaAmanda.agencia = 123;
   contaDaAmanda.conta = 1;
   contaDaAmanda.saldo;
   contaDaAmanda.chequeEspecial = -110.0;
-
-  ContaCorrente contaDoTiago = ContaCorrente();
   contaDoTiago.titular = "Tiago";
-
-  print("Saldo da ${contaDaAmanda.titular}: ${contaDaAmanda.saldo}");
-  print("Saldo da ${contaDoTiago.titular}: ${contaDoTiago.saldo}");
-
-  bool sucesso = contaDaAmanda.transferencia(20.0, contaDoTiago);
-  print(sucesso);
-  print("Saldo da ${contaDaAmanda.titular}: ${contaDaAmanda.saldo}");
-  print("Saldo da ${contaDoTiago.titular}: ${contaDoTiago.saldo}");
 }
 
 class Cliente {
