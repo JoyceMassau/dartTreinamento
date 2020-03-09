@@ -573,6 +573,7 @@ Para que o Dart volte a reconhecer, precisamos importar a classe presente em out
     }
 
 > • • •
+
 Precisamos importar para resolver os erros na Main() também. Ocorre que não conseguiremos fazer como antes, importando diretamente a contaCorrente, pois a main está dentro da pasta *bin* e a contaCorrente dentro da pasta *lib*, não estão dentro da mesma estrutura de pastas
     import '../lib/contacorrente.dart';
     import '../lib/cliente.dart';
@@ -581,6 +582,7 @@ Precisamos importar para resolver os erros na Main() também. Ocorre que não co
     }
 
 > • • •
+
 Agora, em cada arquivo escreveremos apenas código pertinente à essa classe.
 
 ----    
