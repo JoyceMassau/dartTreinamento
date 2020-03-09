@@ -7,6 +7,14 @@ class ContaCorrente {
   double _saldo = 20.0;
   double chequeEspecial = -100.0;
 
+  void definirSaldo(double novoSaldo) {
+    this._saldo = novoSaldo;      
+  }
+
+    double obterSaldo() {
+        return this._saldo;
+    }
+
   bool verificaSaldo(double valor) {
     if (this._saldo - valor < chequeEspecial) {
       print("Sem saldo suficiente");
