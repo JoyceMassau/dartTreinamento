@@ -35,6 +35,16 @@ class ContaCorrente {
   double saldo = 20.0;
   double chequeEspecial = -100.0;
 
+  bool verificaSaldo(double valor) {
+    if (this.saldo - valor < chequeEspecial) {
+      print("Sem saldo suficiente");
+      return false;
+    } else {
+      print("Movimentando $valor reais");
+      return true;
+    }
+  }
+
   bool transferencia(double valorDeTransferencia, ContaCorrente contaDestino) {
     if (this.saldo - valorDeTransferencia < chequeEspecial) {
       print("Sem saldo suficiente");
