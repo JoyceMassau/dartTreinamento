@@ -764,4 +764,13 @@ Esse método irá receber o novo saldo e adicionar o novo saldo dentro do campo 
 > ...
 
 Porém, ao executarmos agora, o resultado será R$ -101, mas ainda não podemos deixar que o saldo seja menor que o cheque especial, que permite saldo negativo de até R$ -100
-//10.24
+- Faremos uma verificação na função que é o nosso Getter, a definirSaldo()
+    ```
+    void definirSaldo(double novoSaldo) {
+        if(novoSaldo <= chequeEspecial) {
+            this._saldo = novoSaldo;      
+        } else {
+            print("Erro! Tente mudar o saldo para um valor menor que o cheque especial");
+        }
+    }
+    ```
