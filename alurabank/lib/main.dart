@@ -34,7 +34,7 @@ void main() => runApp(MaterialApp(
   ),
 ));
 
-class ListaTransferencia extends Widget {
+class ListaTransferencia extends StatelessWidget {
   @override
   Element createElement() {
     // TODO: implement createElement

@@ -444,6 +444,26 @@ samples, guidance on mobile development, and a full API reference.
     + Posicionar o cursor sobre a classe criada anteriormente class ListaTransferencia extends *Widget* { }
         + Alt + Enter
         + _"Create 1 missing override"_
+- Ficando o código da seguinte forma
+    ```
+    class ListaTransferencia extends Widget {
+    @override
+    Element createElement() {
+        // TODO: implement createElement
+        throw UnimplementedError();
+    }
+    ```      
+
+#### StateLess e StateFul: Referência a Widget de alto nível
+- Não iremos desenhar desde o zero um widget, queremos apenas utilizar essa estrutura já pronta. Para widgets de alto nível, como desejamos implementar, temos duas referências que podemos estar utilizando, que irão encapsular elementos do código que já temos de widgets prontos
+    + [class ListaTransferencia extends StatefulWidget { }](https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html "class ListaTransferencia extends StatefulWidget { }") - Dinâmico
+   
+    + [class ListaTransferencia extends StatelessWidget { }](https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html "class class ListaTransferencia extends StatelessWidget { }") - Fixo
+- Utilizaremos à princípio o StateLess 
+    ```
+    class ListaTransferencia extends StatelessWidget { }
+    ```
+
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets ( Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffoldé usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.
