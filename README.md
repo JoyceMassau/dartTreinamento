@@ -974,3 +974,13 @@ Se tentarmos printar esse resultado, o código nos dirá que esse campo estátic
 	```
 	print(ContaCorrente.totalDeContasCorrentes);
 	```
+
+
+----
+
+#### Fundamentos de Flutter: Crie o seu primeiro App
+##### AULA 01 Primeiros passos com o Flutter
+- Criar projeto, no terminal,  digite:
+	```
+	flutter	create nomeDoProjeto
+	```
