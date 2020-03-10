@@ -1067,4 +1067,23 @@ Se tentarmos printar esse resultado, o código nos dirá que esse campo estátic
     );
     ```
 
--
+- Devemos indicar a tela de início do aplicativo por meio do home
+    ```import 'package:flutter/material.dart';
+
+    void main() => runApp(
+        MaterialApp(
+            home:
+        )
+    );
+    ```
+
+- Podemos colocar inclusive um texto, que o MaterialApp irá reconhecer
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(
+        MaterialApp(
+            home: Text("Teste"),
+        )
+    );
+    ```
