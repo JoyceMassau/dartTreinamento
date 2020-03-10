@@ -1087,3 +1087,68 @@ Se tentarmos printar esse resultado, o código nos dirá que esse campo estátic
         )
     );
     ```
+
+##### AppBar: Barra superior do app
+- Utilizaremos o Scaffold do MaterialApp para envolver o conteúdo e, para criar a barra superior do aplicativo, a AppBar, basta chamar o Widget
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            appBar: AppBar(),
+        ),
+    ));
+    ```
+
+- Colocar o texto que é o título da página de Transferências. Há uma propriedadade de title. Como estamos usando o MaterialApp não precisamos indicar o posicionamento, como fazíamos anteriormente, com "textDirection: TextDirection.ltr"
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            appBar: AppBar(title: Text('Transferências')),
+        ),
+    ));
+    ```
+
+##### Float Action Button: um botão flutuante aguardando ação do usuário
+- No projeto do AluraBank que pretendemos criar há um botão flutuante. Para implementa-lo, dentro da estrutura do Scaffold chamamos o Widget
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            appBar: AppBar(title: Text('Transferências')),
+            floatingActionButton: FloatingActionButton(),
+        ),
+    ));
+    ```
+
+- O nosso botão espera um ícone de um sinal de *mais* para adicionarmos mais elementos. O nome desde ícone é *add*
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            appBar: AppBar(title: Text('Transferências')),
+            floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add),
+            ),
+        ),
+    ));
+    ```
+
+- Para maiores informações sobre ícones
+    https://api.flutter.dev/flutter/material/Icons-class.html
+
+#### Esclarecimentos
++ MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets ( Navigator, Theme) necessários para criar um aplicativo de design de materiais.
++ Scaffoldé usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.
+Estrutura básica de aplicativo típico:
+    ```
+    void main()  => runApp(MaterialApp(
+        home: Scaffold(
+            appBar: AppBar(),
+        ),
+    ));
+    ```
