@@ -333,6 +333,84 @@ samples, guidance on mobile development, and a full API reference.
         ),
     ));
     ```
+#### Lista de Cards
+- Vimos como implementar o ListTile para exibir um card, ocorre que é necessário que exibamos uma lista de cards e não um avulso. Para tanto, podemos indicar que o card estará dentro de uma coluna
+    + Posicione o cursor sobre body: *Card*(
+        + Com a extensão para VS Code "IntelliJ IDEA KeyBindings" instalada, pressione o atalho do teclado _Alt + Enter_
+        + Selecione _"Wrap With Column"_
+- O código ficará da seguinte forma, tendo ainda apenas um item de lista
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            body: Column(
+            children: <Widget>[
+                Card(
+                    child: ListTile(
+                        leading: Icon(Icons.monetization_on),
+                        title: Text('100.0'),
+                        subtitle: Text('10000'),
+                    )
+                ),
+            ],
+            ),
+            appBar: AppBar(title: Text('Transferências')),
+            floatingActionButton: FloatingActionButton(
+                child: Icon(Icons.add),
+            ),
+        ),
+    ));
+    ```        
+- Porém, podemos replicar o trecho do sódigo do card, que representa um item da lista
+    ```
+    Card(
+        child: ListTile(
+        leading: Icon(Icons.monetization_on),
+        title: Text('100.0'),
+        subtitle: Text('10000'),
+        )
+    ),
+    ```    
+- Ficando da seguinte forma
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            body: Column(
+            children: <Widget>[
+                Card(
+                    child: ListTile(
+                        leading: Icon(Icons.monetization_on),
+                        title: Text('100.0'),
+                        subtitle: Text('10000'),
+                    )
+                ),
+                Card(
+                    child: ListTile(
+                        leading: Icon(Icons.monetization_on),
+                        title: Text('100.0'),
+                        subtitle: Text('10000'),
+                    )
+                ),
+                Card(
+                    child: ListTile(
+                        leading: Icon(Icons.monetization_on),
+                        title: Text('100.0'),
+                        subtitle: Text('10000'),
+                    )
+                ),
+            ],
+            ),
+            appBar: AppBar(title: Text('Transferências')),
+            floatingActionButton: FloatingActionButton(
+                child: Icon(Icons.add),
+            ),
+        ),
+    ));
+    ```
+
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets ( Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffoldé usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.
