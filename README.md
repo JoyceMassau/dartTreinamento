@@ -943,3 +943,147 @@ O construtor pode acessar valores que não sejam direto do campo, e podemos trat
 		if(novaAgencia > 0) _agencia = novaAgencia; 
 	}
 	```
+
+----    
+
+##### Métodos estáticos
+Se quisermos saber quantas contas correntes existem, começaremos criando uma variável que nos informará esse valor, e a inicializando com zero
+	```
+	class ContaCorrente {
+		int totalDeContasCorrentes = 0;
+	}
+	```
+
+Após isso, somaremos no nosso método construtor sempre que haver mais uma conta corrente
+	```
+	class ContaCorrente {
+		ContaCorrente(int novaAgencia,this.conta) {
+			if(novaAgencia > 0) _agencia = novaAgencia; 
+			totalDeContasCorrentes++;
+		}	
+		• • •
+	}
+	```
+
+Usaremos na variável a palavra reservada *static*, que nos dirá que esta variável é estática dessa classe. Ela pertence à classe conta corrente, e não ao objeto conta corrente
+	```
+	static int totalDeContasCorrentes = 0;
+	```
+
+Se tentarmos printar esse resultado, o código nos dirá que esse campo estático não pode ser acessado por uma instância da classe, como _contaDaAmanda_ ou _contaDoTiago_. Para printarmos, faremos:
+	```
+	print(ContaCorrente.totalDeContasCorrentes);
+	```
+
+
+----
+
+#### Fundamentos de Flutter: Crie o seu primeiro App
+##### AULA 01 Primeiros passos com o Flutter
+- Criar projeto, no terminal,  digite:
+	```
+	flutter	create nomeDoProjeto
+	```
+
+- Para rodar projeto criado, entre na pasta criou e execute
+	```
+	cd nomeDoProjeto
+    flutter run
+	```
+
+- Para visualizar os dispositivos disponíveis, caso hajam
+	```
+    flutter devices
+	```
+- Para criar emulador no browser
+    https://flutter.dev/docs/get-started/web    
+
+- Para emular no browser, no terminal digite
+    ```
+    flutter run -d chrome
+    ```
+
+- Para tornar a executar no browser, digite
+    ```
+    r
+    ```
+
+----
+
+##### Apresentando o resultado com o Flutter
+- Para compreendermos como o flutter cria esse aplicativo de contador, exibido ao iniciá-lo, apague todo o código após a função main, dentro da pasta *lib* do projeto. O arquivo lib passará a conter apenas o código
+    ```
+    import 'package:flutter/material.dart';
+    void main() => runApp(MyApp());
+    ```
+
+##### Tentando printar na tela
+- Apagado o código anterior, tentemos usar o comando print para exibir uma mensagem. Ao dar *Ctrl+F5* para recarregar a página, verá que nada acontece no emulador; a mensagem só é exibida no terminal
+    ```
+    import 'package:flutter/material.dart';
+    void main() => print('Bem vindo ao AluraBank');
+    ```
+
+##### Comportamento visual
+- Para possibilitar que exibamos coisas em nosso aplicativo, precisamos seguir algumas regras. A começar, que o código só é renderizado no aplicativo se executado dentro do runApp
+- Precisamos witgets prontos. Utilizaremos um widget de texto
+- Para funcionar, precisamos passar ao menos dois argumentos, o texto que quer exibir e a direção dele
+    ```
+    import 'package:flutter/material.dart';
+    void main() => runApp(Text("Bem vindo ao AluraBank", textDirection: TextDirection.ltr));
+    ```
+
+##### Widget de coluna
+- Para vermos o resultado, na documentação, procuraremos um widget que gostaríamos de utilizar
+    https://api.flutter.dev/flutter/widgets/Column-class.html
+
+- Vamos colar ele dentro do RunApp e executar. Observe que alteramos o código da documentação, acrescentando a direção do texto, conforme vimos anteriormente
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(Column(
+    children: <Widget>[
+        Text(
+        'Deliver features faster', 
+        textDirection: TextDirection.ltr
+        ),
+        Text(
+        'Craft beautiful UIs', 
+        textDirection: TextDirection.ltr
+        ),
+    ],
+    ));
+    ```
+
+##### AluraBank: tela de transferências
+- No catálogo de Widgets do flutter, vamos selecionar Material Components
+- O MaterialApp vai envolver todos os outros componentes
+- No main.dart, desntro da pasta lib, iremos alterar para utilizar o MaterialApp
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(
+        MaterialApp()
+    );
+    ```
+
+- Devemos indicar a tela de início do aplicativo por meio do home
+    ```import 'package:flutter/material.dart';
+
+    void main() => runApp(
+        MaterialApp(
+            home:
+        )
+    );
+    ```
+
+- Podemos colocar inclusive um texto, que o MaterialApp irá reconhecer
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(
+        MaterialApp(
+            home: Text("Teste"),
+        )
+    );
+    ```
