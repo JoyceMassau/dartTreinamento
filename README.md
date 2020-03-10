@@ -995,3 +995,15 @@ Se tentarmos printar esse resultado, o código nos dirá que esse campo estátic
 	```
     flutter devices
 	```
+- Para criar emulador no browser
+    https://flutter.dev/docs/get-started/web    
+
+- Para emular no browser, no terminal digite
+    ```
+    flutter run -d chrome
+    ```
+
+- Para tornar a executar no browser, digite
+    ```
+    r
+    ```
