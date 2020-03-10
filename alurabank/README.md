@@ -16,10 +16,8 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 
 
-
-
-#### Fundamentos de Flutter: Crie o seu primeiro App
-##### AULA 01 Primeiros passos com o Flutter
+### Fundamentos de Flutter: Crie o seu primeiro App
+#### AULA 01 Primeiros passos com o Flutter
 - Criar projeto, no terminal,  digite:
 	```
 	flutter	create nomeDoProjeto
@@ -50,21 +48,21 @@ samples, guidance on mobile development, and a full API reference.
 
 ----
 
-##### Apresentando o resultado com o Flutter
+#### Apresentando o resultado com o Flutter
 - Para compreendermos como o flutter cria esse aplicativo de contador, exibido ao iniciá-lo, apague todo o código após a função main, dentro da pasta *lib* do projeto. O arquivo lib passará a conter apenas o código
     ```
     import 'package:flutter/material.dart';
     void main() => runApp(MyApp());
     ```
 
-##### Tentando printar na tela
+#### Tentando printar na tela
 - Apagado o código anterior, tentemos usar o comando print para exibir uma mensagem. Ao dar *Ctrl+F5* para recarregar a página, verá que nada acontece no emulador; a mensagem só é exibida no terminal
     ```
     import 'package:flutter/material.dart';
     void main() => print('Bem vindo ao AluraBank');
     ```
 
-##### Comportamento visual
+#### Comportamento visual
 - Para possibilitar que exibamos coisas em nosso aplicativo, precisamos seguir algumas regras. A começar, que o código só é renderizado no aplicativo se executado dentro do runApp
 - Precisamos witgets prontos. Utilizaremos um widget de texto
 - Para funcionar, precisamos passar ao menos dois argumentos, o texto que quer exibir e a direção dele
@@ -73,7 +71,7 @@ samples, guidance on mobile development, and a full API reference.
     void main() => runApp(Text("Bem vindo ao AluraBank", textDirection: TextDirection.ltr));
     ```
 
-##### Widget de coluna
+#### Widget de coluna
 - Para vermos o resultado, na documentação, procuraremos um widget que gostaríamos de utilizar
     https://api.flutter.dev/flutter/widgets/Column-class.html
 
@@ -95,7 +93,7 @@ samples, guidance on mobile development, and a full API reference.
     ));
     ```
 
-##### AluraBank: tela de transferências
+#### AluraBank: tela de transferências
 - No catálogo de Widgets do flutter, vamos selecionar Material Components
 - O MaterialApp vai envolver todos os outros componentes
 - No main.dart, desntro da pasta lib, iremos alterar para utilizar o MaterialApp
@@ -128,7 +126,7 @@ samples, guidance on mobile development, and a full API reference.
     );
     ```
 
-##### AppBar: Barra superior do app
+#### AppBar: Barra superior do app
 - Utilizaremos o Scaffold do MaterialApp para envolver o conteúdo e, para criar a barra superior do aplicativo, a AppBar, basta chamar o Widget
     ```
     import 'package:flutter/material.dart';
@@ -151,7 +149,7 @@ samples, guidance on mobile development, and a full API reference.
     ));
     ```
 
-##### Float Action Button: um botão flutuante aguardando ação do usuário
+#### Float Action Button: um botão flutuante aguardando ação do usuário
 - No projeto do AluraBank que pretendemos criar há um botão flutuante. Para implementa-lo, dentro da estrutura do Scaffold chamamos o Widget
     ```
     import 'package:flutter/material.dart';
@@ -297,7 +295,25 @@ samples, guidance on mobile development, and a full API reference.
         ),
     ));
     ```
+- Para incluirmos um ícone conforme o projeto do AluraBank, usaremos um [leading](https://api.flutter.dev/flutter/material/ListTile/leading.html "leading"), um ícone a ser exibido antes do título, com um [ícone de um cifrao](https://api.flutter.dev/flutter/material/Icons/monetization_on-constant.html "ícone de um cifrao")
+    ```
+    import 'package:flutter/material.dart';
 
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            body: Card(
+                child: ListTile(
+                    leading: Icon(Icons.monetization_on),
+                )
+            ),
+            appBar: AppBar(title: Text('Transferências')),
+            floatingActionButton: FloatingActionButton(
+                child: Icon(Icons.add),
+            ),
+        ),
+    ));
+    ```
+    
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets ( Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffoldé usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.
