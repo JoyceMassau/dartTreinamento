@@ -1016,3 +1016,55 @@ Se tentarmos printar esse resultado, o código nos dirá que esse campo estátic
     import 'package:flutter/material.dart';
     void main() => runApp(MyApp());
     ```
+
+##### Tentando printar na tela
+- Apagado o código anterior, tentemos usar o comando print para exibir uma mensagem. Ao dar *Ctrl+F5* para recarregar a página, verá que nada acontece no emulador; a mensagem só é exibida no terminal
+    ```
+    import 'package:flutter/material.dart';
+    void main() => print('Bem vindo ao AluraBank');
+    ```
+
+##### Comportamento visual
+- Para possibilitar que exibamos coisas em nosso aplicativo, precisamos seguir algumas regras. A começar, que o código só é renderizado no aplicativo se executado dentro do runApp
+- Precisamos witgets prontos. Utilizaremos um widget de texto
+- Para funcionar, precisamos passar ao menos dois argumentos, o texto que quer exibir e a direção dele
+    ```
+    import 'package:flutter/material.dart';
+    void main() => runApp(Text("Bem vindo ao AluraBank", textDirection: TextDirection.ltr));
+    ```
+
+##### Widget de coluna
+- Para vermos o resultado, na documentação, procuraremos um widget que gostaríamos de utilizar
+    https://api.flutter.dev/flutter/widgets/Column-class.html
+
+- Vamos colar ele dentro do RunApp e executar. Observe que alteramos o código da documentação, acrescentando a direção do texto, conforme vimos anteriormente
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(Column(
+    children: <Widget>[
+        Text(
+        'Deliver features faster', 
+        textDirection: TextDirection.ltr
+        ),
+        Text(
+        'Craft beautiful UIs', 
+        textDirection: TextDirection.ltr
+        ),
+    ],
+    ));
+    ```
+
+##### AluraBank: tela de transferências
+- No catálogo de Widgets do flutter, vamos selecionar Material Components
+- O MaterialApp vai envolver todos os outros componentes
+- No main.dart, desntro da pasta lib, iremos alterar para utilizar o MaterialApp
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(
+        MaterialApp()
+    );
+    ```
+
+-
