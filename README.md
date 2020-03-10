@@ -984,3 +984,14 @@ Se tentarmos printar esse resultado, o código nos dirá que esse campo estátic
 	```
 	flutter	create nomeDoProjeto
 	```
+
+- Para rodar projeto criado, entre na pasta criou e execute
+	```
+	cd nomeDoProjeto
+    flutter run
+	```
+
+- Para visualizar os dispositivos disponíveis, caso hajam
+	```
+    flutter devices
+	```
