@@ -411,12 +411,41 @@ samples, guidance on mobile development, and a full API reference.
     ));
     ```
 
+#### Extração de código para facilitar leitura
+- Criaremos uma classe ao final do _arquivo main.dart_, da pasta _bin_ chamada ListaTransferencia
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            
+        ),
+    ));
+
+    class ListaTransferencia {
+    
+    }
+    ```
+- Com a classe criada, podemos utilizá-la no _body_ do aplicativo. Como o body espera um Widget, precisamos transformar a classe em um, fazendo uma herança
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            
+        ),
+    ));
+
+    class ListaTransferencia extends Widget {
+    
+    }
+    ```
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets ( Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffoldé usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.
 Estrutura básica de aplicativo típico:
     ```
-    void main()  => runApp(MaterialApp(
+    void main() => runApp(MaterialApp(
         home: Scaffold(
             appBar: AppBar(),
         ),

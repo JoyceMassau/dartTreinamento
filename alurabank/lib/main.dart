@@ -33,3 +33,7 @@ void main() => runApp(MaterialApp(
     ),
   ),
 ));
+
+class ListaTransferencia extends Widget {
+
+}
