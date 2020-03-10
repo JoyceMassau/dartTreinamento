@@ -1007,3 +1007,12 @@ Se tentarmos printar esse resultado, o código nos dirá que esse campo estátic
     ```
     r
     ```
+
+----
+
+##### Apresentando o resultado com o Flutter
+- Para compreendermos como o flutter cria esse aplicativo de contador, exibido ao iniciá-lo, apague todo o código após a função main, dentro da pasta *lib* do projeto. O arquivo lib passará a conter apenas o código
+    ```
+    import 'package:flutter/material.dart';
+    void main() => runApp(MyApp());
+    ```
