@@ -1087,3 +1087,185 @@ Se tentarmos printar esse resultado, o código nos dirá que esse campo estátic
         )
     );
     ```
+
+##### AppBar: Barra superior do app
+- Utilizaremos o Scaffold do MaterialApp para envolver o conteúdo e, para criar a barra superior do aplicativo, a AppBar, basta chamar o Widget
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            appBar: AppBar(),
+        ),
+    ));
+    ```
+
+- Colocar o texto que é o título da página de Transferências. Há uma propriedadade de title. Como estamos usando o MaterialApp não precisamos indicar o posicionamento, como fazíamos anteriormente, com "textDirection: TextDirection.ltr"
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            appBar: AppBar(title: Text('Transferências')),
+        ),
+    ));
+    ```
+
+##### Float Action Button: um botão flutuante aguardando ação do usuário
+- No projeto do AluraBank que pretendemos criar há um botão flutuante. Para implementa-lo, dentro da estrutura do Scaffold chamamos o Widget
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            appBar: AppBar(title: Text('Transferências')),
+            floatingActionButton: FloatingActionButton(),
+        ),
+    ));
+    ```
+
+- O nosso botão espera um ícone de um sinal de *mais* para adicionarmos mais elementos. O nome desde ícone é *add*
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            appBar: AppBar(title: Text('Transferências')),
+            floatingActionButton: FloatingActionButton(
+                child: Icon(Icons.add),
+            ),
+        ),
+    ));
+    ```
+
+- Para maiores informações sobre ícones
+    https://api.flutter.dev/flutter/material/Icons-class.html
+
+#### Implementando componentes de itens de lista de transferências
+- Para implementar este visual utilizaremos a documentaçaõ do MaterialApp
+    https://flutter.dev/docs/development/ui/widgets/material
+
+- Para utilizar um componente na parte ainda vazia do app, abaixo do AppBar, utilizaremos o *Body* dentro da estrutura do *Home* de nosso aplicativo. Utilizaremos o componente de texto para testarmos
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            body: Text('Teste'),
+            appBar: AppBar(title: Text('Transferências')),
+            floatingActionButton: FloatingActionButton(
+                child: Icon(Icons.add),
+            ),
+        ),
+    ));
+    ```
+
+- A documentação do MaterialApp nos informa que o componente que devemos utilizar para compor a estrutura de nossa lista é o Card. Poderemos substituir o widget de texto por este. Ocorre, porém, que visualmente o código abaixo não irá renderizar nada no body do aplicativo. Isso acontece, pois o card só funciona como um container para armazenar outras estruturas
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            body: Card(),
+            appBar: AppBar(title: Text('Transferências')),
+            floatingActionButton: FloatingActionButton(
+                child: Icon(Icons.add),
+            ),
+        ),
+    ));
+    ```
+
+- Vamos colocar um conteúdo dentro de um outro Widget, para isso utilizaremos também o *Child*
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            body: Card(
+                child: Text('Teste'),
+            ),
+            appBar: AppBar(title: Text('Transferências')),
+            floatingActionButton: FloatingActionButton(
+                child: Icon(Icons.add),
+            ),
+        ),
+    ));
+    ```
+- Para que coloquemos a estrutura em um nível acima, primeiro vamos baixar a extensão que trás par ao VS Code os atalhos de teclado do IntelliJ
+    + No VS Code, em entensões, pesquise e instale a extensão *IntelliJ IDEA Keybindings*
+    + Com a extensão instalada e o cursor sobre o widget de Texto, selecione a opção *Wrap With Column*: child: *Text*('Teste') para envolver os filhos dessa coluna dentro do widget
+- O código ficará da seguinte forma
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            body: Card(
+                child: Column(
+                    children: <Widget>[
+                    Text('Teste'),
+                    ],
+                ),
+            ),
+            appBar: AppBar(title: Text('Transferências')),
+            floatingActionButton: FloatingActionButton(
+                child: Icon(Icons.add),
+            ),
+        ),
+    ));
+    ```   
+- Podemos adicionar mais texto dentro do container criado para testar seu comportamento
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            body: Card(
+                child: Column(
+                    children: <Widget>[
+                    Text('Teste'),
+                    Text('Teste'),
+                    Text('Teste'),
+                    Text('Teste'),
+                    ],
+                ),
+            ),
+            appBar: AppBar(title: Text('Transferências')),
+            floatingActionButton: FloatingActionButton(
+                child: Icon(Icons.add),
+            ),
+        ),
+    ));
+    ```
+
+#### ListTile: Estrutura de listas do Flutter
+- Utilizaremos da documentação deste Widget
+    https://api.flutter.dev/flutter/material/ListTile-class.html
+- Iremos apagar o trecho de código onde criamos a coluna, ele foi criado apenas com intuito de demonstração e teste, ficando o código conforme abaixo
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            body: Card(
+                child: 
+            ),
+            appBar: AppBar(title: Text('Transferências')),
+            floatingActionButton: FloatingActionButton(
+                child: Icon(Icons.add),
+            ),
+        ),
+    ));
+    ```
+
+#### Esclarecimentos
++ MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets ( Navigator, Theme) necessários para criar um aplicativo de design de materiais.
++ Scaffoldé usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.
+Estrutura básica de aplicativo típico:
+    ```
+    void main()  => runApp(MaterialApp(
+        home: Scaffold(
+            appBar: AppBar(),
+        ),
+    ));
+    ```
