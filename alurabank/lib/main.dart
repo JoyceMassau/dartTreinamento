@@ -3,14 +3,7 @@ import 'package:flutter/material.dart';
 void main() => runApp(MaterialApp(
   home: Scaffold(
     body: Card(
-      child: Column(
-        children: <Widget>[
-          Text('Teste'),
-          Text('Teste'),
-          Text('Teste'),
-          Text('Teste'),
-        ],
-      ),
+      child: 
     ),
     appBar: AppBar(title: Text('Transferências')),
     floatingActionButton: FloatingActionButton(

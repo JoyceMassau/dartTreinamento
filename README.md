@@ -1237,7 +1237,27 @@ Se tentarmos printar esse resultado, o código nos dirá que esse campo estátic
         ),
     ));
     ```
-    
+
+#### ListTile: Estrutura de listas do Flutter
+- Utilizaremos da documentação deste Widget
+    https://api.flutter.dev/flutter/material/ListTile-class.html
+- Iremos apagar o trecho de código onde criamos a coluna, ele foi criado apenas com intuito de demonstração e teste, ficando o código conforme abaixo
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            body: Card(
+                child: 
+            ),
+            appBar: AppBar(title: Text('Transferências')),
+            floatingActionButton: FloatingActionButton(
+                child: Icon(Icons.add),
+            ),
+        ),
+    ));
+    ```
+
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets ( Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffoldé usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.
