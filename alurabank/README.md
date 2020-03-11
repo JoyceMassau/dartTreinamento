@@ -767,6 +767,48 @@ class ItemTransferencia extends StatelessWidget {
     }
     ```
 
+- Na classe ItemTransferencia, onde utilizamos as variáveis, dizemos que elas vem da referência privada _transferencia    
+    ```
+    class ItemTransferencia extends StatelessWidget {
+
+        final Transferencia _transferencia;
+
+        ItemTransferencia(this._transferencia);
+        
+        @override
+        Widget build(BuildContext context) {
+            return Card(
+                child: ListTile(
+                    leading: Icon(Icons.monetization_on),
+                    title: Text(_transferencia.valor),
+                    subtitle: Text(_transferencia.numeroConta),
+                )
+            );
+        }
+    }
+    ```
+
+- Para trazer o resultado em formato de string, como estávamos fazendo anteriormente com a variável em formato de string, passamos o ToString
+    ```
+    class ItemTransferencia extends StatelessWidget {
+
+        final Transferencia _transferencia;
+
+        ItemTransferencia(this._transferencia);
+        
+        @override
+        Widget build(BuildContext context) {
+            return Card(
+                child: ListTile(
+                    leading: Icon(Icons.monetization_on),
+                    title: Text(_transferencia.valor.toString()),
+                    subtitle: Text(_transferencia.numeroConta.toString()),
+                )
+            );
+        }
+    }
+    ```
+
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffold é usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.
