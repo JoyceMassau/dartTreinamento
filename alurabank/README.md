@@ -747,6 +747,25 @@ class ItemTransferencia extends StatelessWidget {
     ```
 
 - Passamos para o construtor o atributo vindo de Transferencia 
+    ```
+    class ItemTransferencia extends StatelessWidget {
+
+        final Transferencia _transferencia;
+
+        ItemTransferencia(this._transferencia);
+        
+        @override
+        Widget build(BuildContext context) {
+            return Card(
+            child: ListTile(
+                leading: Icon(Icons.monetization_on),
+                title: Text(valor),
+                subtitle: Text(numeroConta),
+            )
+            );
+        }
+    }
+    ```
 
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
