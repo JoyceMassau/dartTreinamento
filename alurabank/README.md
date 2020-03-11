@@ -413,7 +413,7 @@ samples, guidance on mobile development, and a full API reference.
 
 #### Extração de código para facilitar leitura
 Já temos bastante código, mas não é intuitivo entender que a _Column_ representa uma lista de transferências ou que o Card representa um item da lista. Criaremos uma classe para tornar isso mais intuitivo
-- Criaremos uma classe ao final do _arquivo main.dart_, da pasta _bin_ chamada ListaTransferencia
+- Criaremos uma classe ao final do _arquivo main.dart_, da pasta _bin_ chamada ListaTransferencias
     ```
     import 'package:flutter/material.dart';
 
@@ -423,7 +423,7 @@ Já temos bastante código, mas não é intuitivo entender que a _Column_ repres
         ),
     ));
 
-    class ListaTransferencia {
+    class ListaTransferencias {
     
     }
     ```
@@ -437,17 +437,17 @@ Já temos bastante código, mas não é intuitivo entender que a _Column_ repres
         ),
     ));
 
-    class ListaTransferencia extends Widget {
+    class ListaTransferencias extends Widget {
     
     }
     ```
 - Quando fazemos uma herança é necessário fazer um _override_, uma sobrescrita de um método obrigatório    
-    + Posicionar o cursor sobre a classe criada anteriormente class ListaTransferencia extends *Widget* { }
+    + Posicionar o cursor sobre a classe criada anteriormente class ListaTransferencias extends *Widget* { }
         + Alt + Enter
         + _"Create 1 missing override"_
 - Ficando o código da seguinte forma
     ```
-    class ListaTransferencia extends Widget {
+    class ListaTransferencias extends Widget {
     @override
     Element createElement() {
         // TODO: implement createElement
@@ -457,17 +457,17 @@ Já temos bastante código, mas não é intuitivo entender que a _Column_ repres
 
 #### StateLess e StateFul: Referência a Widget de alto nível
 - Não iremos desenhar desde o zero um widget, queremos apenas utilizar essa estrutura já pronta. Para widgets de alto nível, como desejamos implementar, temos duas referências que podemos estar utilizando, que irão encapsular elementos do código que já temos de widgets prontos
-    + [class ListaTransferencia extends StatefulWidget { }](https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html "class ListaTransferencia extends StatefulWidget { }") - Dinâmico
+    + [class ListaTransferencias extends StatefulWidget { }](https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html "class ListaTransferencias extends StatefulWidget { }") - Dinâmico
    
-    + [class ListaTransferencia extends StatelessWidget { }](https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html "class class ListaTransferencia extends StatelessWidget { }") - Fixo
+    + [class ListaTransferencias extends StatelessWidget { }](https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html "class class ListaTransferencias extends StatelessWidget { }") - Fixo
 - Utilizaremos à princípio o StateLess, que é fixo, não muda, evitando o risco de entragar algo que não esperamos
     ```
-    class ListaTransferencia extends StatelessWidget { }
+    class ListaTransferencias extends StatelessWidget { }
     ```
 
 - Não temos o método override de referência genérica,que cria um elemento desde o zero. Para um elemento de alto nível isto não é obrigátório. Para isso usamos a _build_
     ```
-    class ListaTransferencia extends StatelessWidget {
+    class ListaTransferencias extends StatelessWidget {
         @override
         Widget build(BuildContext context) {
             //TODO: implement build
@@ -475,6 +475,41 @@ Já temos bastante código, mas não é intuitivo entender que a _Column_ repres
         }
     }
     ```
+
+- Recortaremos todo o código que passamos no _body_ do aplicativo para compor as colunas, e colaremos no retorno da função
+    ```
+    class ListaTransferencias extends StatelessWidget {
+    @override
+        Widget build(BuildContext context) {
+            return Column(
+            children: <Widget>[
+                Card(
+                    child: ListTile(
+                        leading: Icon(Icons.monetization_on),
+                        title: Text('100.0'),
+                        subtitle: Text('10000'),
+                    )
+                ),
+                Card(
+                    child: ListTile(
+                        leading: Icon(Icons.monetization_on),
+                        title: Text('100.0'),
+                        subtitle: Text('10000'),
+                    )
+                ),
+                Card(
+                    child: ListTile(
+                        leading: Icon(Icons.monetization_on),
+                        title: Text('100.0'),
+                        subtitle: Text('10000'),
+                    )
+                ),
+            ],
+            );
+        }
+    }
+    ```
+
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets ( Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffold é usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.
