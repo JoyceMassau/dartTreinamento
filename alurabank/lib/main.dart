@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(
   home: Scaffold(
-    body: ListaTransferencias(),
-    appBar: AppBar(title: Text('Transferências')),
-    floatingActionButton: FloatingActionButton(
-      child: Icon(Icons.add),
-    ),
-  ),
-));
+    body: FormularioTransferencias(),
+        appBar: AppBar(title: Text('Transferências')),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+        ),
+      ),
+    ));
+    
+class FormularioTransferencias {
+}
 
 class ListaTransferencias extends StatelessWidget {
   @override

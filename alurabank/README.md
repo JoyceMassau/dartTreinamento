@@ -17,7 +17,10 @@ samples, guidance on mobile development, and a full API reference.
 
 
 ### Fundamentos de Flutter: Crie o seu primeiro App
-#### AULA 01 Primeiros passos com o Flutter
+
+### AULA 01 Primeiros passos com o Flutter
+
+#### Criando projeto e executando projeto flutter
 - Criar projeto, no terminal,  digite:
 	```
 	flutter	create nomeDoProjeto
@@ -825,6 +828,26 @@ class ItemTransferencia extends StatelessWidget {
         }
     }
     ```
+
+### AULA 03 Criando formulário e refatorando o código
+
+#### Nova tela de Criando Transferência
+- Não precisamos manter dentro do body a ListaTransferencias no momento em que estamos criando uma nos tela. Tiramos essa referência de widget, criando um novo widget e passando parênteses indicando que se trata da instância de uma classe, embora essa classe não exista ainda
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            body: FormularioTransferencias(),
+            appBar: AppBar(title: Text('Transferências')),
+            floatingActionButton: FloatingActionButton(
+                child: Icon(Icons.add),
+            ),
+        ),
+    ));
+    ```
+
+- Com a extensão _"IntelliJ IDEA Keybindings"_ instalada crie uma classe, pressionando _Alt+Enter_ sobre a referência _FormularioTransferencias()_ dentro do body e selecione a opção *Create class FormularioTransferencias()*
 
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
