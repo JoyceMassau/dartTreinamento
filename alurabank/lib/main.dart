@@ -15,8 +15,11 @@ class AlurabankApp extends StatelessWidget {
 
 class FormularioTransferencias extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return Container();
+  Widget build(BuildContext context) {    
+    return Scaffold(
+      appBar: AppBar(title: Text('Criando Transferência')),
+      body: Text('Teste')
+    );
   }
 }
 

@@ -1047,7 +1047,22 @@ class ItemTransferencia extends StatelessWidget {
     ```
     void main() => runApp(AlurabankApp());
     ```
-    
+
+#### Hot Reload: Recarregando sem dar restart
+- Para aprimorar a velocidade da renderização, utilizaremos o [Hot Reload](https://flutter.dev/docs/development/tools/hot-reload "Hot Reloads")
+- Modificaremos para apresentar o FormularioTransferencia para apresentar o a conteúdo e verificarmos o uso do Hot Reload
+    ```
+    class FormularioTransferencias extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {    
+            return Scaffold(
+            appBar: AppBar(title: Text('Criando Transferência')),
+            body: Text('Teste')
+            );
+        }
+    }
+    ```
+
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffold é usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.
