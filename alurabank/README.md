@@ -881,7 +881,7 @@ class ItemTransferencia extends StatelessWidget {
     ```
 
 - Se executarmos o programa, será renderizada uma tela sem os cards, porém com o mesmo título que utilizávamos anteriormente
-![](https://github.com/JoyceMassau/dartTreinamento/tree/master/img/NovateladeCriandoTransferencia.jpg)
+![](https://github.com/JoyceMassau/dartTreinamento/blob/master/img/NovateladeCriandoTransferencia.jpg)
 
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
