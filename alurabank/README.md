@@ -17,7 +17,10 @@ samples, guidance on mobile development, and a full API reference.
 
 
 ### Fundamentos de Flutter: Crie o seu primeiro App
-#### AULA 01 Primeiros passos com o Flutter
+
+### AULA 01 Primeiros passos com o Flutter
+
+#### Criando projeto e executando projeto flutter
 - Criar projeto, no terminal,  digite:
 	```
 	flutter	create nomeDoProjeto
@@ -826,6 +829,60 @@ class ItemTransferencia extends StatelessWidget {
     }
     ```
 
+### AULA 03 Criando formulário e refatorando o código
+
+#### Nova tela de Criando Transferência
+- Não precisamos manter dentro do body a ListaTransferencias no momento em que estamos criando uma nos tela. Tiramos essa referência de widget, criando um novo widget e passando parênteses indicando que se trata da instância de uma classe, embora essa classe não exista ainda
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            body: FormularioTransferencias(),
+            appBar: AppBar(title: Text('Transferências')),
+            floatingActionButton: FloatingActionButton(
+                child: Icon(Icons.add),
+            ),
+        ),
+    ));
+    ```
+
+- Com a extensão _"IntelliJ IDEA Keybindings"_ instalada crie uma classe, pressionando _Alt+Enter_ sobre a referência _FormularioTransferencias()_ dentro do body e selecione a opção *Create class FormularioTransferencias()*
+    ```
+    class FormularioTransferencias {
+       
+    }
+    ```
+
+- Edita classe para extender de widget fixo
+    ```
+    class FormularioTransferencias extends StatelessWidget {
+        
+    }
+    ```
+- Atalho de teclado Alt+Enter para criar método obrigatório    
+ ```
+    class FormularioTransferencias extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+            // TODO: implement build
+        }
+    }
+    ```
+
+- Para testarmos, vamos retornar um widget genérico, o Container
+ ```
+    class FormularioTransferencias extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+            return Container();
+        }
+    }
+    ```
+
+- Se executarmos o programa, será renderizada uma tela sem os cards, porém com o mesmo título que utilizávamos anteriormente
+![](https://github.com/JoyceMassau/dartTreinamento/tree/master/img/NovateladeCriandoTransferencia.jpg)
+
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffold é usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.
@@ -837,3 +894,10 @@ Estrutura básica de aplicativo típico:
         ),
     ));
     ```    
+
+#### Shortcodes: Atalhos de teclado para agilizar a escrita de código 
+Com a extensão _IntelliJ IDEA Key Bindings for Visual Studio Code_ instalada
++ stless + Tab
+    + Cria estrutura de classe StatelessWidget, aguardando o usuário preencher apenas o nome da classe
++ stful + Tab
+    + Cria estrutura de classe StatelessWidget, aguardando o usuário preencher apenas o nome da classe
