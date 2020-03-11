@@ -587,8 +587,106 @@ class ItemTransferencia extends StatelessWidget {
 }
 ```
 
+#### Valores dinâmicos para itens da lista
+- Pode ser que o título e subtítulo de cada Card, cada item da lista, seja diferente do outro, por isso não basta apagar todo trecho de código a respeito de _Card_ na classe ListaTransferencias, pois fazer isso assumiria um valor fixo sempre. No exemplo abaixo, inevitávelmente cada item de lista teria como título "100.0" e como subtítulo "10000"
+    ```
+    import 'package:flutter/material.dart';
+
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            body: ListaTransferencias(),
+            • • •
+        ),
+    ));
+
+    class ListaTransferencias extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+            return Column(
+                children: <Widget>[
+                    ItemTransferencia(),        
+                    ItemTransferencia(),        
+                    ItemTransferencia(),        
+                ],
+            );
+        }
+    }
+
+    class ItemTransferencia extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+            return Card(
+                child: ListTile(
+                    leading: Icon(Icons.monetization_on),
+                    title: Text('100.0'),
+                    subtitle: Text('10000'),
+                )
+            );
+        }
+    }
+    ```
+
+- Podemos extrair o valor do métodos construtor da classe, e utilizá-lo no título e subtítulo
+    + Alteramos o texto fixo de dentro do _title: Text('100.0')_ e _subtitle: Text('10000')_ para o nome das variáveis que iremos criar
+    + As criamos como _Final_ para indicar que é uma *constante*
+    + Criamos um método construtor utilizando as duas variáveis como parâmetro
+```
+class ItemTransferencia extends StatelessWidget {
+  final String valor;
+  final String numeroConta;
+
+  ItemTransferencia(this.valor, this.numeroConta);
+  
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        leading: Icon(Icons.monetization_on),
+        title: Text(valor),
+        subtitle: Text(numeroConta),
+      )
+    );
+  }
+}
+```
+
+- Agora, onde chamamos o método *ItemTransferencia()* poderemos alterar os valores, atribuindo um valor diferente a cada card. Para isso passaremos os dois atributos que agora ele está esperando, através do construtos, o _valor_ e a _conta_
+```
+lass ListaTransferencias extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+      children: <Widget>[
+        ItemTransferencia('1000.0', '6020'),        
+        ItemTransferencia('6200.0', '6030'),        
+        ItemTransferencia('130.0', '9820'),        
+      ],
+    );
+  }
+}
+
+class ItemTransferencia extends StatelessWidget {
+  final String valor;
+  final String numeroConta;
+
+  ItemTransferencia(this.valor, this.numeroConta);
+  
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        leading: Icon(Icons.monetization_on),
+        title: Text(valor),
+        subtitle: Text(numeroConta),
+      )
+    );
+  }
+}
+```
+
 #### Esclarecimentos
-+ MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets ( Navigator, Theme) necessários para criar um aplicativo de design de materiais.
++ MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffold é usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.
 Estrutura básica de aplicativo típico:
     ```
@@ -597,4 +695,4 @@ Estrutura básica de aplicativo típico:
             appBar: AppBar(),
         ),
     ));
-    ```
+    ```    
