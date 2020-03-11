@@ -27,7 +27,7 @@ class ItemTransferencia extends StatelessWidget {
 
   final Transferencia _transferencia;
 
-  ItemTransferencia(this.valor, this.numeroConta);
+  ItemTransferencia(this._transferencia);
   
   @override
   Widget build(BuildContext context) {
