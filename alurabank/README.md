@@ -848,6 +848,40 @@ class ItemTransferencia extends StatelessWidget {
     ```
 
 - Com a extensão _"IntelliJ IDEA Keybindings"_ instalada crie uma classe, pressionando _Alt+Enter_ sobre a referência _FormularioTransferencias()_ dentro do body e selecione a opção *Create class FormularioTransferencias()*
+    ```
+    class FormularioTransferencias {
+       
+    }
+    ```
+
+- Edita classe para extender de widget fixo
+    ```
+    class FormularioTransferencias extends StatelessWidget {
+        
+    }
+    ```
+- Atalho de teclado Alt+Enter para criar método obrigatório    
+ ```
+    class FormularioTransferencias extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+            // TODO: implement build
+        }
+    }
+    ```
+
+- Para testarmos, vamos retornar um widget genérico, o Container
+ ```
+    class FormularioTransferencias extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+            return Container();
+        }
+    }
+    ```
+
+- Se executarmos o programa, será renderizada uma tela sem os cards, porém com o mesmo título que utilizávamos anteriormente
+![](https://github.com/JoyceMassau/dartTreinamento/tree/master/img/NovateladeCriandoTransferencia.jpg)
 
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.

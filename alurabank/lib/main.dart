@@ -10,7 +10,11 @@ void main() => runApp(MaterialApp(
       ),
     ));
     
-class FormularioTransferencias {
+class FormularioTransferencias extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
 }
 
 class ListaTransferencias extends StatelessWidget {
