@@ -860,3 +860,10 @@ Estrutura básica de aplicativo típico:
         ),
     ));
     ```    
+
+#### Shortcodes: Atalhos de teclado para agilizar a escrita de código 
+Com a extensão _IntelliJ IDEA Key Bindings for Visual Studio Code_ instalada
++ stless + Tab
+    + Cria estrutura de classe StatelessWidget, aguardando o usuário preencher apenas o nome da classe
++ stful + Tab
+    + Cria estrutura de classe StatelessWidget, aguardando o usuário preencher apenas o nome da classe
