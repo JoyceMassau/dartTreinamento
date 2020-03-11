@@ -15,9 +15,9 @@ class ListaTransferencias extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        ItemTransferencia('1000.0', '6020'),        
-        ItemTransferencia('6200.0', '6030'),        
-        ItemTransferencia('130.0', '9820'),        
+        ItemTransferencia(Transferencia(100.0, 12354)),
+        ItemTransferencia(Transferencia(650.0, 58891)),
+        ItemTransferencia(Transferencia(130.0, 60154)),
       ],
     );
   }
