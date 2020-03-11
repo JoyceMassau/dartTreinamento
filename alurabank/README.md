@@ -972,6 +972,37 @@ class ItemTransferencia extends StatelessWidget {
     }
     ```
 
+- Com a AppBar repetiremos o procedimento, a recortando da função main()
+    ```
+    void main() => runApp(MaterialApp(
+        home: Scaffold(
+            body: FormularioTransferencias(),        
+        ),
+    ));
+    ```
+
+- E a colando na classe ListaTransferencias, abaixo do retorno do Scaffold
+    ```
+    class ListaTransferencias extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+            return Scaffold(      
+                appBar: AppBar(title: Text('Transferências')), 
+                body: Column(
+                    children: <Widget>[
+                    ItemTransferencia(Transferencia(100.0, 12354)),
+                    ItemTransferencia(Transferencia(650.0, 58891)),
+                    ItemTransferencia(Transferencia(130.0, 60154)),
+                    ],
+                ),
+                floatingActionButton: FloatingActionButton(
+                    child: Icon(Icons.add),
+                ),
+            );
+        }
+    }
+    ```
+
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffold é usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.

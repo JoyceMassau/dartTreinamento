@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 void main() => runApp(MaterialApp(
   home: Scaffold(
-    body: FormularioTransferencias(),
-    appBar: AppBar(title: Text('Transferências')),        
+    body: FormularioTransferencias(),       
   ),
 ));
     
@@ -17,7 +16,8 @@ class FormularioTransferencias extends StatelessWidget {
 class ListaTransferencias extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(      
+      appBar: AppBar(title: Text('Transferências')), 
       body: Column(
         children: <Widget>[
           ItemTransferencia(Transferencia(100.0, 12354)),
