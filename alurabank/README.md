@@ -1003,6 +1003,11 @@ class ItemTransferencia extends StatelessWidget {
     }
     ```
 
+- Se executarmos o programa será exibida uma tela em branco, como deve ser. As telas devem ser independentes, não deixando que uma influencie em outra
+
+![](https://github.com/JoyceMassau/dartTreinamento/blob/master/img/TelasIndependentes.jpg)
+
+
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffold é usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.
