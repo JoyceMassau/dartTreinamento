@@ -460,6 +460,7 @@ Já temos bastante código, mas não é intuitivo entender que a _Column_ repres
     + [class ListaTransferencias extends StatefulWidget { }](https://api.flutter.dev/flutter/widgets/StatefulWidget-class.html "class ListaTransferencias extends StatefulWidget { }") - Dinâmico
    
     + [class ListaTransferencias extends StatelessWidget { }](https://api.flutter.dev/flutter/widgets/StatelessWidget-class.html "class class ListaTransferencias extends StatelessWidget { }") - Fixo
+- [Para saber mais sobre estado de widgets](https://flutter.dev/docs/development/ui/interactive#stateful-and-stateless-widgets "Para saber mais sobre estado de widgets")
 - Utilizaremos à princípio o StateLess, que é fixo, não muda, evitando o risco de entragar algo que não esperamos
     ```
     class ListaTransferencias extends StatelessWidget { }
