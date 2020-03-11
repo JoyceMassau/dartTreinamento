@@ -36,9 +36,8 @@ void main() => runApp(MaterialApp(
 
 class ListaTransferencia extends StatelessWidget {
   @override
-  Element createElement() {
-    // TODO: implement createElement
-    throw UnimplementedError();
+  Widget build(BuildContext context) {
+    //TODO: implement build
+    return null;
   }
-
 }
