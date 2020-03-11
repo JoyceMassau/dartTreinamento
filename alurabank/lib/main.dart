@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(
-  home: Scaffold(
-    body: FormularioTransferencias(),       
-  ),
-));
-    
+void main() => runApp(AlurabankApp());
+
+class AlurabankApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: FormularioTransferencias(),       
+      ),
+    );
+  }
+}
+
 class FormularioTransferencias extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
