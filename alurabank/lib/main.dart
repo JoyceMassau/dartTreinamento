@@ -20,12 +20,14 @@ class FormularioTransferencias extends StatelessWidget {
 class ListaTransferencias extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        ItemTransferencia(Transferencia(100.0, 12354)),
-        ItemTransferencia(Transferencia(650.0, 58891)),
-        ItemTransferencia(Transferencia(130.0, 60154)),
-      ],
+    return Scaffold(
+      body: Column(
+        children: <Widget>[
+          ItemTransferencia(Transferencia(100.0, 12354)),
+          ItemTransferencia(Transferencia(650.0, 58891)),
+          ItemTransferencia(Transferencia(130.0, 60154)),
+        ],
+      ),
     );
   }
 }

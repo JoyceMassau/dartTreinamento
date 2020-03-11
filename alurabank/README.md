@@ -881,7 +881,65 @@ class ItemTransferencia extends StatelessWidget {
     ```
 
 - Se executarmos o programa, será renderizada uma tela sem os cards, porém com o mesmo título que utilizávamos anteriormente
+
 ![](https://github.com/JoyceMassau/dartTreinamento/blob/master/img/NovateladeCriandoTransferencia.jpg)
+
+
+- O *Scaffold* que estamos utilizando para compor a estrutura do app precisa ser isolado para se adequar a cada tela, com suas devidas modificações
+- Na classe ListaTransferencias substituiremos o Column pelo Scafold
+    + Sobre o *return Column* da classe ListaTransferencias, utilizaremos o atalho de teclado _Alt+Enter_, clicando sobre _"Wrap with new Widget"_, isso irá fazer com que o Column seja envolvido por um widget de nossa preferencia
+    ```
+    class ListaTransferencias extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+            return widget(
+                    child: Column(
+                    children: <Widget>[
+                    ItemTransferencia(Transferencia(100.0, 12354)),
+                    ItemTransferencia(Transferencia(650.0, 58891)),
+                    ItemTransferencia(Transferencia(130.0, 60154)),
+                    ],
+                ),
+            );
+        }
+    }
+    ```
+
+- Vamos dar um nome à esse widget. Alteraremos para *Scaffold*
+    ```
+    class ListaTransferencias extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+            return Scaffold(
+                    child: Column(
+                    children: <Widget>[
+                    ItemTransferencia(Transferencia(100.0, 12354)),
+                    ItemTransferencia(Transferencia(650.0, 58891)),
+                    ItemTransferencia(Transferencia(130.0, 60154)),
+                    ],
+                ),
+            );
+        }
+    }
+    ```
+
+- Ocorre que o Scaffold não possui um _child_, que seria como um genérico para compor vários widgets. Alteraremos para _body_
+    ```
+    class ListaTransferencias extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+            return Scaffold(
+                    body: Column(
+                    children: <Widget>[
+                    ItemTransferencia(Transferencia(100.0, 12354)),
+                    ItemTransferencia(Transferencia(650.0, 58891)),
+                    ItemTransferencia(Transferencia(130.0, 60154)),
+                    ],
+                ),
+            );
+        }
+    }
+    ```
 
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
