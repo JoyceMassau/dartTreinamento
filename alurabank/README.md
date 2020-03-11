@@ -529,6 +529,64 @@ Já temos bastante código, mas não é intuitivo entender que a _Column_ repres
     }        
     ```
 
+#### Refatorando mais: Referência ao card
+- Para tornar mais intuitivo podemos refatorar o item que compõe a transferência, o Card. Para isso, conforme fizemos antes, criaremos uma classe para esse item.
+    + Conforme antes, informaremos _extends StatelessWidget_ para informar que *não* modificaremos o conteúdo diretamente
+    + Posicionando o cursor sobre o nome da nova classe e clicando sobre _Alt+Enter_ clicaremos sobre _Create 1 missing override_ para que ele crie o método obrigatório de _build_
+    ```
+    class ItemTransferencia extends StatelessWidget {
+    @override
+        Widget build(BuildContext context) {
+            // TODO: implement build
+            throw UnimplementedError();
+        }   
+    }
+    ```
+
+- Copie da classe de _ListaTransferencias_ o trecho de código em que é criado o Card, e cole na classe ItemTransferencia
+```
+import 'package:flutter/material.dart';
+
+void main() => runApp(MaterialApp(
+  home: Scaffold(
+    body: ListaTransferencias(),
+    • • •
+  ),
+));
+
+class ListaTransferencias extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: <Widget>[
+        Card(
+          • • •
+        ),
+        Card(
+          • • •
+        ),
+        Card(
+          • • •
+        ),
+      ],
+    );
+  }
+}
+
+class ItemTransferencia extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        leading: Icon(Icons.monetization_on),
+        title: Text('100.0'),
+        subtitle: Text('10000'),
+      )
+    );
+  }
+}
+```
+
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets ( Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffold é usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.

@@ -40,3 +40,16 @@ class ListaTransferencias extends StatelessWidget {
     );
   }
 }
+
+class ItemTransferencia extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        leading: Icon(Icons.monetization_on),
+        title: Text('100.0'),
+        subtitle: Text('10000'),
+      )
+    );
+  }
+}
