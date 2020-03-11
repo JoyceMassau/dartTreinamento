@@ -40,3 +40,16 @@ class ItemTransferencia extends StatelessWidget {
     );
   }
 }
+
+class Transferencia extends StatelessWidget {
+  final double valor;
+  final int numeroConta;
+
+  Transferencia(this.valor, this.numeroConta);
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
+}
