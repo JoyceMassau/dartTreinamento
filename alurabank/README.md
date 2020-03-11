@@ -725,6 +725,27 @@ class ItemTransferencia extends StatelessWidget {
     }
     ```
 
+- Vamos utilizar a classe _Transferencia_ na classe _ItemTransferencia_ e mencionar que estamos usando um atributo privado
+    ```
+    class ItemTransferencia extends StatelessWidget {
+
+        final Transferencia _transferencia;
+
+        ItemTransferencia(this.valor, this.numeroConta);
+        
+        @override
+        Widget build(BuildContext context) {
+            return Card(
+            child: ListTile(
+                leading: Icon(Icons.monetization_on),
+                title: Text(valor),
+                subtitle: Text(numeroConta),
+            )
+            );
+        }
+    }
+    ```
+
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffold é usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.

@@ -24,8 +24,8 @@ class ListaTransferencias extends StatelessWidget {
 }
 
 class ItemTransferencia extends StatelessWidget {
-  final String valor;
-  final String numeroConta;
+
+  final Transferencia _transferencia;
 
   ItemTransferencia(this.valor, this.numeroConta);
   
