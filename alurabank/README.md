@@ -1428,11 +1428,26 @@ Padding(
         onPressed: () {
             debugPrint("Clicou sobre o botão");
             final String numeroConta = _controladorCampoNumeroConta.text;
-            final String valorConta = _controladorCampoValor.text;
+            final String valor = _controladorCampoValor.text;
         },
         child: Text('Confirmar'),
     ),
     ```    
+
+- Tendo essas informações poderemos realizar uma transferência
+    + Passamos a instância de *Transferencia()* recebendo como atributos o valor e o número da conta
+    ```
+    RaisedButton(
+        onPressed: () {
+            debugPrint("Clicou sobre o botão");
+            final String numeroConta = _controladorCampoNumeroConta.text;
+            final String valor = _controladorCampoValor.text;
+            Transferencia(valor, numeroConta);
+        },
+        child: Text('Confirmar'),
+    ),
+    ```  
+
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffold é usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.
