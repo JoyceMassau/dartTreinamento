@@ -1050,14 +1050,40 @@ class ItemTransferencia extends StatelessWidget {
 
 #### Hot Reload: Recarregando sem dar restart
 - Para aprimorar a velocidade da renderização, utilizaremos o [Hot Reload](https://flutter.dev/docs/development/tools/hot-reload "Hot Reloads")
-- Modificaremos para apresentar o FormularioTransferencia para apresentar o a conteúdo e verificarmos o uso do Hot Reload
+- Modificaremos para apresentar o FormularioTransferencia para apresentar o a conteúdo e verificarmos o com e sem  uso do Hot Reload
+- Ctrl + F5 clicando sobre o ícone do raio
+- Foi possível utilizar o Hot Reload neste projeto devido às classes terem sido extraídas anteriormente
+
+#### Implementando layout de Formulário de transferências
+- Para compor o layout utilizaremos o [TextField](https://api.flutter.dev/flutter/material/TextField-class.html "TextField")
+- Precisamos organizar a estrutura de modo que possamos utilizar textFields um abaixo do outro, bem como botão para ir par próxima tela
+- Modificaremos o FormularioTransferencia para envolver os widgets dentro de uma coluna, usando Alt- Enter sobre o conteúdo do body e clicando sobre _"Wrap With Column"_
     ```
     class FormularioTransferencias extends StatelessWidget {
         @override
         Widget build(BuildContext context) {    
             return Scaffold(
-            appBar: AppBar(title: Text('Criando Transferência')),
-            body: Text('Teste')
+                body: Column(
+                    children: <Widget>[
+                    Text('Teste'),
+                    ],
+                )
+            );
+        }
+    }
+    ```
+
+- Devemos substituir o widget _Text_ pelo _TextField_, que, diferente do text, não recebe nenhum argumento
+    ```
+    class FormularioTransferencias extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {    
+            return Scaffold(
+                body: Column(
+                    children: <Widget>[
+                    TextField(),
+                    ],
+                )
             );
         }
     }
@@ -1081,3 +1107,4 @@ Com a extensão _IntelliJ IDEA Key Bindings for Visual Studio Code_ instalada
     + Cria estrutura de classe StatelessWidget, aguardando o usuário preencher apenas o nome da classe
 + stful + Tab
     + Cria estrutura de classe StatelessWidget, aguardando o usuário preencher apenas o nome da classe
++ Ctrl + F5, clicando sobre ícone do raio: Hot Reload    
