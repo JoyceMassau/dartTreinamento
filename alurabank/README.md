@@ -1376,6 +1376,39 @@ Padding(
     ```
 
 - Para utilizar os controladores, na classe onde definimos os Inputs que irá receber informação do usuário, a _FormularioTransferencias_ passaremos o nome dos controladores 
+    ```
+    Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: TextField(
+            controller: _controladorCampoNumeroConta,
+            style: TextStyle(
+                fontSize: 24.0,
+            ),
+            decoration: InputDecoration(
+                labelText: 'Número da Conta',
+                hintText: '0000',
+            ),
+            keyboardType: TextInputType.number,
+        ),
+    ),
+    Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: TextField(
+            controller: _controladorCampoValor,
+            style: TextStyle(
+                fontSize: 24.0,
+            ),
+            decoration: InputDecoration(
+                icon: Icon(Icons.monetization_on),
+                labelText: 'Valor',
+                hintText: '0.00',
+            ),
+            keyboardType: TextInputType.number,
+        ),
+    ),
+    ```          
+
+- Agora que temos acesso aos controladores, no momento em que o usuário clica, precisamos pegar o controlador e atribuir a ele o valor guardado na propriedade do texto e printar para que vejamos o resultado
 
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.

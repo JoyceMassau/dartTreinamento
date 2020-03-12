@@ -55,7 +55,9 @@ class FormularioTransferencias extends StatelessWidget {
           ),
           RaisedButton(
             onPressed: () {
-              debugPrint("teste o clique sobre o botão");
+              debugPrint("Clicou sobre o botão");
+              debugPrint(_controladorCampoNumeroConta.text);
+              debugPrint(_controladorCampoValor.text);
             },
             child: Text('Confirmar'),
           ),
