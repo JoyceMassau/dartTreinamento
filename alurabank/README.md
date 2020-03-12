@@ -1351,6 +1351,32 @@ class ItemTransferencia extends StatelessWidget {
     ),
     ```
 
+#### Trazer conteúdo de Inputs ao clicar sobre o botão
+- Através da propriedade _controller_ e de sua referência _TextEditingController_ teremos acesso aos dados preenchidos no formulário 
+```
+Padding(
+    padding: const EdgeInsets.all(16.0),
+    child: TextField(
+        controller: TextEditingController(),
+        • • •,
+    ),
+),
+```
+
+- Para utilizar a instância do TextEditingController() precisamos transformá-lo em um atributo da classe
+    + Criar dentro de FormularioTransferencia 
+    + Passaremos _TextEditingController_ como uma constante (final)
+    + Passaremos como um atributo privado o controller. Como cada campo terá o seu, para que possamos trazer as informações de cada campo, vamos dar um nome específico para cada
+        + O nome do primeiro campo será  _controladorCampoNumeroConta
+        + O nome do segundo campo será  _controladorCampoValor
+    + Se tratando de um _Final_ como precisamos passar a instância, passaremos esta informação para cada campo
+    ```
+    final TextEditingController _controladorCampoNumeroConta = TextEditingController();
+    final TextEditingController _controladorCampoValor = TextEditingController();
+    ```
+
+- Para utilizar os controladores, na classe onde definimos os Inputs que irá receber informação do usuário, a _FormularioTransferencias_ passaremos o nome dos controladores 
+
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffold é usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.

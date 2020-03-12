@@ -14,6 +14,10 @@ class AlurabankApp extends StatelessWidget {
 }
 
 class FormularioTransferencias extends StatelessWidget {
+
+  final TextEditingController _controladorCampoNumeroConta = TextEditingController();
+  final TextEditingController _controladorCampoValor = TextEditingController();
+
   @override
   Widget build(BuildContext context) {    
     return Scaffold(
@@ -23,6 +27,7 @@ class FormularioTransferencias extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
+            controller: _controladorCampoNumeroConta,
               style: TextStyle(
                 fontSize: 24.0,
               ),
@@ -36,6 +41,7 @@ class FormularioTransferencias extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
+            controller: _controladorCampoValor,
               style: TextStyle(
                 fontSize: 24.0,
               ),
