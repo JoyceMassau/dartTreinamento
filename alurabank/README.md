@@ -1447,6 +1447,68 @@ Padding(
         child: Text('Confirmar'),
     ),
     ```  
+- Observe porém que estamos passando para o parâmetro variáveis do tipo string, sendo que esperamos para o _valor_ um double e para _numeroConta_ um inteiro. Precisaremos fazer uma conversão de tipos, e para isso usaremos o *TryParse* e retornaremos o tipo esperado
+    ```
+    RaisedButton(
+        onPressed: () {
+            debugPrint("Clicou sobre o botão");
+            final int numeroConta = int.tryParse(_controladorCampoValor.text);
+            final double valor = double.tryParse(_controladorCampoNumeroConta.text);            
+            Transferencia(valor, numeroConta);
+        },
+        child: Text('Confirmar'),
+    ),
+    ```  
+
+- Se o TryParse não conseguir conversar o tipo, ele irá retornar _null_ e, para prevenir erros, já devemos fazer uma verificação
+```
+    RaisedButton(
+        onPressed: () {
+            debugPrint("Clicou sobre o botão");
+            final int numeroConta = int.tryParse(_controladorCampoValor.text);
+            final double valor = double.tryParse(_controladorCampoNumeroConta.text);            
+            if(numeroConta != null && valor != null) {
+                Transferencia(valor, numeroConta);
+            }
+        },
+        child: Text('Confirmar'),
+    ),
+    ```  
+
+- Criar variável para a transferência
+```
+if(numeroConta != null && valor != null) {
+    final transferenciaCriada = Transferencia(valor, numeroConta);
+}
+```
+
+Para visualizarmos o ocorrido, utilizaremos o debugPrint, que sempre esperará por uma string. Por isso utilizaremos uma *interpolação de strings* de modo que dentro das aspas de nosso print representando uma string teremos a variavel criada, utilizando o cifrão para representá-la. Porém, se executarmos agora, em lugar de nos trazer o resultado armazenado na variável, nos dirá que estamos usando uma instância de Transferencia
+```
+if(numeroConta != null && valor != null) {
+    final transferenciaCriada = Transferencia(valor, numeroConta);
+    debugPrint('$transferenciaCriada');
+}
+```
+
+- Para converter para String e assim conseguir exibir o resultado esperado, na classe Transferencia, usamos _toString_ e removemos o _StatelessWidget_ da classe Transferencia
+```
+class Transferencia {
+  final double valor;
+  final int numeroConta;
+
+  Transferencia(this.valor, this.numeroConta);
+
+  @override
+  String toString() {
+    return 'Transferencia{valor: $valor, numeroConta: $numeroConta}';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    throw UnimplementedError();
+  }
+}
+```
 
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.

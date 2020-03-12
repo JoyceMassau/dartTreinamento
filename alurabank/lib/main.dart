@@ -54,13 +54,16 @@ class FormularioTransferencias extends StatelessWidget {
             ),
           ),
           RaisedButton(
+            child: Text('Confirmar'),
             onPressed: () {
               debugPrint("Clicou sobre o botão");
-              final String numeroConta = _controladorCampoNumeroConta.text;
-              final String valor = _controladorCampoValor.text;
-              Transferencia(valor, numeroConta);
+              final int numeroConta = int.tryParse(_controladorCampoValor.text);
+              final double valor = double.tryParse(_controladorCampoNumeroConta.text);
+              if(numeroConta != null && valor != null) {
+                final transferenciaCriada = Transferencia(valor, numeroConta);
+                debugPrint('$transferenciaCriada');
+              }
             },
-            child: Text('Confirmar'),
           ),
         ],
       )
@@ -105,15 +108,19 @@ class ItemTransferencia extends StatelessWidget {
   }
 }
 
-class Transferencia extends StatelessWidget {
+class Transferencia {
   final double valor;
   final int numeroConta;
 
   Transferencia(this.valor, this.numeroConta);
 
   @override
+  String toString() {
+    return 'Transferencia{valor: $valor, numeroConta: $numeroConta}';
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     throw UnimplementedError();
   }
 }
