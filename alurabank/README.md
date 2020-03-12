@@ -1049,10 +1049,11 @@ class ItemTransferencia extends StatelessWidget {
     ```
 
 #### Hot Reload: Recarregando sem dar restart
-- Para aprimorar a velocidade da renderização, utilizaremos o [Hot Reload](https://flutter.dev/docs/development/tools/hot-reload "Hot Reloads")
+- Para aprimorar a velocidade da renderização, utilizaremos o [Hot Reload](https://flutter.dev/docs/development/tools/hot-reload "Hot Reload")
 - Modificaremos para apresentar o FormularioTransferencia para apresentar o a conteúdo e verificarmos o com e sem  uso do Hot Reload
 - Ctrl + F5 clicando sobre o ícone do raio
 - Foi possível utilizar o Hot Reload neste projeto devido às classes terem sido extraídas anteriormente
+- Quando se salva o arquivo (Ctrl+S) o fluter já tenta executar o Hot Reload
 
 #### Implementando layout de Formulário de transferências
 - Para compor o layout utilizaremos o [TextField](https://api.flutter.dev/flutter/material/TextField-class.html "TextField")
@@ -1088,6 +1089,236 @@ class ItemTransferencia extends StatelessWidget {
         }
     }
     ```
+
+- Para esta tela, teremos dois campos onde o usuário digita algo (TextField) e um [botão](https://api.flutter.dev/flutter/material/RaisedButton-class.html "botão")
+    ```
+    class FormularioTransferencias extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {    
+            return Scaffold(
+                body: Column(
+                    children: <Widget>[
+                    TextField(),
+                    TextField(),
+                    RaisedButton(),
+                    ],
+                )
+            );
+        }
+    }
+    ```
+
+![](https://github.com/JoyceMassau/dartTreinamento/blob/master/img/FormularioTransferencia.jpg)
+
+- A propriedade responsável por modificar a parte visual para conforme for do nosso agrado é a [Decoration](https://api.flutter.dev/flutter/widgets/Container/decoration.html "Decoration")
+    + Esta propriedade recebe como valor um widget chamado [InputDecoration](https://api.flutter.dev/flutter/material/InputDecoration-class.html "InputDecoration")
+    + Esse widget pode receber, por exemplo, um [labelText](https://api.flutter.dev/flutter/material/InputDecoration/labelText.html "labelText") como propriedade
+    + Utilizando também de um [hintText](https://api.flutter.dev/flutter/material/InputDecoration/hintText.html "hintText") como propriedade, que funciona como um placeholder, exibindo ao usuário a maneira como o sistema espera que ele digite
+    ```
+    class FormularioTransferencias extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {    
+            return Scaffold(
+                body: Column(
+                    children: <Widget>[
+                    TextField(
+                        decoration: InputDecoration(
+                            labelText: 'Número da Conta',
+                            hintText: '0000',
+                        ),
+                    ),
+                    TextField(),
+                    RaisedButton(),
+                    ],
+                )
+            );
+        }
+    }
+    ```    
+
+![](https://github.com/JoyceMassau/dartTreinamento/blob/master/img/TextField.jpg)
+
+- Ocorre que o tamanho da fonte e as margens ainda não estão conforme tínhamos especificado. Para isso usamos a propriedade style
+    + Como o que queremos alterar é texto, no caso do tamanho da fonte, por exemplo, ele receberá outro Widget, o textStyle
+    ```
+    class FormularioTransferencias extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {    
+            return Scaffold(
+                body: Column(
+                    children: <Widget>[
+                    TextField(
+                        style: TextStyle(
+                        fontSize: 24.0,
+                        ),
+                        decoration: InputDecoration(
+                        labelText: 'Número da Conta',
+                        hintText: '0000',
+                        ),
+                    ),
+                    TextField(),
+                    RaisedButton(),
+                    ],
+                )
+            );
+        }
+    }
+    ```
++ Utilizaremos um padding para inserir uma distância entre a margem e o texto. Sobre o *TextField* digite o atalho de teclado _Alt+Enter_ pressionando em seguida a opção _Wrap With Padding_, que irá colocar uma margem padrão, com base 8
+    ```
+    class FormularioTransferencias extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {    
+            return Scaffold(
+                body: Column(
+                    children: <Widget>[
+                        Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextField(
+                                style: TextStyle(
+                                    fontSize: 24.0,
+                                ),
+                                decoration: InputDecoration(
+                                    labelText: 'Número da Conta',
+                                    hintText: '0000',
+                                ),
+                            ),
+                        ),
+                        TextField(),
+                        RaisedButton(),
+                    ],
+                )
+            );
+        }
+    }
+    ```
+
+- Altere para 16 para termos uma margem um pouco maior de cada lado
+- Outros métodos de alterar a margem utilizando o _EdgeInsets_
+    + All
+    + fromLTRB
+    + fromWindowPadding
+
+- Por padrão o aplicativo utiliza um teclado comum. Para utilizar um teclado numérico, a propriedade _keyboardType_ receberá um TextInputType do tipo number
+    ```
+    class FormularioTransferencias extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {    
+            return Scaffold(
+                body: Column(
+                    children: <Widget>[
+                        Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextField(
+                                • • •,
+                                decoration: InputDecoration(
+                                    • • •,
+                                ),
+                                keyboardType: TextInputType.number,
+                            ),
+                        ),
+                        TextField(),
+                        RaisedButton(),
+                    ],
+                )
+            );
+        }
+    }
+    ```
+
+#### Replicando informações do input
+- O layout que estamos montando possui dois inputs, segundo ainda sem estilizar
+- Podemos apagar o segundo TextField, que está em branco e replicar as informações do primeiro, copiando e colando todo o seu conteúdo, juntamente com o padding
+    ```
+    class FormularioTransferencias extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {    
+            return Scaffold(
+                body: Column(
+                    children: <Widget>[
+                        Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: TextField(
+                                • • •,
+                            ),
+                        ),
+                        Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: TextField(
+                                • • •,
+                            ),
+                        ),
+                        RaisedButton(),
+                    ],
+                )
+            );
+        }
+    }
+    ```
+
+- Há algumas diferenças entre um e o outro TextField, como o texto que eles exibem ser diferentes, assim como um possuir um ícone
+    + Alterar o label do segundo TextField para "valor", bem como seu hintText, para indicar ao usuário o formato das informações do input
+    + Acima destas propriedades, adicionar um *icon*
+    ```
+    Padding(
+        • • •,
+    ),
+    Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: TextField(
+            style: TextStyle(
+                fontSize: 24.0,
+            ),
+            decoration: InputDecoration(
+                icon: Icon(Icons.monetization_on),
+                labelText: 'Valor',
+                hintText: '0.00',
+            ),
+            keyboardType: TextInputType.number,
+        ),
+    ),    
+    ```
+
+- Para adicionar texto a botão de confirmar transferência, dentro do RaisedButton diremos que o filho irá receber um texto cujo conteúdo é *Confirmar*
+    ```
+    class FormularioTransferencias extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {    
+            return Scaffold(
+                body: Column(
+                    children: <Widget>[
+                        Padding(
+                                • • •,
+                        ),
+                        Padding(
+                                • • •,
+                        ),
+                        RaisedButton(
+                            child: Text('Confirmar'),
+                        ),
+                    ],
+                )
+            );
+        }
+    }
+    ```
+
+- Para finalizar visualmente a tela, iremos retornar a AppBar informando a página em que o usuário está
+    ```
+    class FormularioTransferencias extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {    
+            return Scaffold(
+                appBar: AppBar(title: Text('Criando Transferências')), 
+                body: Column(
+                    • • •,
+                )
+            );
+        }
+    }
+    ```
+
+![](https://github.com/JoyceMassau/dartTreinamento/blob/master/img/CriandoTransferencias.jpg)
 
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
