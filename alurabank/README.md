@@ -1409,6 +1409,16 @@ Padding(
     ```          
 
 - Agora que temos acesso aos controladores, no momento em que o usuário clica, precisamos pegar o controlador e atribuir a ele o valor guardado na propriedade do texto e printar para que vejamos o resultado
+    ```
+    RaisedButton(
+        onPressed: () {
+            debugPrint("Clicou sobre o botão");
+            debugPrint(_controladorCampoNumeroConta.text);
+            debugPrint(_controladorCampoValor.text);
+        },
+        child: Text('Confirmar'),
+    ),
+    ```
 
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
