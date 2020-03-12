@@ -1320,6 +1320,37 @@ class ItemTransferencia extends StatelessWidget {
 
 ![](https://github.com/JoyceMassau/dartTreinamento/blob/master/img/CriandoTransferencias.jpg)
 
+#### Back end da tela de formulário Criando Transferências
+- Para que a tela não seja no visual, que peguemos os eventos de cliques sobre o botão de confirmar, dentro do RaisedButton passamos a propriedade OnPressed
+- Se observarmos, o RaisedButton está com uma linha amarela logo abaixo. Isso ocorre pois o botão não funciona sem a propriedade OnPressed, e ela ainda não havia sido implementada
+    + Sobre o RaisedButton, pressione _Alt+Enter_, clicando sobre _Add Required Argument OnPressed_
+    ```
+    RaisedButton(
+        onPressed: () {  },
+        child: Text('Confirmar'),
+    ),
+    ```
+    + O OnPressed recebe como (parâmetro) uma função , dentro do {escopo} teremos as vezes em que o botão é acionado
+    + Para verificarmos se está funcionando podemos inserir um print dentro do escopo do onPressed, para verificarmos seu comportamento ao clicar sobre o botão
+    ```
+    RaisedButton(
+        onPressed: () {
+            print("Confirmado o clique sobre o botão");
+        },
+        child: Text('Confirmar'),
+    ),
+    ```
+- Ao abrir o terminal e clicar sobre o botão, o resultado poderá ser visto em _Debug Console_    
+- Em lugar de simplesmente printarmos o resultado, é interessante armazenar o log, usando *debugPrint*
+    ```
+    RaisedButton(
+        onPressed: () {
+            debugPrint("Confirmado o clique sobre o botão");
+        },
+        child: Text('Confirmar'),
+    ),
+    ```
+
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffold é usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.
