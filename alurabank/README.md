@@ -1420,6 +1420,10 @@ Padding(
     ),
     ```
 
+- Iremos guardar os valores armazenados em cada input dentro de variáveis
+    + Apagar o trecho de código em que se printa no debug console o conteúdo dos inputs
+    + Atribui a uma variável este resultado
+    
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffold é usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.
