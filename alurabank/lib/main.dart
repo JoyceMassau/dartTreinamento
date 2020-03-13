@@ -24,7 +24,7 @@ class FormularioTransferencias extends StatelessWidget {
       appBar: AppBar(title: Text('Criando Transferências')), 
       body: Column(
         children: <Widget>[
-          
+          Editor(),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
@@ -65,7 +65,7 @@ class Editor extends StatelessWidget {
   final String _dica;
 
   Editor(this._controlador, this._rotulo, this._dica);
-  
+
   @override
   Widget build(BuildContext context) {
     return Padding(
