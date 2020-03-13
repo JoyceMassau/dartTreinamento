@@ -1511,7 +1511,92 @@ class Transferencia {
 ```
 
 ### AULA 04 Utilizando uma lista dinâmica de Widgets
-- Vídeo 01 Extraindo Widgets flexíveis
+
+#### Refatoração de Widgets
+- Na classe FormularioTransferencias tínhamos dois paddings, uma repetição de código em que mudavam apenas algumas informações, e um botão, e além da repetição de código havia o problema de sintaxe, ficando difícil identificar o que era cada coisa
+    + Nesta classe, digite "stless+Tab" e insira o nome _"Editor"_
+    ```
+    class Editor extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+            return Container(
+            
+            );
+        }   
+    }
+    ```
+
+- Recorta Padding da classe FormularioTransferencias, com toda estrutura do Card, para dentro do retorno da classe Editor
+    ``` 
+    class Editor extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+            return Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: TextField(
+                controller: _controladorCampoNumeroConta,
+                    style: TextStyle(
+                        fontSize: 24.0,
+                    ),
+                    decoration: InputDecoration(
+                        labelText: 'Número da Conta',
+                        hintText: '0000',
+                    ),
+                    keyboardType: TextInputType.number,
+                ),
+            );
+        }
+    }
+    ```
+- Adaptar o código para que não apresente erro. No caso do controlador com um nome específico que ele não reconhece mais, alterar de _controladorCampoNumeroConta para _controlador
+    ``` 
+    class Editor extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+            return Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: TextField(
+                controller: _controladorCampoNumeroConta,
+                    • • •
+                ),
+            );
+        }
+    }
+    ```
+
+- Adaptar a labelText da classe Editor de 'Número da Conta' para uma label mais genérica, chamada _rotulo e o hintText '0000' para um mais genérico, chamado _dica
+    ```
+    decoration: InputDecoration(
+        labelText: _rotulo,
+        hintText: _dica,
+    ),
+    ```
+
+- Na classe Editor, criar atributos
+    ```
+    class Editor extends StatelessWidget {
+        final TextEditingController _controlador;
+        final String _rotulo;
+        final String _dica;
+    }  
+    ```
+
+- Criar o método contrutor para todos os atributos criados
+    ```
+    class Editor extends StatelessWidget {
+        final TextEditingController _controlador;
+        final String _rotulo;
+        final String _dica;
+
+        Editor(this._controlador, this._rotulo, this._dica);
+    }  
+    ```
+
+- Chama classe Editor criada anteriormente dentro de FormularioTransferencias
+    + As informações que terão de ser enviadas como parâmetros serão o _controladorCampoNumeroConta
+    + As informações que terão de ser enviadas como parâmetros serão a dica, que passaremos como 'Número da Conta'
+    + As informações que terão de ser enviadas como parâmetros serão a dica, que passaremos como 'Número da Conta'
+
 
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
