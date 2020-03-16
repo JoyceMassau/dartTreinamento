@@ -86,16 +86,14 @@ class Editor extends StatelessWidget {
 }
 
 class ListaTransferencias extends StatelessWidget {
+  final List<Transferencia> _transferencia = List();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(      
       appBar: AppBar(title: Text('Transferências')), 
-      body: Column(
-        children: <Widget>[
-          ItemTransferencia(Transferencia(100.0, 12354)),
-          ItemTransferencia(Transferencia(650.0, 58891)),
-          ItemTransferencia(Transferencia(130.0, 60154)),
-        ],
+      body: ListView.builder(
+        itemCount: ,
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add), onPressed: () {

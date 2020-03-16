@@ -1796,8 +1796,7 @@ class ListaTransferencias extends StatelessWidget {
     ```
     void _criaTransferencia() {
         • • •
-            Navigator.pop(context, transferenciaCriada);
-        }
+        Navigator.pop(context, transferenciaCriada);
     }
     ```
 
@@ -1814,6 +1813,49 @@ class ListaTransferencias extends StatelessWidget {
     )
 ```
 
+### AULA 04 Utilizando uma lista dinâmica de Widgets - ATIVIDADE 05 Utilizando o ListView
+#### Atualizar tela no momento em que transferência é recebida
+- Não temos rolagem padrão nem atualizações dinâmicas com o column. Vamos usar o ListView. Após a mudança, se tentarmos rolar a tela, poderemos fazer isso, pois o app irá permitir
+    + Substituir o _Column_ de ListaTransferencias por um ListView
+    ```
+    class ListaTransferencias extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+        return Scaffold(      
+            appBar: AppBar(title: Text('Transferências')), 
+            body: ListView(
+                children: <Widget>[
+                    ItemTransferencia(Transferencia(100.0, 12354)),
+                    ItemTransferencia(Transferencia(650.0, 58891)),
+                    ItemTransferencia(Transferencia(130.0, 60154)),
+                ],
+            ),
+        );
+    }
+    ```
+
+Para manter a solução em lista, porém de forma dinâmica
+    + Apagar os itens fixos da Lista e o children
+    ```
+    body: ListView(
+    ),
+    ```
+
+    + Utilizar a função _builder_ utililando os itens desta lista
+    ```
+    body: ListView.builder(
+        itemCount: ,
+    ),
+    ```
+- Criar as constantes com relação da classe ListaTransferencias, inicializando como uma lista vazia
+```
+class ListaTransferencias extends StatelessWidget {
+    final List<Transferencia> _transferencia = List();
+    • • •
+}    
+```
+
+- Passar os parâmetros do Builder    
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffold é usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.
