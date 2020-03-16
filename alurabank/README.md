@@ -1715,7 +1715,7 @@ class FormularioTransferencias extends StatelessWidget {
     ```
 
 #### Iniciar aplicativo por tela específica
-- Iniciar o aplicativo por tela de transferência, criar uma transferência e, caso o status seja de Sucesso, voltar para lista de transferências e ver a transferênia criada
+- Iniciar o aplicativo por tela de transferência, criar uma transferência e, caso o status seja de Sucesso, voltar para lista de transferências e ver a transferência criada
     + Modificamos body da classe AluraBankApp para que aplicativo inicialize pela lista de transferências
     ```
     class AlurabankApp extends StatelessWidget {
@@ -1729,6 +1729,26 @@ class FormularioTransferencias extends StatelessWidget {
         }
     }
     ```
+
+#### Navegando Entre Telas
+- Para acessar a próxima tela, utilizaremos a navegação
+    + Na classe ListaTransferencias(), criaremos um onPressed() que definirá a navegação quando clicado
+    + No navigator utilizaremos o push, para nos empurrar até a tela que desejarmos, e passaremos também alguns argumentos: contexto e rota
+    + Para rota, há algo pronto do material design que podemos utilizar, o *MaterialPageRoute()*
+    ```
+    class ListaTransferencias extends StatelessWidget {
+        • • •
+        floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add), onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return FormularioTransferencias();
+                }));
+            },
+        ),
+            • • •
+    }
+```
+
 
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.

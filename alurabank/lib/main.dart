@@ -95,7 +95,11 @@ class ListaTransferencias extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: Icon(Icons.add), onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return FormularioTransferencias();
+          }));
+        },
       ),
     );
   }
