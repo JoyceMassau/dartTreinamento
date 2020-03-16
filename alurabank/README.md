@@ -1665,6 +1665,54 @@ Editor(
     ```
     Editor(String valorObrigatorio, {this.controlador, this.rotulo, this.dica, this.icone});
     ```
+#### Extraindo código do botão
+- Primeira alteração será tirarmos os debug, sabemos que está funcionando
+    ```
+    RaisedButton(
+        child: Text('Confirmar'),
+        onPressed: () {              
+            final int numeroConta = int.tryParse(_controladorCampoValor.text);
+            final double valor = double.tryParse(_controladorCampoNumeroConta.text);
+            if(numeroConta != null && valor != null) {
+            final transferenciaCriada = Transferencia(valor, numeroConta);                
+            }
+        },
+    ),
+    ```
+
+- Extrair conteúdo do botão para uma função, pois sintaticamente não faz sentido, ele cria realmente uma transferência, e a função do botão é só executar a transferência, que já irá existir mediante outra classe, quando pressionado
+    + Na classe FormularioTransferencias(), recortar todo o conteúdo do botão de dentro do onPressed, mantendo apenas a referência para a função que iremos criar, chamada *_criaTransferencia*
+```
+class FormularioTransferencias extends StatelessWidget {
+    • • •
+    RaisedButton(
+        child: Text('Confirmar'),
+        onPressed: () {              
+            _criaTransferencia();
+        },
+    ),
+    • • •
+}          
+```
+
+- E iremos criar a função
+    ```
+    void _criaTransferencia() {
+        final int numeroConta = int.tryParse(_controladorCampoValor.text);
+        final double valor = double.tryParse(_controladorCampoNumeroConta.text);
+        if(numeroConta != null && valor != null) {
+            final transferenciaCriada = Transferencia(valor, numeroConta);                
+        }
+    }
+    ```
+
+- Como temos um código de uma linha, podemos substituir as chaves pela _flexinha_ dentro do onPressed
+    ```
+    RaisedButton(
+        child: Text('Confirmar'),
+        onPressed: () => _criaTransferencia(),
+    ),
+    ```
 
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
