@@ -364,7 +364,8 @@ samples, guidance on mobile development, and a full API reference.
             ),
         ),
     ));
-    ```        
+    ```  
+
 - Porém, podemos replicar o trecho do sódigo do card, que representa um item da lista
     ```
     Card(
@@ -374,7 +375,8 @@ samples, guidance on mobile development, and a full API reference.
         subtitle: Text('10000'),
         )
     ),
-    ```    
+    ```
+
 - Ficando da seguinte forma
     ```
     import 'package:flutter/material.dart';
@@ -430,6 +432,7 @@ Já temos bastante código, mas não é intuitivo entender que a _Column_ repres
     
     }
     ```
+
 - Com a classe criada, podemos utilizá-la no _body_ do aplicativo. Como o body espera um Widget, precisamos transformar a classe em um, fazendo uma herança
     ```
     import 'package:flutter/material.dart';
@@ -444,10 +447,12 @@ Já temos bastante código, mas não é intuitivo entender que a _Column_ repres
     
     }
     ```
+
 - Quando fazemos uma herança é necessário fazer um _override_, uma sobrescrita de um método obrigatório    
     + Posicionar o cursor sobre a classe criada anteriormente class ListaTransferencias extends *Widget* { }
         + Alt + Enter
         + _"Create 1 missing override"_
+
 - Ficando o código da seguinte forma
     ```
     class ListaTransferencias extends Widget {
@@ -656,7 +661,7 @@ class ItemTransferencia extends StatelessWidget {
 
 - Agora, onde chamamos o método *ItemTransferencia()* poderemos alterar os valores, atribuindo um valor diferente a cada card. Para isso passaremos os dois atributos que agora ele está esperando, através do construtos, o _valor_ e a _conta_
 ```
-lass ListaTransferencias extends StatelessWidget {
+class ListaTransferencias extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1592,11 +1597,138 @@ class Transferencia {
     }  
     ```
 
-- Chama classe Editor criada anteriormente dentro de FormularioTransferencias
+- Chama classe Editor criada anteriormente dentro de FormularioTransferencias recebe 3 parâmetros
     + As informações que terão de ser enviadas como parâmetros serão o _controladorCampoNumeroConta
-    + As informações que terão de ser enviadas como parâmetros serão a dica, que passaremos como 'Número da Conta'
-    + As informações que terão de ser enviadas como parâmetros serão a dica, que passaremos como 'Número da Conta'
+    + As informações que terão de ser enviadas como parâmetros serão o placeholder, que passaremos como 'Número da Conta'
+    + As informações que terão de ser enviadas como parâmetros serão a dica, que passaremos como '000'
+    ```
+    Editor(_controladorCampoNumeroConta, 'Número da Conta', '000'),
+    ```
 
+- O segundo padding tem uma característica com relação ao primeiro, possui um ícone
+    + Precisamos criar a constante para o ícone
+    + Adicioná-lo ao construtor da classe 
+```
+    class Editor extends StatelessWidget {
+        final IconData _icone;
+        Editor(this._controlador, this._rotulo, this._dica, this._icone);
+    }
+```
+
+- Feito isso, na classe FormularioTransferencias(), onde chamamos a classe Editor(), precisaremos passar o novo parâmetro
+    + Para o primeiro input não queremos nenhum ícone, passaremos o valor dele como *null*
+- Poderemos fazer a replicação de código para utilizarmos para o outro input, que terá como parâmetro um ícone    
+    ```
+    Editor(_controladorCampoNumeroConta, 'Número da Conta', '000'),
+    Editor(_controladorCampoValor, 'Valor', '0.00', Icons.monetization_on),
+    ```
+
+- Se executarmos o código veremos que visualmente deu certo, porém, precisamos, por exemplo, passar uma referência nula para quando não tínhamos um ívone. Ainda temos como melhorar
+- Dentro de nosso Padding, de nosso Card, podemos passar parâmetros como opcionais
+
+#### Parâmetros opcionais nomeados: extraindo Widgets flexíveis com Dart
+- Para que não tenhamos a necessidade de passar parâmetros que não iremos utilizar, podemos usar um recurso do Dart, os parâmetros opcionais nomeados
+    + Entre chaves passamos os parâmetros, que não podem ser privados
+        + Shift+F6 sobre o parâmetro, renomear todos os atributos, removendo o underscore, tornando-os públicos
+    ```
+    class Editor extends StatelessWidget {
+
+        final TextEditingController controlador;
+        final String rotulo;
+        final String dica;
+        final IconData icone;
+
+        Editor(this.controlador, this.rotulo, this.dica, this.icone);
+    }
+    ```
+
+- Veja que a classe FormularioTransferencias, onde chamamos a classe Editor, até apresenta erro. Agora que os parâmetros são nomeados se faz necessário determinar o que cada um deles significa
+- Na classe FormularioTransferencias
+```
+Editor(
+    controlador: _controladorCampoNumeroConta, 
+    rotulo: 'Número da Conta', 
+    dica: '000',
+),
+Editor(
+    controlador: _controladorCampoValor, 
+    rotulo: 'Valor', 
+    dica: '0.00', 
+    icone: Icons.monetization_on
+),  
+```
+
+![](https://github.com/JoyceMassau/dartTreinamento/blob/master/img/widgetsFlexiveis.jpg)
+
+
+- Caso formos mesclar valores obrigatórios e opcionais. *Exemplo:*
+    ```
+    Editor(String valorObrigatorio, {this.controlador, this.rotulo, this.dica, this.icone});
+    ```
+#### Extraindo código do botão
+- Primeira alteração será tirarmos os debug, sabemos que está funcionando
+    ```
+    RaisedButton(
+        child: Text('Confirmar'),
+        onPressed: () {              
+            final int numeroConta = int.tryParse(_controladorCampoValor.text);
+            final double valor = double.tryParse(_controladorCampoNumeroConta.text);
+            if(numeroConta != null && valor != null) {
+            final transferenciaCriada = Transferencia(valor, numeroConta);                
+            }
+        },
+    ),
+    ```
+
+- Extrair conteúdo do botão para uma função, pois sintaticamente não faz sentido, ele cria realmente uma transferência, e a função do botão é só executar a transferência, que já irá existir mediante outra classe, quando pressionado
+    + Na classe FormularioTransferencias(), recortar todo o conteúdo do botão de dentro do onPressed, mantendo apenas a referência para a função que iremos criar, chamada *_criaTransferencia*
+```
+class FormularioTransferencias extends StatelessWidget {
+    • • •
+    RaisedButton(
+        child: Text('Confirmar'),
+        onPressed: () {              
+            _criaTransferencia();
+        },
+    ),
+    • • •
+}          
+```
+
+- E iremos criar a função
+    ```
+    void _criaTransferencia() {
+        final int numeroConta = int.tryParse(_controladorCampoValor.text);
+        final double valor = double.tryParse(_controladorCampoNumeroConta.text);
+        if(numeroConta != null && valor != null) {
+            final transferenciaCriada = Transferencia(valor, numeroConta);                
+        }
+    }
+    ```
+
+- Como temos um código de uma linha, podemos substituir as chaves pela _flexinha_ dentro do onPressed
+    ```
+    RaisedButton(
+        child: Text('Confirmar'),
+        onPressed: () => _criaTransferencia(),
+    ),
+    ```
+
+#### Iniciar aplicativo por tela específica
+- Iniciar o aplicativo por tela de transferência, criar uma transferência e, caso o status seja de Sucesso, voltar para lista de transferências e ver a transferênia criada
+    + Modificamos body da classe AluraBankApp para que aplicativo inicialize pela lista de transferências
+    ```
+    class AlurabankApp extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+            return MaterialApp(
+                home: Scaffold(
+                    body: ListaTransferencias(),       
+                ),
+            );
+        }
+    }
+    ```
 
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
