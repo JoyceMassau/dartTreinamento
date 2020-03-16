@@ -364,7 +364,8 @@ samples, guidance on mobile development, and a full API reference.
             ),
         ),
     ));
-    ```        
+    ```  
+
 - Porém, podemos replicar o trecho do sódigo do card, que representa um item da lista
     ```
     Card(
@@ -374,7 +375,8 @@ samples, guidance on mobile development, and a full API reference.
         subtitle: Text('10000'),
         )
     ),
-    ```    
+    ```
+
 - Ficando da seguinte forma
     ```
     import 'package:flutter/material.dart';
@@ -430,6 +432,7 @@ Já temos bastante código, mas não é intuitivo entender que a _Column_ repres
     
     }
     ```
+
 - Com a classe criada, podemos utilizá-la no _body_ do aplicativo. Como o body espera um Widget, precisamos transformar a classe em um, fazendo uma herança
     ```
     import 'package:flutter/material.dart';
@@ -444,10 +447,12 @@ Já temos bastante código, mas não é intuitivo entender que a _Column_ repres
     
     }
     ```
+
 - Quando fazemos uma herança é necessário fazer um _override_, uma sobrescrita de um método obrigatório    
     + Posicionar o cursor sobre a classe criada anteriormente class ListaTransferencias extends *Widget* { }
         + Alt + Enter
         + _"Create 1 missing override"_
+
 - Ficando o código da seguinte forma
     ```
     class ListaTransferencias extends Widget {
@@ -656,7 +661,7 @@ class ItemTransferencia extends StatelessWidget {
 
 - Agora, onde chamamos o método *ItemTransferencia()* poderemos alterar os valores, atribuindo um valor diferente a cada card. Para isso passaremos os dois atributos que agora ele está esperando, através do construtos, o _valor_ e a _conta_
 ```
-lass ListaTransferencias extends StatelessWidget {
+class ListaTransferencias extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1604,13 +1609,10 @@ class Transferencia {
     + Precisamos criar a constante para o ícone
     + Adicioná-lo ao construtor da classe 
 ```
-class Editor extends StatelessWidget {
-
-  final IconData _icone;
-
-  Editor(this._controlador, this._rotulo, this._dica, this._icone);
-
-}
+    class Editor extends StatelessWidget {
+        final IconData _icone;
+        Editor(this._controlador, this._rotulo, this._dica, this._icone);
+    }
 ```
 
 - Feito isso, na classe FormularioTransferencias(), onde chamamos a classe Editor(), precisaremos passar o novo parâmetro
@@ -1620,7 +1622,26 @@ class Editor extends StatelessWidget {
     Editor(_controladorCampoNumeroConta, 'Número da Conta', '000'),
     Editor(_controladorCampoValor, 'Valor', '0.00', Icons.monetization_on),
     ```
-    
+
+- Se executarmos o código veremos que visualmente deu certo, porém, precisamos, por exemplo, passar uma referência nula para quando não tínhamos um ívone. Ainda temos como melhorar
+- Dentro de nosso Padding, de nosso Card, podemos passar parâmetros como opcionais
+
+#### Parâmetros opcionais nomeados: extraindo Widgets flexíveis com Dart
+- Para que não tenhamos a necessidade de passar parâmetros que não iremos utilizar, podemos usar um recurso do Dart, os parâmetros opcionais nomeados
+    + Entre chaves passamos os parâmetros, que não podem ser privados
+        + Shift+F6 sobre o parâmetro, renomear todos os atributos, removendo o underscore, tornando-os públicos
+    ```
+    class Editor extends StatelessWidget {
+
+        final TextEditingController controlador;
+        final String rotulo;
+        final String dica;
+        final IconData icone;
+
+        Editor(this.controlador, this.rotulo, this.dica, this.icone);
+    }
+    ```
+
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffold é usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.
