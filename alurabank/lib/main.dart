@@ -65,6 +65,7 @@ class Editor extends StatelessWidget {
         decoration: InputDecoration(
           labelText: _rotulo,
           hintText: _dica,
+          icon: Icon(_icone),
         ),
         keyboardType: TextInputType.number,
       ),
