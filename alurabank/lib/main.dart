@@ -102,9 +102,9 @@ class ListaTransferencias extends StatelessWidget {
           final Future <Transferencia> future = Navigator.push(context, MaterialPageRoute(builder: (context) {
             return FormularioTransferencias();
           }));
-          future.then((TransferenciaRecebida){
+          future.then((transferenciaRecebida){
             debugPrint('chegou no then do future');
-            debugPrint('$TransferenciaRecebida');
+            debugPrint('$transferenciaRecebida');
           });
         },
       ),
