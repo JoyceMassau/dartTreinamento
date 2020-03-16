@@ -25,22 +25,7 @@ class FormularioTransferencias extends StatelessWidget {
       body: Column(
         children: <Widget>[
           Editor(_controladorCampoNumeroConta, 'Número da Conta', '000', null),
-          Editor(_controladorCampoValor, 'Valor', '0.00', Icons.monetization_on),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: TextField(
-            controller: _controladorCampoValor,
-              style: TextStyle(
-                fontSize: 24.0,
-              ),
-              decoration: InputDecoration(
-                icon: Icon(Icons.monetization_on),
-                labelText: 'Valor',
-                hintText: '0.00',
-              ),
-              keyboardType: TextInputType.number,
-            ),
-          ),
+          Editor(_controladorCampoValor, 'Valor', '0.00', Icons.monetization_on),        
           RaisedButton(
             child: Text('Confirmar'),
             onPressed: () {
