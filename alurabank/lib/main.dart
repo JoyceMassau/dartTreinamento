@@ -24,7 +24,8 @@ class FormularioTransferencias extends StatelessWidget {
       appBar: AppBar(title: Text('Criando Transferências')), 
       body: Column(
         children: <Widget>[
-          Editor(_controladorCampoNumeroConta, 'Número da Conta', '000'),
+          Editor(_controladorCampoNumeroConta, 'Número da Conta', '000', null),
+          Editor(_controladorCampoValor, 'Valor', '0.00', Icons.monetization_on),
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextField(
