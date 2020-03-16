@@ -37,7 +37,7 @@ class FormularioTransferencias extends StatelessWidget {
           ),        
           RaisedButton(
             child: Text('Confirmar'),
-            onPressed: () => _criaTransferencia(),
+            onPressed: () => _criaTransferencia(context),
           ),
         ],
       )
@@ -45,11 +45,14 @@ class FormularioTransferencias extends StatelessWidget {
   }
 }
 
-void _criaTransferencia() {
+void _criaTransferencia(BuildContext context) {
   final int numeroConta = int.tryParse(_controladorCampoValor.text);
   final double valor = double.tryParse(_controladorCampoNumeroConta.text);
   if(numeroConta != null && valor != null) {
-    final transferenciaCriada = Transferencia(valor, numeroConta);                
+    final transferenciaCriada = Transferencia(valor, numeroConta);  
+    debugPrint('Criando Transferência');
+    debugPrint('$transferenciaCriada');
+    Navigator.pop(context, transferenciaCriada);
   }
 }
 
@@ -82,20 +85,38 @@ class Editor extends StatelessWidget {
   }
 }
 
-class ListaTransferencias extends StatelessWidget {
+class ListaTransferencias extends StatefulWidget {
+  @override
+  _ListaTransferenciasState createState() => _ListaTransferenciasState();
+}
+
+class _ListaTransferenciasState extends State<ListaTransferencias> {
+  final List<Transferencia> _transferencias = List();
+
   @override
   Widget build(BuildContext context) {
+    _transferencias.add(Transferencia(100.0, 12365));
+    
     return Scaffold(      
       appBar: AppBar(title: Text('Transferências')), 
-      body: Column(
-        children: <Widget>[
-          ItemTransferencia(Transferencia(100.0, 12354)),
-          ItemTransferencia(Transferencia(650.0, 58891)),
-          ItemTransferencia(Transferencia(130.0, 60154)),
-        ],
+      body: ListView.builder(
+        itemCount: _transferencias.length,
+        itemBuilder: (context, indice) {
+          final transferencia = _transferencias[indice];
+          return ItemTransferencia(transferencia);
+        },
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: Icon(Icons.add), onPressed: () {
+          final Future <Transferencia> future = Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return FormularioTransferencias();
+          }));
+          future.then((transferenciaRecebida){
+            debugPrint('chegou no then do future');
+            debugPrint('$transferenciaRecebida');
+            _transferencia.add(transferenciaRecebida);
+          });
+        },
       ),
     );
   }

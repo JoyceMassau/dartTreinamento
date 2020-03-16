@@ -1715,7 +1715,7 @@ class FormularioTransferencias extends StatelessWidget {
     ```
 
 #### Iniciar aplicativo por tela específica
-- Iniciar o aplicativo por tela de transferência, criar uma transferência e, caso o status seja de Sucesso, voltar para lista de transferências e ver a transferênia criada
+- Iniciar o aplicativo por tela de transferência, criar uma transferência e, caso o status seja de Sucesso, voltar para lista de transferências e ver a transferência criada
     + Modificamos body da classe AluraBankApp para que aplicativo inicialize pela lista de transferências
     ```
     class AlurabankApp extends StatelessWidget {
@@ -1729,6 +1729,177 @@ class FormularioTransferencias extends StatelessWidget {
         }
     }
     ```
+
+#### Navegando Entre Telas
+- Para acessar a próxima tela, utilizaremos a navegação
+    + Na classe ListaTransferencias(), criaremos um onPressed() que definirá a navegação quando clicado
+    + No navigator utilizaremos o push, para nos empurrar até a tela que desejarmos, e passaremos também alguns argumentos: contexto e rota
+    + Para rota, há algo pronto do material design que podemos utilizar, o *MaterialPageRoute()*
+    ```
+    class ListaTransferencias extends StatelessWidget {
+        • • •
+        floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.add), onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return FormularioTransferencias();
+                }));
+            },
+        ),
+            • • •
+    }
+```
+
+
+#### Pegar retorno do usuário da informação da transferência
+- Usar future como CallBack para aguardar resposta do usuário para navegação
+    ```
+        final Future future = Navigator.push(context, MaterialPageRoute(builder: (context) {}
+        
+    ```
+
+- Comportamento para receber valor, usando then
+```
+final Future future = Navigator.push(context, MaterialPageRoute(builder: (context) {}
+```
+
+- Ao modificarmos toda a classe, ela ficará assim
+```
+class ListaTransferencias extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(      
+      appBar: AppBar(title: Text('Transferências')), 
+      body: Column(
+        children: <Widget>[
+          ItemTransferencia(Transferencia(100.0, 12354)),
+          ItemTransferencia(Transferencia(650.0, 58891)),
+          ItemTransferencia(Transferencia(130.0, 60154)),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add), onPressed: () {
+          final Future <Transferencia> future = Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return FormularioTransferencias();
+          }));
+          future.then((transferenciaRecebida){
+            debugPrint('chegou no then do future');
+            debugPrint('$transferenciaRecebida');
+          });
+        },
+      ),
+    );
+  }
+}
+```
+
+- Iremos alterar a classe que cria transferências, usando a função Pop, que tira o Navigator da pilha. 
+    ```
+    void _criaTransferencia() {
+        • • •
+        Navigator.pop(context, transferenciaCriada);
+    }
+    ```
+
+- Veremos que o _context_ de nosso Navigator.pop vai indicar erro, pois não temos acesso à ele de dentro de _criaTransferencia. Porém, podemos recebê-lo via parâmetros
+    ```
+    void _criaTransferencia(BuildContext context) { }
+    ```
+
+- E passar também como argumento no _criaTransferencia do botão
+    ```
+    RaisedButton(
+        child: Text('Confirmar'),
+        onPressed: () => _criaTransferencia(context),
+    )
+```
+
+### AULA 04 Utilizando uma lista dinâmica de Widgets - ATIVIDADE 05 Utilizando o ListView
+#### Atualizar tela no momento em que transferência é recebida
+- Não temos rolagem padrão nem atualizações dinâmicas com o column. Vamos usar o ListView. Após a mudança, se tentarmos rolar a tela, poderemos fazer isso, pois o app irá permitir
+    + Substituir o _Column_ de ListaTransferencias por um ListView
+    ```
+    class ListaTransferencias extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+        return Scaffold(      
+            appBar: AppBar(title: Text('Transferências')), 
+            body: ListView(
+                children: <Widget>[
+                    ItemTransferencia(Transferencia(100.0, 12354)),
+                    ItemTransferencia(Transferencia(650.0, 58891)),
+                    ItemTransferencia(Transferencia(130.0, 60154)),
+                ],
+            ),
+        );
+    }
+    ```
+
+Para manter a solução em lista, porém de forma dinâmica
+    + Apagar os itens fixos da Lista e o children
+    ```
+    body: ListView(
+    ),
+    ```
+
+    + Utilizar a função _builder_ utililando os itens desta lista
+    ```
+    body: ListView.builder(
+        itemCount: ,
+    ),
+    ```
+- Criar as constantes com relação da classe ListaTransferencias, inicializando como uma lista vazia
+```
+class ListaTransferencias extends StatelessWidget {
+    final List<Transferencia> _transferencias = List();
+    • • •
+}    
+```
+
+- Atualizamos ao recebermos a 'transferência recebida'
+```
+class ListaTransferencias extends StatelessWidget {
+    • • •
+
+    future.then((transferenciaRecebida){
+        debugPrint('chegou no then do future');
+        debugPrint('$transferenciaRecebida');
+        _transferencia.add(transferenciaRecebida);
+    });
+}    
+```
+
+- Agora com o _length_ podemos informar ao itemCount do listView a quantidade de itens de nossa Transferência
+    ```
+    class ListaTransferencias extends StatelessWidget {
+        itemCount: _transferencias.length,
+    }    
+    ```
+
+- Na classe ListaTransferencias reutiliza itens para identificar item de lista pelo seu índice
+```
+body: ListView.builder(
+    itemCount: _transferencias.length,
+    itemBuilder: (context, indice) {
+        final transferencia = _transferencias[indice];
+        return ItemTransferencia(transferencia);
+    },
+),
+```
+
+- Se rodarmos o programa agora não irá exibir nenhum card, pois só carregamos uma lista vazia. Se quisermos adicionar ítens a ela, criamos um item de lista de _transferencias_ passando o parâmetro _add_
+```
+class ListaTransferencias extends StatelessWidget {
+    final List<Transferencia> _transferencias = List();
+
+    @override
+    Widget build(BuildContext context) {
+        _transferencias.add(Transferencia(100.0, 12365));
+    }
+}    
+```   
+### AULA 05 Utilizando StatefulWidgets
+#### Atualização dinâmica em conteúdo de Widget
+- Na aula ele explica de sobre a conversão, porém, é possível clicar sobre o ícone da lâmpada e, posteriormente, sobre _"Convert to StatefulWidget"_
 
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
