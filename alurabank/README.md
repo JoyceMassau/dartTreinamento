@@ -1592,10 +1592,26 @@ class Transferencia {
     }  
     ```
 
-- Chama classe Editor criada anteriormente dentro de FormularioTransferencias
+- Chama classe Editor criada anteriormente dentro de FormularioTransferencias recebe 3 parâmetros
     + As informações que terão de ser enviadas como parâmetros serão o _controladorCampoNumeroConta
-    + As informações que terão de ser enviadas como parâmetros serão a dica, que passaremos como 'Número da Conta'
-    + As informações que terão de ser enviadas como parâmetros serão a dica, que passaremos como 'Número da Conta'
+    + As informações que terão de ser enviadas como parâmetros serão o placeholder, que passaremos como 'Número da Conta'
+    + As informações que terão de ser enviadas como parâmetros serão a dica, que passaremos como '000'
+    ```
+    Editor(_controladorCampoNumeroConta, 'Número da Conta', '000'),
+    ```
+
+- O segundo padding tem uma característica com relação ao primeiro, possui um ícone
+    + Precisamos criar a constante para o ícone
+    + Adicioná-lo ao construtor da classe 
+```
+class Editor extends StatelessWidget {
+
+  final IconData _icone;
+
+  Editor(this._controlador, this._rotulo, this._dica, this._icone);
+
+}
+```
 
 
 #### Esclarecimentos
