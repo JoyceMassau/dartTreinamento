@@ -1750,6 +1750,70 @@ class FormularioTransferencias extends StatelessWidget {
 ```
 
 
+#### Pegar retorno do usuário da informação da transferência
+- Usar future como CallBack para aguardar resposta do usuário para navegação
+    ```
+        final Future future = Navigator.push(context, MaterialPageRoute(builder: (context) {}
+        
+    ```
+
+- Comportamento para receber valor, usando then
+```
+final Future future = Navigator.push(context, MaterialPageRoute(builder: (context) {}
+```
+
+- Ao modificarmos toda a classe, ela ficará assim
+```
+class ListaTransferencias extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(      
+      appBar: AppBar(title: Text('Transferências')), 
+      body: Column(
+        children: <Widget>[
+          ItemTransferencia(Transferencia(100.0, 12354)),
+          ItemTransferencia(Transferencia(650.0, 58891)),
+          ItemTransferencia(Transferencia(130.0, 60154)),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add), onPressed: () {
+          final Future <Transferencia> future = Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return FormularioTransferencias();
+          }));
+          future.then((TransferenciaRecebida){
+            debugPrint('chegou no then do future');
+            debugPrint('$TransferenciaRecebida');
+          });
+        },
+      ),
+    );
+  }
+}
+```
+
+- Iremos alterar a classe que cria transferências, usando a função Pop, que tira o Navigator da pilha. 
+    ```
+    void _criaTransferencia() {
+        • • •
+            Navigator.pop(context, transferenciaCriada);
+        }
+    }
+    ```
+
+- Veremos que o _context_ de nosso Navigator.pop vai indicar erro, pois não temos acesso à ele de dentro de _criaTransferencia. Porém, podemos recebê-lo via parâmetros
+    ```
+    void _criaTransferencia(BuildContext context) { }
+    ```
+
+- E passar também como argumento no _criaTransferencia do botão
+    ```
+    RaisedButton(
+        child: Text('Confirmar'),
+        onPressed: () => _criaTransferencia(context),
+    )
+```
+
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffold é usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.
