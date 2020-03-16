@@ -1714,6 +1714,22 @@ class FormularioTransferencias extends StatelessWidget {
     ),
     ```
 
+#### Iniciar aplicativo por tela específica
+- Iniciar o aplicativo por tela de transferência, criar uma transferência e, caso o status seja de Sucesso, voltar para lista de transferências e ver a transferênia criada
+    + Modificamos body da classe AluraBankApp para que aplicativo inicialize pela lista de transferências
+    ```
+    class AlurabankApp extends StatelessWidget {
+        @override
+        Widget build(BuildContext context) {
+            return MaterialApp(
+                home: Scaffold(
+                    body: ListaTransferencias(),       
+                ),
+            );
+        }
+    }
+    ```
+
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffold é usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.

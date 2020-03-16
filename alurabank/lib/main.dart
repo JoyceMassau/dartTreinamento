@@ -7,7 +7,7 @@ class AlurabankApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: FormularioTransferencias(),       
+        body: ListaTransferencias(),       
       ),
     );
   }
