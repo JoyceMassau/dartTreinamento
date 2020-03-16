@@ -1642,6 +1642,21 @@ class Transferencia {
     }
     ```
 
+- Veja que a classe FormularioTransferencias, onde chamamos a classe Editor, até apresenta erro. Agora que os parâmetros são nomeados se faz necessário determinar o que cada um deles significa
+- Na classe FormularioTransferencias
+```
+Editor(
+    controlador: _controladorCampoNumeroConta, 
+    rotulo: 'Número da Conta', 
+    dica: '000',
+),
+Editor(
+    controlador: _controladorCampoValor, 
+    rotulo: 'Valor', 
+    dica: '0.00', 
+    icone: Icons.monetization_on
+),  
+```
 #### Esclarecimentos
 + MaterialApp é o ponto de partida do seu aplicativo, ele informa ao Flutter que você usará os componentes do Material e seguirá o design do material no seu aplicativo. Ele é um widget que apresenta vários widgets (Navigator, Theme) necessários para criar um aplicativo de design de materiais.
 + Scaffold é usada sob MaterialApp, dá-lhe muitas funcionalidades básicas, como AppBar, BottomNavigationBar, Drawer, FloatingActionButton, etc. O Scaffoldfoi projetado para ser o único contêiner de nível superior para um MaterialApp, embora não seja necessário aninhar um Scaffold.
