@@ -19,16 +19,19 @@ class BytebankApp extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Image.asset('images/bytebank_logo.png'),
             ),
-            Container(
-              height: 120,
-              width: 100,
-              color:  Colors.green,
-              child: Column(
-                children: <Widget>[
-                  Icon(Icons.people),
-                  Text('Contatos')
-                ],
-              )
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                height: 120,
+                width: 100,
+                color:  Colors.green,
+                child: Column(
+                  children: <Widget>[
+                    Icon(Icons.people),
+                    Text('Contatos')
+                  ],
+                )
+              ),
             )
           ],
         ),
