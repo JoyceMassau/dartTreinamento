@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:bytebank/screens/contacts_list.dart';
 
 class Dashboard extends StatelessWidget {
   @override
@@ -18,6 +19,11 @@ class Dashboard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ContactsList(),
+                ));
+              },
               child: Container(
                 padding: EdgeInsets.all(8.0),
                 height: 100,
