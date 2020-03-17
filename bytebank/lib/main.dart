@@ -18,7 +18,8 @@ class BytebankApp extends StatelessWidget {
               color:  Colors.green,
               child: Column(
                 children: <Widget>[
-                  Icon(Icons.people)
+                  Icon(Icons.people),
+                  Text('Contatos')
                 ],
               )
             )
