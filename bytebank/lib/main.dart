@@ -13,7 +13,14 @@ class BytebankApp extends StatelessWidget {
         ),
         body: Column(
           children: <Widget>[
-            Image.asset(name)
+            Image.asset('images/bytebank_logo.png'),
+            Container(
+              child: Column(
+                children: <Widget>[
+                  Icon(Icons.people)
+                ],
+              )
+            )
           ],
         ),
       ),
