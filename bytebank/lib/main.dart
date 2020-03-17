@@ -26,6 +26,8 @@ class BytebankApp extends StatelessWidget {
                 width: 150,
                 color:  Colors.green,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Icon(Icons.people),
                     Text('Contatos')
