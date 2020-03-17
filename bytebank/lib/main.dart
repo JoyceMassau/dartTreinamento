@@ -33,7 +33,7 @@ class BytebankApp extends StatelessWidget {
                 padding: EdgeInsets.all(8.0),
                 height: 100,
                 width: 150,
-                color:  Colors.green,
+                color: Theme.of(context).primaryColor,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
