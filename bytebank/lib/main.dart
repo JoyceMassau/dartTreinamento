@@ -22,8 +22,8 @@ class BytebankApp extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                height: 120,
-                width: 100,
+                height: 100,
+                width: 150,
                 color:  Colors.green,
                 child: Column(
                   children: <Widget>[
