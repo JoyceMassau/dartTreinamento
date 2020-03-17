@@ -15,6 +15,7 @@ class BytebankApp extends StatelessWidget {
           children: <Widget>[
             Image.asset('images/bytebank_logo.png'),
             Container(
+              color:  Colors.green,
               child: Column(
                 children: <Widget>[
                   Icon(Icons.people)
