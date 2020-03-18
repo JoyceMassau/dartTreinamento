@@ -19,7 +19,7 @@ void save(Contact contact) {
     final Map<String, dynamic> contactMap = Map();
     contactMap['id'] = contact.id;
     contactMap['name'] = contact.name;
-    contactMap['account_number'] = contact.account_number;
+    contactMap['account_number'] = contact.accountNumber;
     db.insert('contacts', contactMap);
   });
 }
