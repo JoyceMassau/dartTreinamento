@@ -14,12 +14,12 @@ void createDatabase() {
   });
 }
 
-void save(Contact contact) {
-  createDatabase().then((db) {
+Future<int> save(Contact contact) {
+  return createDatabase().then((db) {
     final Map<String, dynamic> contactMap = Map();
     contactMap['id'] = contact.id;
     contactMap['name'] = contact.name;
     contactMap['account_number'] = contact.accountNumber;
-    db.insert('contacts', contactMap);
+    return db.insert('contacts', contactMap);
   });
 }
