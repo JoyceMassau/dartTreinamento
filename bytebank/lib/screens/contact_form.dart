@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ContactForm extends StatelessWidget {
+
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _accountNumberController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
