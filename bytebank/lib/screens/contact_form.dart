@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class ContactFom extends StatelessWidget {
+class ContactForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return Scaffold(
+      appBar: AppBar(title: Text('New Contact')),
     );
   }
 }
