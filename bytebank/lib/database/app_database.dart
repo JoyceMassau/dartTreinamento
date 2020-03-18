@@ -1,3 +1,4 @@
+import 'package:bytebank/models/contact.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -12,3 +13,7 @@ void createDatabase() {
     }, version: 1);
   });
 }
+
+void save(Contact contact) {
+  createDatabase();
+};
