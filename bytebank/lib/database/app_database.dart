@@ -1,5 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 
 void createDatabase() {
-  getDatabasesPath();
+  getDatabasesPath().then((dbPath) {
+    
+  });
 }
