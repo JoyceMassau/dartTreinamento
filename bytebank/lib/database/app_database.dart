@@ -23,3 +23,9 @@ Future<int> save(Contact contact) {
     return db.insert('contacts', contactMap);
   });
 }
+
+void findAll() {
+  createDatabase().then((db) {
+    db.query('contacts');
+  });
+}
