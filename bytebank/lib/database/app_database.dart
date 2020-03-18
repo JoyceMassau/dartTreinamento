@@ -5,7 +5,7 @@ import 'package:sqflite/sqflite.dart';
 void createDatabase() {
   getDatabasesPath().then((dbPath) {
     final String path = join(dbPath, 'bytebank.db');
-    openDatabase(path, onCreate: (db, version) {
+    return openDatabase(path, onCreate: (db, version) {
       db.execute('CREATE TABLE contacts('
         'id INTERGET PRIMARY KEY,'
         'name TEXT,'
@@ -16,4 +16,4 @@ void createDatabase() {
 
 void save(Contact contact) {
   createDatabase();
-};
+}
