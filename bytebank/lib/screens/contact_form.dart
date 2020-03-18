@@ -26,6 +26,10 @@ class ContactForm extends StatelessWidget {
             ),
             keyboardType: TextInputType.number,
           ),
+          RaisedButton(
+            child: Text('Create'),
+            onPressed: () {},
+          )
         ]
       ),
     );
