@@ -24,6 +24,7 @@ class _ContactFormState extends State<ContactForm> {
             Padding(
               padding: const EdgeInsets.only(top: 8.0),
               child: TextField(
+                controller: _nameController,
                 decoration: InputDecoration(
                   labelText: 'Full Name',
                 ),
@@ -35,6 +36,7 @@ class _ContactFormState extends State<ContactForm> {
             Padding(
               padding: const EdgeInsets.only(top: 16.0),
               child: TextField(
+                controller: _accountNumberController,
                 decoration: InputDecoration(
                   labelText: 'Account Number',
                 ),
