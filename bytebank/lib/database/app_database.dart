@@ -9,6 +9,6 @@ void createDatabase() {
         'id INTERGET PRIMARY KEY,'
         'name TEXT,'
         'account_number INTERGER');
-    });
+    }, version: 1);
   });
 }
