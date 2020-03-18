@@ -36,9 +36,12 @@ class ContactForm extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 16.0),
-              child: RaisedButton(
-                child: Text('Create'),
-                onPressed: () {},
+              child: SizedBox(
+                width: 1000.0,
+                child: RaisedButton(
+                  child: Text('Create'),
+                  onPressed: () {},
+                ),
               ),
             )
           ]
