@@ -15,5 +15,7 @@ void createDatabase() {
 }
 
 void save(Contact contact) {
-  createDatabase();
+  createDatabase().then((db) {
+    db.insert()
+  });
 }
