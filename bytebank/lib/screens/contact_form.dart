@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 
-class ContactForm extends StatelessWidget {
+class ContactForm extends StatefulWidget {
 
+  @override
+  _ContactFormState createState() => _ContactFormState();
+}
+
+class _ContactFormState extends State<ContactForm> {
   final TextEditingController _nameController = TextEditingController();
+
   final TextEditingController _accountNumberController = TextEditingController();
 
   @override
