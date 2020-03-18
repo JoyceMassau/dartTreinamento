@@ -15,9 +15,9 @@ void createDatabase() {
 }
 
 void save(Contact contact) {
-  final Map<String, dynamic> contactMap = Map();
-  contactMap['id'] = contact.id;
   createDatabase().then((db) {
-    db.insert('contacts')
+    final Map<String, dynamic> contactMap = Map();
+    contactMap['id'] = contact.id;
+    db.insert('contacts', contactMap);
   });
 }
