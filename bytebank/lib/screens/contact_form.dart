@@ -52,7 +52,10 @@ class _ContactFormState extends State<ContactForm> {
                 width: double.maxFinite,
                 child: RaisedButton(
                   child: Text('Create'),
-                  onPressed: () {},
+                  onPressed: () {
+                    final String name = _nameController.text;
+                    final int accountNumber = int.tryParse(_accountNumberController.text);
+                  },
                 ),
               ),
             )
