@@ -51,6 +51,11 @@ samples, guidance on mobile development, and a full API reference.
 
 ----
 
+#### Executar pacotes
+    ```
+    flutter packages get
+    ```
+
 #### Apresentando o resultado com o Flutter
 - Para compreendermos como o flutter cria esse aplicativo de contador, exibido ao iniciá-lo, apague todo o código após a função main, dentro da pasta *lib* do projeto. O arquivo lib passará a conter apenas o código
     ```
