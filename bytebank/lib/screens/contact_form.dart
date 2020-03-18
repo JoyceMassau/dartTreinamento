@@ -34,9 +34,12 @@ class ContactForm extends StatelessWidget {
                 keyboardType: TextInputType.number,
               ),
             ),
-            RaisedButton(
-              child: Text('Create'),
-              onPressed: () {},
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: RaisedButton(
+                child: Text('Create'),
+                onPressed: () {},
+              ),
             )
           ]
         ),
