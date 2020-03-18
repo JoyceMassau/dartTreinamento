@@ -11,22 +11,28 @@ class ContactForm extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: <Widget>[
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Full Name',
-              ),
-              style: TextStyle(
-                fontSize: 24.0,
+            Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: 'Full Name',
+                ),
+                style: TextStyle(
+                  fontSize: 24.0,
+                ),
               ),
             ),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Account Number',
+            Padding(
+              padding: const EdgeInsets.only(top: 16.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  labelText: 'Account Number',
+                ),
+                style: TextStyle(
+                  fontSize: 24.0,
+                ),
+                keyboardType: TextInputType.number,
               ),
-              style: TextStyle(
-                fontSize: 24.0,
-              ),
-              keyboardType: TextInputType.number,
             ),
             RaisedButton(
               child: Text('Create'),
