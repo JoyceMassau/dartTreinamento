@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:bytebank/models/contact.dart';
 
 class ContactForm extends StatefulWidget {
 
