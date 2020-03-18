@@ -24,6 +24,7 @@ class ContactForm extends StatelessWidget {
             style: TextStyle(
               fontSize: 24.0,
             ),
+            keyboardType: TextInputType.number,
           ),
         ]
       ),
