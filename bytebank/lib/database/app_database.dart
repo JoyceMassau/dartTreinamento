@@ -3,6 +3,6 @@ import 'package:sqflite/sqflite.dart';
 
 void createDatabase() {
   getDatabasesPath().then((dbPath) {
-    join(dbPath, 'bytebank.db');
+    final String path = join(dbPath, 'bytebank.db');
   });
 }
