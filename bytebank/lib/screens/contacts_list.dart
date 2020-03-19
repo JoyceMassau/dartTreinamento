@@ -11,8 +11,8 @@ class ContactsList extends StatelessWidget {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
-          return
-        },
+          return _ContactItem(contact);
+        }
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
