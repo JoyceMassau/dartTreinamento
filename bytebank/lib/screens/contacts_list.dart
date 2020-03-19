@@ -12,10 +12,7 @@ class ContactsList extends StatelessWidget {
       body: ListView.builder(
         itemBuilder: (context, index) {
           return
-        }
-        children: <Widget>[
-          
-        ],
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
