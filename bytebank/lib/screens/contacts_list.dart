@@ -3,6 +3,9 @@ import 'package:bytebank/screens/contact_form.dart';
 import 'package:flutter/material.dart';
 
 class ContactsList extends StatelessWidget {
+
+  final List<Contact> contacts = List();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold( 
@@ -11,8 +14,10 @@ class ContactsList extends StatelessWidget {
       ),
       body: ListView.builder(
         itemBuilder: (context, index) {
+          final Contact contact = contacts[index];
           return _ContactItem(contact);
-        }
+        },
+        itemCount: contacts.length,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
