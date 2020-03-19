@@ -13,12 +13,7 @@ class ContactsList extends StatelessWidget {
           return
         }
         children: <Widget>[
-          Card(
-            child: ListTile(
-              title: Text('Alex', style: TextStyle(fontSize: 24.0),),
-              subtitle: Text('1000', style: TextStyle(fontSize: 16.0),),
-            )
-          )
+          
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -39,8 +34,11 @@ class ContactsList extends StatelessWidget {
 class _ContactItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return Card(
+      child: ListTile(
+        title: Text('Alex', style: TextStyle(fontSize: 24.0),),
+        subtitle: Text('1000', style: TextStyle(fontSize: 16.0),),
+      )
     );
   }
 }
