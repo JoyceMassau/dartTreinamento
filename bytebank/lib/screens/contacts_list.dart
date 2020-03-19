@@ -35,3 +35,12 @@ class ContactsList extends StatelessWidget {
     );
   }
 }
+
+class _ContactItem extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      
+    );
+  }
+}
