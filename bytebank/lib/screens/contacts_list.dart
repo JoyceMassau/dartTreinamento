@@ -8,7 +8,10 @@ class ContactsList extends StatelessWidget {
       appBar: AppBar(
         title: Text('Contacts')
       ),
-      body: ListView(
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          return
+        }
         children: <Widget>[
           Card(
             child: ListTile(
