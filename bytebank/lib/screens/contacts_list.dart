@@ -15,13 +15,14 @@ class ContactsList extends StatelessWidget {
       appBar: AppBar(
         title: Text('Contacts')
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          final Contact contact = contacts[index];
-          return _ContactItem(contact);
-        },
-        itemCount: contacts.length,
-      ),
+      body: 
+       /* ListView.builder(
+          itemBuilder: (context, index) {
+            final Contact contact = contacts[index];
+            return _ContactItem(contact);
+          },
+          itemCount: contacts.length,
+        ), */
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
