@@ -22,7 +22,7 @@ class ContactsList extends StatelessWidget {
             },
             itemCount: contacts.length,
           );
-      })
+      }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
