@@ -14,14 +14,17 @@ class ContactsList extends StatelessWidget {
       body: FutureBuilder(
         future: Future.delayed(Duration(seconds: 1)).then((value) => findAll()),
         builder: (context, snapshot) {
-          final List<Contact> contacts = snapshot.data;
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              final Contact contact = contacts[index];
-              return _ContactItem(contact);
-            },
-            itemCount: contacts.length,
-          );
+          if(snapshot.data != null) {
+            final List<Contact> contacts = snapshot.data;
+            return ListView.builder(
+              itemBuilder: (context, index) {
+                final Contact contact = contacts[index];
+                return _ContactItem(contact);
+              },
+              itemCount: contacts.length,
+            );
+          }
+          return CircularProgressIndicator();
       }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
