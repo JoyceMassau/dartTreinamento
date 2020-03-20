@@ -5,13 +5,8 @@ import 'package:flutter/material.dart';
 
 class ContactsList extends StatelessWidget {
 
-  final List<Contact> contacts = List();
-
   @override
   Widget build(BuildContext context) {
-    contacts.add(Contact(0, 'Teste', 1234));
-    contacts.add(Contact(0, 'Joyce', 1235));
-    contacts.add(Contact(0, 'Bla', 1335));
     return Scaffold( 
       appBar: AppBar(
         title: Text('Contacts')
