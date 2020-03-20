@@ -12,7 +12,7 @@ class ContactsList extends StatelessWidget {
         title: Text('Contacts')
       ),
       body: FutureBuilder(
-        future: findAll(),
+        future: Future.delayed(Duration(seconds: 1)).then((value) => findAll()),
         builder: (context, snapshot) {
           final List<Contact> contacts = snapshot.data;
           return ListView.builder(
