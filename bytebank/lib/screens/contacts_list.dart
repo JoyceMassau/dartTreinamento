@@ -24,7 +24,16 @@ class ContactsList extends StatelessWidget {
               itemCount: contacts.length,
             );
           }
-          return CircularProgressIndicator();
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                CircularProgressIndicator(),
+                Text('Loading'),
+              ],
+            ),
+          );
       }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
