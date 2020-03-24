@@ -6,9 +6,9 @@ Future<Database> getDatabase() async {
   final String path = join(await getDatabasesPath(), 'bytebank.db');
     return openDatabase(path, onCreate: (db, version) {
       db.execute('CREATE TABLE contacts('
-        'id INTERGET PRIMARY KEY,'
+        'id INTEGET PRIMARY KEY,'
         'name TEXT,'
-        'account_number INTERGER');
+        'account_number INTEGER');
     }, version: 1,
     //onDowngrade: onDatabaseDowngradeDelete,
     );
