@@ -2,9 +2,8 @@ import 'package:bytebank/models/contact.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-Future<Database> createDatabase() async {
-  final String dbPath = await getDatabasesPath();
-  final String path = join(dbPath, 'bytebank.db');
+Future<Database> getDatabase() async {
+  final String path = join(await getDatabasesPath(), 'bytebank.db');
     return openDatabase(path, onCreate: (db, version) {
       db.execute('CREATE TABLE contacts('
         'id INTERGET PRIMARY KEY,'
@@ -15,28 +14,27 @@ Future<Database> createDatabase() async {
     );
 }
 
-Future<int> save(Contact contact) {
-  return createDatabase().then((db) {
-    final Map<String, dynamic> contactMap = Map();
-    contactMap['name'] = contact.name;
-    contactMap['account_number'] = contact.accountNumber;
-    return db.insert('contacts', contactMap);
-  });
+Future<int> save(Contact contact) async {
+  final Database db = await getDatabase();  
+  final Map<String, dynamic> contactMap = Map();
+  contactMap['name'] = contact.name;
+  contactMap['account_number'] = contact.accountNumber;
+  return db.insert('contacts', contactMap);
+  
 }
 
-Future<List<Contact>> findAll() {
-  return createDatabase().then((db) {
-    return db.query('contacts').then((maps) {
+Future<List<Contact>> findAll() async {
+  final Database db = await getDatabase();
+    final List<Map<String, dynamic>> result = await db.query('contacts');
       final List<Contact> contacts = List();
-      for(Map<String, dynamic> map in maps) {
+      for(Map<String, dynamic> row in result) {
         final Contact contact = Contact(
-          map['id'], 
-          map['name'], 
-          map['account_number'],
+          row['id'], 
+          row['name'], 
+          row['account_number'],
         );
         contacts.add(contact);
       }
       return contacts;
-    });
-  });
+
 }
