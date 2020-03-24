@@ -3,6 +3,12 @@ import 'package:bytebank/models/contact.dart';
 import 'package:sqflite/sqflite.dart';
 
 class ContactDao {
+
+  static const String tableSql = 'CREATE TABLE contacts('
+        'id INTEGET PRIMARY KEY,'
+        'name TEXT,'
+        'account_number INTEGER)';
+
   Future<int> save(Contact contact) async {
     final Database db = await getDatabase();  
     final Map<String, dynamic> contactMap = Map();
