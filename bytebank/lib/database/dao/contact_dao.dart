@@ -25,8 +25,13 @@ class ContactDao {
   Future<List<Contact>> findAll() async {
     final Database db = await getDatabase();
     final List<Map<String, dynamic>> result = await db.query('contacts');
-    final List<Contact> contacts = List();
-    for(Map<String, dynamic> row in result) {
+    List<Contact> contacts = _toList(result);
+    return contacts;
+}
+
+List<Contact> _toList(List<Map<String, dynamic>> result) {
+  final List<Contact> contacts = List();  
+  for(Map<String, dynamic> row in result) {
       final Contact contact = Contact(
         row['id'], 
         row['name'], 
