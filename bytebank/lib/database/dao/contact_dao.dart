@@ -10,12 +10,16 @@ class ContactDao {
         'account_number INTEGER)';
 
   Future<int> save(Contact contact) async {
-    final Database db = await getDatabase();  
+    final Database db = await getDatabase();
+    Map<String, dynamic> contactMap = _toMap(contact);
+    return db.insert('contacts', contactMap);
+  }
+
+  Map<String, dynamic> _toMap(Contact contact) {
     final Map<String, dynamic> contactMap = Map();
     contactMap['name'] = contact.name;
     contactMap['account_number'] = contact.accountNumber;
-    return db.insert('contacts', contactMap);
-    
+    return contactMap;
   }
 
   Future<List<Contact>> findAll() async {
