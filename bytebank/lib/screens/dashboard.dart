@@ -47,12 +47,7 @@ class _FeatureItem extends StatelessWidget {
       child: Material(
         color: Theme.of(context).primaryColor,
         child: InkWell(
-          onTap: () {
-            onClick();
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => ContactsList(),
-            ));
-          },
+          onTap: () => onClick(),
           child: Container(
             padding: EdgeInsets.all(8.0),
             height: 100,
