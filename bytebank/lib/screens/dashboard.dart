@@ -18,7 +18,10 @@ class Dashboard extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              _FeatureItem('Transfer', Icons.monetization_on),
+              _FeatureItem('Transfer', 
+              Icons.monetization_on,
+              onClick: () {},
+              ),
               _FeatureItem('Transaction Feed', Icons.description)
             ],
           ),
@@ -31,8 +34,9 @@ class Dashboard extends StatelessWidget {
 class _FeatureItem extends StatelessWidget {
   final String name;
   final IconData icon;
+  final Function onClick;
 
-  _FeatureItem(this.name, this.icon);
+  _FeatureItem(this.name, this.icon, {this.onClick});
 
   @override
   Widget build(BuildContext context) {
