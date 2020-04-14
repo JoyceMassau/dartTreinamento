@@ -17,8 +17,7 @@ class ContactsList extends StatelessWidget {
         initialData: List(),
         future: _dao.findAll(),
         builder: (context, snapshot) {
-          switch(snapshot.connectionState) {
-            
+          switch(snapshot.connectionState) {            
             case ConnectionState.none:
               break;
             case ConnectionState.waiting:

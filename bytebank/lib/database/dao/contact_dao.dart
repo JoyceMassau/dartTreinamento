@@ -20,19 +20,19 @@ class ContactDao {
     return db.insert(_tableName, contactMap);
   }
 
-  Map<String, dynamic> _toMap(Contact contact) {
-    final Map<String, dynamic> contactMap = Map();
-    contactMap[_name] = contact.name;
-    contactMap[_accountNumber] = contact.accountNumber;
-    return contactMap;
-  }
-
   Future<List<Contact>> findAll() async {
     final Database db = await getDatabase();
     final List<Map<String, dynamic>> result = await db.query(_tableName);
     List<Contact> contacts = _toList(result);
     return contacts;
 }
+
+  Map<String, dynamic> _toMap(Contact contact) {
+    final Map<String, dynamic> contactMap = Map();
+    contactMap[_name] = contact.name;
+    contactMap[_accountNumber] = contact.accountNumber;
+    return contactMap;
+  }
 
 List<Contact> _toList(List<Map<String, dynamic>> result) {
   final List<Contact> contacts = List();  
