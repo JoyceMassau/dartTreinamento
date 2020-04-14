@@ -16,44 +16,46 @@ class Dashboard extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Image.asset('images/bytebank_logo.png'),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Material(
-              color: Theme.of(context).primaryColor,
-              child: InkWell(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => ContactsList(),
-                  ));
-                },
-                child: Container(
-                  padding: EdgeInsets.all(8.0),
-                  height: 100,
-                  width: 150,
+          Row(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Material(
                   color: Theme.of(context).primaryColor,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Icon(
-                        Icons.monetization_on, 
-                        color: Colors.white,
-                        size: 24.0,
-                      ),
-                      Text(
-                        'Transfer',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16.0, 
-                        ),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => ContactsList(),
+                      ));
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(8.0),
+                      height: 100,
+                      width: 150,
+                      color: Theme.of(context).primaryColor,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Icon(
+                            Icons.monetization_on, 
+                            color: Colors.white,
+                            size: 24.0,
+                          ),
+                          Text(
+                            'Transfer',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.0, 
+                            ),
+                          )
+                        ],
                       )
-                    ],
-                  )
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-          Padding(
+              Padding(
             padding: const EdgeInsets.all(8.0),
             child: Material(
               color: Theme.of(context).primaryColor,
@@ -90,6 +92,8 @@ class Dashboard extends StatelessWidget {
               ),
             ),
           )
+            ],
+          ),
         ],
       ),
     );
