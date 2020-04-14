@@ -18,8 +18,8 @@ class Dashboard extends StatelessWidget {
           ),
           Row(
             children: <Widget>[
-              _FeatureItem(),
-              _FeatureItem(),
+              _FeatureItem('Transfer', Icons.monetization_on),
+              _FeatureItem('Transaction Feed', Icons.description)
             ],
           ),
         ],
@@ -29,6 +29,11 @@ class Dashboard extends StatelessWidget {
 }
 
 class _FeatureItem extends StatelessWidget {
+  final String name;
+  final IconData icon;
+
+  _FeatureItem(this.name, this.icon);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -56,7 +61,7 @@ class _FeatureItem extends StatelessWidget {
                   size: 24.0,
                 ),
                 Text(
-                  'Transfer',
+                  name,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 16.0, 
