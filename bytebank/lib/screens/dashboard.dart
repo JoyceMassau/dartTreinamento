@@ -19,8 +19,10 @@ class Dashboard extends StatelessWidget {
           Row(
             children: <Widget>[
               _FeatureItem('Transfer', 
-              Icons.monetization_on,
-              onClick: () {},
+                Icons.monetization_on,
+                onClick: () {
+                  print("Foi clicado");
+                },
               ),
               _FeatureItem('Transaction Feed', Icons.description)
             ],
@@ -46,6 +48,7 @@ class _FeatureItem extends StatelessWidget {
         color: Theme.of(context).primaryColor,
         child: InkWell(
           onTap: () {
+            onClick();
             Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => ContactsList(),
             ));
