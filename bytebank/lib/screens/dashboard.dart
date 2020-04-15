@@ -33,11 +33,6 @@ class Dashboard extends StatelessWidget {
                   'Transaction Feed', 
                   Icons.description,
                   onClick: () => print('Transaction was clicked'),
-                ),
-                _FeatureItem(
-                  'Teste', 
-                  Icons.description,
-                  onClick: () => print('Transaction was clicked'),
                 )
               ],
             ),
