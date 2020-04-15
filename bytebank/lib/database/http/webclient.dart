@@ -26,5 +26,4 @@ class LoggingInterceptor implements InterceptorContract {
 void findAll() async {
   final Client client = HttpClientWithInterceptor.build(interceptors: [LoggingInterceptor()]);
   final Response response = await client.get('http://192.168.0.20:8080/transactions');
-  print(response.body);
 }
