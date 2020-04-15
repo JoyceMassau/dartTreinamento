@@ -6,6 +6,7 @@ class LoggingInterceptor implements InterceptorContract {
   @override
   Future<RequestData> interceptRequest({RequestData data}) async {
     print('Request');
+    print('url: ${data.url}');
     print('headers: ${data.headers}');
     print('body: ${data.body}');
     return data;
