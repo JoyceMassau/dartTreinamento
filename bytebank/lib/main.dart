@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:bytebank/screens/dashboard.dart';
 import 'package:http/http.dart';
 import 'package:bytebank/database/http/webclient.dart';
+import 'models/contact.dart';
+import 'models/transaction.dart';
 
 void main() {
   runApp(BytebankApp());
+  save(Transaction(200.0, Contact(0, 'Gui', 2000))).then((transaction) => print(transaction));
   findAll().then((transactions) => print('new transactions $transactions'));
 }
 
