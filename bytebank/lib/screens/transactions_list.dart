@@ -1,3 +1,4 @@
+import 'package:bytebank/components/progress.dart';
 import 'package:bytebank/database/http/webclient.dart';
 import 'package:bytebank/models/contact.dart';
 import 'package:bytebank/models/transaction.dart';
@@ -17,7 +18,8 @@ class TransactionsList extends StatelessWidget {
           switch(snapshot.connectionState) {
             case ConnectionState.none:              
               break;
-            case ConnectionState.waiting:              
+            case ConnectionState.waiting:
+              return Progress();          
               break;
             case ConnectionState.active:              
               break;
