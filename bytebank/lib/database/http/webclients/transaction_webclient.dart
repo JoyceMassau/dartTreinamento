@@ -14,9 +14,8 @@ class TransactionWebClient {
 
   List<Transaction> _toTransactions(Response response) {
     final List<dynamic> decodedJson = jsonDecode(response.body);
-    final List<Transaction> transactions = decodedJson.map((dynamic json) {
-      return Transaction.fromJson(json);
-    }).toList();
+    final List<Transaction> transactions = 
+      decodedJson.map((dynamic json) => Transaction.fromJson(json)).toList();
     return transactions;
   }
 
