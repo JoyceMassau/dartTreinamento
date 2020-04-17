@@ -13,7 +13,7 @@ class TransactionAuthDialog extends StatelessWidget {
         ),
         textAlign: TextAlign.center,
         keyboardType: TextInputType.number,
-        style: TextStyle(fontSize: 64, letterSpacing: 32),
+        style: TextStyle(fontSize: 64, letterSpacing: 24),
       ),
       actions: <Widget>[
         FlatButton(
