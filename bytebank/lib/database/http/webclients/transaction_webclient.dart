@@ -24,6 +24,8 @@ class TransactionWebClient {
         },
         body: transactionJson);
 
+    throw Exception('There was an error');
+    
     return Transaction.fromJson(jsonDecode(response.body));
   }
 }
