@@ -61,11 +61,11 @@ class _TransactionFormState extends State<TransactionForm> {
                     child: Text('Transfer'), onPressed: () {
                       final double value = double.tryParse(_valueController.text);
                       final transactionCreated = Transaction(value, widget.contact);
-                      _webClient.save(transactionCreated).then((transaction) {
-                        if(transaction != null) {
-                          Navigator.pop(context);
-                        }
-                      });
+                      //_webClient.save(transactionCreated).then((transaction) {
+                      //  if(transaction != null) {
+                      //    Navigator.pop(context);
+                      //  }
+                      //});
                   },
                   ),
                 ),
