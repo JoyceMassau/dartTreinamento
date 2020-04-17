@@ -1,6 +1,12 @@
+import 'package:bytebank/models/transaction.dart';
 import 'package:flutter/material.dart';
 
 class TransactionAuthDialog extends StatelessWidget {
+
+  final Function(String) onConfirm;
+
+  TransactionAuthDialog({@required this.onConfirm});
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
