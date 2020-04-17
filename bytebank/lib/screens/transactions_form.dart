@@ -63,7 +63,9 @@ class _TransactionFormState extends State<TransactionForm> {
                       final double value = double.tryParse(_valueController.text);
                       final transactionCreated = Transaction(value, widget.contact);
                       showDialog(context: context, builder: (context) {
-                        return TransactionAuthDialog();
+                        return TransactionAuthDialog(onConfirm: (String password) { 
+                          print(password);
+                         },);
                       });
                       //_webClient.save(transactionCreated).then((transaction) {
                       //  if(transaction != null) {

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class TransactionAuthDialog extends StatefulWidget {
 
-  final Function(String) onConfirm;
+  final Function(String password) onConfirm;
 
   TransactionAuthDialog({@required this.onConfirm});
 
@@ -12,11 +12,15 @@ class TransactionAuthDialog extends StatefulWidget {
 }
 
 class _TransactionAuthDialogState extends State<TransactionAuthDialog> {
+
+  final TextEditingController _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text('Authenticate'),
       content: TextField(
+        controller: _passwordController,
         obscureText: true,
         maxLength: 4,
         decoration: InputDecoration(
@@ -36,6 +40,7 @@ class _TransactionAuthDialogState extends State<TransactionAuthDialog> {
         FlatButton(
           onPressed: () {
             print('Confirm');
+            widget.onConfirm(_passwordController.text);
           },
           child: Text('Confirm'),
         ),
