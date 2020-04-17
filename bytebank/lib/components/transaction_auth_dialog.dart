@@ -37,7 +37,6 @@ class _TransactionAuthDialogState extends State<TransactionAuthDialog> {
         ),
         FlatButton(
           onPressed: () {
-            print('Confirm');
             widget.onConfirm(_passwordController.text);
             Navigator.pop(context);
           },
