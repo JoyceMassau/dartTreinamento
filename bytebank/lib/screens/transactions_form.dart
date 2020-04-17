@@ -84,5 +84,7 @@ void _save(Transaction transactionCreated, String password, BuildContext context
     if(transaction != null) {
       Navigator.pop(context);
     }
+  }).catchError((e) {
+    print('There was an error $e');
   });
 }
