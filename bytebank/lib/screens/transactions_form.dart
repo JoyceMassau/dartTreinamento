@@ -62,7 +62,7 @@ class _TransactionFormState extends State<TransactionForm> {
                     child: Text('Transfer'), onPressed: () {
                       final double value = double.tryParse(_valueController.text);
                       final transactionCreated = Transaction(value, widget.contact);
-                      showDialog(context: context, builder: (context) {
+                      showDialog(context: context, builder: (contextDialog) {
                         return TransactionAuthDialog(onConfirm: (String password) { 
                           _save(transactionCreated, password, context);
                         });
