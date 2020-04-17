@@ -30,10 +30,6 @@ class TransactionWebClient {
       'password': '1000',
     }, body: transactionJson);
 
-    return _toTransaction(response);
-  }
-  
-  Transaction _toTransaction(Response response) {
     return Transaction.fromJson(jsonDecode(response.body));
   }
 
