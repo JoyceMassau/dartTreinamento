@@ -27,7 +27,9 @@ class TransactionWebClient {
       );
       transactions.add(transaction);
     }
+    return transactions;
   }
+
   Future<Transaction> save(Transaction transaction) async {
     final Map<String, dynamic> transactionMap = {
       'value' : transaction.value,
