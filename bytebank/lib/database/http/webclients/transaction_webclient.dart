@@ -34,8 +34,7 @@ class TransactionWebClient {
   }
   
   Transaction _toTransaction(Response response) {
-    Map<String, dynamic> json = jsonDecode(response.body);
-    return Transaction.fromJson(json);
+    return Transaction.fromJson(jsonDecode(response.body));
   }
 
 }
