@@ -24,8 +24,13 @@ class TransactionWebClient {
         },
         body: transactionJson);
 
-    throw Exception('There was an error');
-    
+    if(response.statusCode == 400) {
+      throw Exception('There was an error submitting transaction');      
+    }
+    if(response.statusCode == 401) {
+      throw Exception('Autentication failed');      
+    }
+
     return Transaction.fromJson(jsonDecode(response.body));
   }
 }
