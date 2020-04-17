@@ -7,8 +7,12 @@ import 'package:http/http.dart';
 class TransactionWebClient {
   
   Future<List<Transaction>> findAll() async {
-    final Response response =
-        await client.get(baseUrl).timeout(Duration(seconds: 5));
+    final Response response = await client.get(baseUrl).timeout(Duration(seconds: 5));
+    List<Transaction> transactions = _toTransactions(response)    ;
+    return transactions;
+  }
+
+  List<Transaction> _toTransactions(Response response) {
     final List<dynamic> decodedJson = jsonDecode(response.body);
     final List<Transaction> transactions = List();
     for (Map<String, dynamic> transactionJson in decodedJson) {
@@ -23,9 +27,7 @@ class TransactionWebClient {
       );
       transactions.add(transaction);
     }
-    return transactions;
   }
-
   Future<Transaction> save(Transaction transaction) async {
     final Map<String, dynamic> transactionMap = {
       'value' : transaction.value,
