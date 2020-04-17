@@ -1,3 +1,4 @@
+import 'package:bytebank/components/response_dialog.dart';
 import 'package:bytebank/components/transaction_auth_dialog.dart';
 import 'package:bytebank/database/http/webclient.dart';
 import 'package:bytebank/database/http/webclients/transaction_webclient.dart';
@@ -85,6 +86,8 @@ void _save(Transaction transactionCreated, String password, BuildContext context
       Navigator.pop(context);
     }
   }).catchError((e) {
-    print(e);
+    showDialog(context: context, builder: (contextDialog) {
+      return FailureDialog(e.message);
+    });
   });
 }
