@@ -13,10 +13,10 @@ class TransactionForm extends StatefulWidget {
   @override
   _TransactionFormState createState() => _TransactionFormState();
 }
+  final TransactionWebClient _webClient = TransactionWebClient();
 
 class _TransactionFormState extends State<TransactionForm> {
   final TextEditingController _valueController = TextEditingController();
-  final TransactionWebClient _webClient = TransactionWebClient();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,11 +64,7 @@ class _TransactionFormState extends State<TransactionForm> {
                       final transactionCreated = Transaction(value, widget.contact);
                       showDialog(context: context, builder: (context) {
                         return TransactionAuthDialog(onConfirm: (String password) { 
-                          _webClient.save(transactionCreated, password).then((transaction) {
-                            if(transaction != null) {
-                              Navigator.pop(context);
-                            }
-                          });
+                          _save(transactionCreated, password, context);
                         });
                       });                                        
                    },
@@ -81,4 +77,13 @@ class _TransactionFormState extends State<TransactionForm> {
       ),
     );
   }
+}
+
+void _save(Transaction transactionCreated, String password, BuildContext context) async {
+  await Future.delayed(Duration(seconds: 1));
+  _webClient.save(transactionCreated, password).then((transaction) {
+    if(transaction != null) {
+      Navigator.pop(context);
+    }
+  });
 }
