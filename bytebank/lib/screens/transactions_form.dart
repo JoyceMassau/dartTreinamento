@@ -93,7 +93,7 @@ void _save(Transaction transactionCreated, String password, BuildContext context
     showDialog(context: context, builder: (contextDialog) {
       return FailureDialog(e.message);
     });
-  }, test: (e) => e is Exception);
+  }, test: (e) => e is HttpException);
 
   if(transaction != null) {
     await showDialog(context: context, builder: (contextDialog) {

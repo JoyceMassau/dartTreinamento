@@ -28,15 +28,18 @@ class TransactionWebClient {
       return Transaction.fromJson(jsonDecode(response.body));
     }
 
-    _throwHttpError(response.statusCode);
+    throw HttpException(_statusCodeResponses[response.statusCode]);
 
   }
-
-  void _throwHttpError(int statusCode) => throw Exception(_statusCodeResponses[statusCode]);
   
   static final Map<int, String> _statusCodeResponses = {
     400 : 'There was an error submitting transaction',
     401 : 'Autentication failed'
   };
 
+}
+
+class HttpException implements Exception {
+  final String message;
+  HttpException(this.message);
 }
