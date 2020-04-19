@@ -28,9 +28,7 @@ class TransactionWebClient {
       return Transaction.fromJson(jsonDecode(response.body));
     }
 
-    _throwHttpError(response.statusCode) {
-
-    }
+    _throwHttpError(response.statusCode);
 
   }
 
