@@ -25,7 +25,6 @@ class _TransactionFormState extends State<TransactionForm> {
 
   @override
   Widget build(BuildContext context) {
-    print('Transaction form is $transactionId');
     return Scaffold(
       appBar: AppBar(
         title: Text('New transaction'),
