@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:bytebank/screens/dashboard.dart';
 import 'package:http/http.dart';
 import 'package:bytebank/database/http/webclient.dart';
+import 'package:uuid/uuid.dart';
 import 'models/contact.dart';
 import 'models/transaction.dart';
 
 void main() {
   runApp(BytebankApp());
+  print(Uuid().v1());
 }
 
 class BytebankApp extends StatelessWidget {
