@@ -83,33 +83,35 @@ class _TransactionFormState extends State<TransactionForm> {
 }
 
 void _save(Transaction transactionCreated, String password, BuildContext context) async {
-  final Transaction transaction = await _webClient.save(transactionCreated, password)
-  .catchError((e) {
-    showDialog(
-      context: context, 
-      builder: (contextDialog) {
-      return FailureDialog('Timeout submitting the transaction');
-    });
-  }, test: (e) => e is TimeoutException)
-  .catchError((e) {
-    showDialog(
-      context: context, 
-      builder: (contextDialog) {
-      return FailureDialog(e.message);
-    });
-  }, test: (e) => e is HttpException)
-  .catchError((e) {
-    showDialog(
-      context: context, 
-      builder: (contextDialog) {
-      return FailureDialog('Unknown error');
-    });
-  });
+  Transaction transaction = await _send(transactionCreated, password, context);
 
+  _showSuccessfulMessage(transaction, context);
+}
+
+Future<Transaction> _showSuccessfulMessage(Transaction transaction, BuildContext context) async {
   if(transaction != null) {
     await showDialog(context: context, builder: (contextDialog) {
       return SuccessDialog('Successful transaction');
     });
     Navigator.pop(context);
   }
+}
+
+Future<Transaction> _send(Transaction transactionCreated, String password, BuildContext context) async {
+  final Transaction transaction = 
+  await _webClient.save(transactionCreated, password).catchError((e) {
+    _showFailureMessage(context, message: e.message);
+  }, test: (e) => e is HttpException).catchError((e) {
+    _showFailureMessage(context, message: 'Timeout submitting the transaction');
+  }, test: (e) => e is TimeoutException).catchError((e) {
+    _showFailureMessage(context);
+  });
+}
+
+void _showFailureMessage(BuildContext context, {String message = 'Unknown error'}) {
+  showDialog(
+      context: context, 
+      builder: (contextDialog) {
+      return FailureDialog(message);
+    });
 }
