@@ -4,7 +4,7 @@ class Progress extends StatelessWidget {
   final String message;
 
   Progress({this.message = 'Loading'});
-  
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -13,7 +13,13 @@ class Progress extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           CircularProgressIndicator(),
-          Text(message),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              message,
+              style: TextStyle(fontSize: 16.0),
+            ),
+          ),
         ],
       ),
     );
