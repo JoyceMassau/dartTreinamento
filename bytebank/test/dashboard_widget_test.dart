@@ -10,9 +10,12 @@ void main() {
     expect(mainImage, findsOneWidget);
   });
 
-  testWidgets('Verifica se é apresentada na tela a primeira funcionalidade quando dashboard é aberto', (tester) async {
+  testWidgets('Verifica se é apresentada funcionalidade de Transferência quando dashboard é aberto', (tester) async {
     await tester.pumpWidget(MaterialApp(home: Dashboard()));
-    final firstFeature = find.byType(FeatureItem);
-    expect(firstFeature, findsWidgets);
+    final iconTransferFeatItem = find.widgetWithIcon(FeatureItem, Icons.monetization_on);
+    expect(iconTransferFeatItem, findsOneWidget);
+    
+    final nameTransferFeatItem = find.widgetWithText(FeatureItem, 'Transfer');
+    expect(nameTransferFeatItem, findsOneWidget);
   });
 }
