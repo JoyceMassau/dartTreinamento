@@ -10,7 +10,6 @@ import 'models/transaction.dart';
 
 void main() {
   runApp(BytebankApp());
-  print(Uuid().v1());
 }
 
 class BytebankApp extends StatelessWidget {

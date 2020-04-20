@@ -35,7 +35,8 @@ class TransactionWebClient {
   
   static final Map<int, String> _statusCodeResponses = {
     400 : 'There was an error submitting transaction',
-    401 : 'Autentication failed'
+    401 : 'Autentication failed',
+    409 : 'Transaction always exists'
   };
 
 }
