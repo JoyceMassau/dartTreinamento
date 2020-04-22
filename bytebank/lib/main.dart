@@ -1,4 +1,5 @@
 import 'package:bytebank/components/transaction_auth_dialog.dart';
+import 'package:bytebank/database/dao/contact_dao.dart';
 import 'package:bytebank/database/http/webclient.dart';
 import 'package:flutter/material.dart';
 import 'package:bytebank/screens/dashboard.dart';
@@ -9,10 +10,14 @@ import 'models/contact.dart';
 import 'models/transaction.dart';
 
 void main() {
-  runApp(BytebankApp());
+  runApp(BytebankApp(contactDao: ContactDao(),));
 }
 
 class BytebankApp extends StatelessWidget {
+
+  final ContactDao contactDao;
+  BytebankApp({@required this.contactDao});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,7 +29,7 @@ class BytebankApp extends StatelessWidget {
           textTheme: ButtonTextTheme.primary,
         ),
       ),
-      home: Dashboard(),
+      home: Dashboard(contactDao: contactDao),
     );
   }
 }

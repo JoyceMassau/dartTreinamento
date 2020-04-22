@@ -7,9 +7,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'matchers.dart';
 import 'package:flutter/material.dart';
 
+import 'mocks.dart';
+
 void main() {
   testWidgets('Verifica se salva um contato', (tester) async {
-    await tester.pumpWidget(BytebankApp());
+
+    final mockContactDao = MocksContactDao();
+
+    await tester.pumpWidget(BytebankApp(contactDao: mockContactDao,));
     final dashboard = find.byType(Dashboard);
     expect(dashboard, findsOneWidget);
 
@@ -28,7 +33,32 @@ void main() {
 
     final contactForm = find.byType(ContactForm);
     expect(contactForm, findsOneWidget);
-    await tester.pumpAndSettle(); //Já o PumpAndSettle faz várias chamadas do pump até que ele consiga resolver as pendências
-  
+    await tester.pumpAndSettle(); //Já o PumpAndSettle faz várias chamadas do pump até que ele consiga resolver as pendências   
+
+    final nameTextField = find.byWidgetPredicate((widget) {
+      if(widget is TextField) {
+        return widget.decoration.labelText == 'Full name';
+      }
+      return false;
+    });
+    expect(nameTextField, findsOneWidget);
+    await tester.enterText(nameTextField, 'Joyce');
+
+    final accountNumberTextField = find.byWidgetPredicate((widget) {
+      if(widget is TextField) {
+        return widget.decoration.labelText == 'Account Number';
+      }
+      return false;
+    });
+    expect(accountNumberTextField, findsOneWidget);
+    await tester.enterText(accountNumberTextField, '1000');
+    
+    final createButton = find.widgetWithText(RaisedButton, 'Create');
+    expect(createButton, findsOneWidget);
+    await tester.tap(createButton);
+    await tester.pumpAndSettle();
+
+    final contactsListBack = find.byType(ContactsList);
+    expect(contactsListBack, findsOneWidget);
   });
 }
