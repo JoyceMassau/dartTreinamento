@@ -16,9 +16,8 @@ void main() {
     final transferFeatureItem = find.byWidgetPredicate((widget) => featureItemMatcher(widget, 'Transfer', Icons.monetization_on));
     expect(transferFeatureItem, findsOneWidget);
     await tester.tap(transferFeatureItem);
-    await tester.pump(); //Rebuild do widget para fazer a próxima microtarefa no meio do caminho até o conteúdo ser carregado
-    await tester.pump(); 
-    await tester.pump(); 
+    await tester.pumpAndSettle(); //Pump faz o Rebuild do widget para fazer a próxima microtarefa no meio do caminho até o conteúdo ser carregado
+    //Se tiver outra microtarefa pendente de ser executada, pump não vai funcionar
     
     final contactsList = find.byType(ContactsList);
     expect(contactsList, findsOneWidget);
@@ -29,7 +28,7 @@ void main() {
 
     final contactForm = find.byType(ContactForm);
     expect(contactForm, findsOneWidget);
-    //Se tiver outra microtarefa pendente de ser executada, pump não vai funcionar
+    await tester.pumpAndSettle(); //Já o PumpAndSettle faz várias chamadas do pump até que ele consiga resolver as pendências
   
   });
 }
