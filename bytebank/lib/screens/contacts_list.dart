@@ -63,7 +63,7 @@ class ContactsList extends StatelessWidget {
   }
 }
 
-class _ContactItem extends StatelessWidget {
+class _ContactItem extends StatefulWidget {
 
   final Contact contact;
   final Function onClick;
@@ -74,12 +74,17 @@ class _ContactItem extends StatelessWidget {
   });
 
   @override
+  __ContactItemState createState() => __ContactItemState();
+}
+
+class __ContactItemState extends State<_ContactItem> {
+  @override
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        onTap: () => onClick(),
-        title: Text(contact.name, style: TextStyle(fontSize: 24.0),),
-        subtitle: Text(contact.accountNumber.toString(), style: TextStyle(fontSize: 16.0),),
+        onTap: () => widget.onClick(),
+        title: Text(widget.contact.name, style: TextStyle(fontSize: 24.0),),
+        subtitle: Text(widget.contact.accountNumber.toString(), style: TextStyle(fontSize: 16.0),),
       )
     );
   }

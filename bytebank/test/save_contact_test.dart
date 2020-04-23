@@ -55,6 +55,8 @@ void main() {
     verify(mockContactDao.save(Contact(0, 'Joyce', 1234)));
     final contactsListBack = find.byType(ContactsList);
     expect(contactsListBack, findsOneWidget);
+
+    verify(mockContactDao.findAll());
   });
 }
 
