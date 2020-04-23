@@ -5,6 +5,7 @@ import 'package:bytebank/screens/contacts_list.dart';
 import 'package:bytebank/screens/dashboard.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import '../matchers/matchers.dart';
 import '../mocks/mocks.dart';
 import 'actions.dart';
 import 'package:flutter/material.dart';
@@ -35,11 +36,11 @@ void main() {
     final contactForm = find.byType(ContactForm);
     expect(contactForm, findsOneWidget); 
 
-    final nameTextField = find.byWidgetPredicate((widget) => _textFieldMatcher(widget, 'Full Name'));
+    final nameTextField = find.byWidgetPredicate((widget) => textFieldByLabelTextMatcher(widget, 'Full Name'));
     expect(nameTextField, findsOneWidget);
     await tester.enterText(nameTextField, 'Joyce');
 
-    final accountNumberTextField = find.byWidgetPredicate((widget) => _textFieldMatcher(widget, 'Account Number'));
+    final accountNumberTextField = find.byWidgetPredicate((widget) => textFieldByLabelTextMatcher(widget, 'Account Number'));
     expect(accountNumberTextField, findsOneWidget);
     await tester.enterText(accountNumberTextField, '1234');
     
@@ -54,11 +55,4 @@ void main() {
 
     verify(mockContactDao.findAll());
   });
-}
-
-bool _textFieldMatcher(Widget widget, String labelText) {
-  if(widget is TextField) {
-    return widget.decoration.labelText == labelText;
-  }
-  return false;
 }

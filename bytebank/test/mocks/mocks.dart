@@ -46,8 +46,8 @@
 */
 
 import 'package:bytebank/database/dao/contact_dao.dart';
+import 'package:bytebank/database/http/webclients/transaction_webclient.dart';
 import 'package:mockito/mockito.dart';
 
-class MocksContactDao extends Mock implements ContactDao {
-  
-}
+class MocksContactDao extends Mock implements ContactDao {}
+class MocksTransactionWebClient extends Mock implements TransactionWebClient {}
