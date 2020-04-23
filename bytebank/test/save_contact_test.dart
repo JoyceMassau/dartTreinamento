@@ -3,6 +3,7 @@ import 'package:bytebank/screens/contact_form.dart';
 import 'package:bytebank/screens/contacts_list.dart';
 import 'package:bytebank/screens/dashboard.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
 
 import 'matchers.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,8 @@ void main() {
     
     final contactsList = find.byType(ContactsList);
     expect(contactsList, findsOneWidget);
+
+    verify(mockContactDao.findAll()).called(1);
 
     final fabNewContact = find.widgetWithIcon(FloatingActionButton, Icons.add);
     expect(fabNewContact, findsOneWidget);
