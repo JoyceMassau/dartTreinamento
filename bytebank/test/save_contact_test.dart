@@ -33,11 +33,10 @@ void main() {
     final fabNewContact = find.widgetWithIcon(FloatingActionButton, Icons.add);
     expect(fabNewContact, findsOneWidget);
     await tester.tap(fabNewContact);
-    await tester.pumpAndSettle();
+    await tester.pumpAndSettle(); //Já o PumpAndSettle faz várias chamadas do pump até que ele consiga resolver as pendências 
 
     final contactForm = find.byType(ContactForm);
-    expect(contactForm, findsOneWidget);
-    await tester.pumpAndSettle(); //Já o PumpAndSettle faz várias chamadas do pump até que ele consiga resolver as pendências   
+    expect(contactForm, findsOneWidget); 
 
     final nameTextField = find.byWidgetPredicate((widget) {
       if(widget is TextField) {
