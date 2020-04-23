@@ -5,11 +5,16 @@ import 'package:bytebank/screens/contact_form.dart';
 import 'package:bytebank/screens/transactions_form.dart';
 import 'package:flutter/material.dart';
 
-class ContactsList extends StatelessWidget {
+class ContactsList extends StatefulWidget {
   
   final ContactDao contactDao;
   ContactsList({@required this.contactDao});
 
+  @override
+  _ContactsListState createState() => _ContactsListState();
+}
+
+class _ContactsListState extends State<ContactsList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold( 
@@ -18,7 +23,7 @@ class ContactsList extends StatelessWidget {
       ),
       body: FutureBuilder<List<Contact>>(
         initialData: List(),
-        future: contactDao.findAll(),
+        future: widget.contactDao.findAll(),
         builder: (context, snapshot) {
           switch(snapshot.connectionState) {            
             case ConnectionState.none:
@@ -53,7 +58,7 @@ class ContactsList extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => ContactForm(contactDao: contactDao),
+            MaterialPageRoute(builder: (context) => ContactForm(contactDao: widget.contactDao),
             ),
           );
         },
@@ -63,7 +68,7 @@ class ContactsList extends StatelessWidget {
   }
 }
 
-class _ContactItem extends StatefulWidget {
+class _ContactItem extends StatelessWidget {
 
   final Contact contact;
   final Function onClick;
@@ -74,17 +79,12 @@ class _ContactItem extends StatefulWidget {
   });
 
   @override
-  __ContactItemState createState() => __ContactItemState();
-}
-
-class __ContactItemState extends State<_ContactItem> {
-  @override
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        onTap: () => widget.onClick(),
-        title: Text(widget.contact.name, style: TextStyle(fontSize: 24.0),),
-        subtitle: Text(widget.contact.accountNumber.toString(), style: TextStyle(fontSize: 16.0),),
+        onTap: () => onClick(),
+        title: Text(contact.name, style: TextStyle(fontSize: 24.0),),
+        subtitle: Text(contact.accountNumber.toString(), style: TextStyle(fontSize: 16.0),),
       )
     );
   }
