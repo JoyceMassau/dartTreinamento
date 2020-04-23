@@ -5,11 +5,9 @@ import 'package:bytebank/screens/contacts_list.dart';
 import 'package:bytebank/screens/dashboard.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-
-import 'matchers.dart';
+import '../mocks/mocks.dart';
+import 'actions.dart';
 import 'package:flutter/material.dart';
-
-import 'mocks.dart';
 
 void main() {
   testWidgets('Verifica se salva um contato', (tester) async {
@@ -20,9 +18,7 @@ void main() {
     final dashboard = find.byType(Dashboard);
     expect(dashboard, findsOneWidget);
 
-    final transferFeatureItem = find.byWidgetPredicate((widget) => featureItemMatcher(widget, 'Transfer', Icons.monetization_on));
-    expect(transferFeatureItem, findsOneWidget);
-    await tester.tap(transferFeatureItem);
+    await clickOnTheTransferFeatureItem(tester);
     await tester.pumpAndSettle(); //Pump faz o Rebuild do widget para fazer a próxima microtarefa no meio do caminho até o conteúdo ser carregado
     //Se tiver outra microtarefa pendente de ser executada, pump não vai funcionar
     
