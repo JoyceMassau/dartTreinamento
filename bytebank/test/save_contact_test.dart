@@ -38,30 +38,27 @@ void main() {
     final contactForm = find.byType(ContactForm);
     expect(contactForm, findsOneWidget); 
 
-    final nameTextField = find.byWidgetPredicate((widget) {
-      if(widget is TextField) {
-        return widget.decoration.labelText == 'Full Name';
-      }
-      return false;
-    });
+    final nameTextField = find.byWidgetPredicate((widget) => _textFieldMatcher(widget, 'Full Name'));
     expect(nameTextField, findsOneWidget);
     await tester.enterText(nameTextField, 'Joyce');
 
-    final accountNumberTextField = find.byWidgetPredicate((widget) {
-      if(widget is TextField) {
-        return widget.decoration.labelText == 'Account Number';
-      }
-      return false;
-    });
+    final accountNumberTextField = find.byWidgetPredicate((widget) => _textFieldMatcher(widget, 'Account Number'));
     expect(accountNumberTextField, findsOneWidget);
     await tester.enterText(accountNumberTextField, '1234');
     
-    final featureItem = find.widgetWithText(FeatureItem, 'Create');
-    expect(featureItem, findsOneWidget);
-    await tester.tap(featureItem);
+    final createButton = find.widgetWithText(RaisedButton, 'Create');
+    expect(createButton, findsOneWidget);
+    await tester.tap(createButton);
     await tester.pumpAndSettle();
 
     final contactsListBack = find.byType(ContactsList);
     expect(contactsListBack, findsOneWidget);
   });
+}
+
+bool _textFieldMatcher(Widget widget, String labelText) {
+  if(widget is TextField) {
+    return widget.decoration.labelText == labelText;
+  }
+  return false;
 }
