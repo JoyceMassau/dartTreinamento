@@ -6,9 +6,6 @@ import 'package:path/path.dart';
 
 class Dashboard extends StatelessWidget {
 
-  final ContactDao contactDao;
-  Dashboard({@required this.contactDao});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,7 +54,7 @@ class Dashboard extends StatelessWidget {
   void _showContactsList(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => ContactsList(contactDao: contactDao),
+        builder: (context) => ContactsList(),
       )
     );
   }
