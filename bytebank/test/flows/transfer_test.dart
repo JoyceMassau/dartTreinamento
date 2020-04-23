@@ -1,4 +1,5 @@
 import 'package:bytebank/main.dart';
+import 'package:bytebank/models/contact.dart';
 import 'package:bytebank/screens/contacts_list.dart';
 import 'package:bytebank/screens/dashboard.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,11 @@ void main() {
     final dashboard = find.byType(Dashboard);
     expect(dashboard, findsOneWidget);
 
+    when(mockContactDao.findAll()).thenAnswer((invocation) async {
+      debugPrint('Name invocation ${invocation.memberName}');
+      return [Contact(0, 'Joyce', 1234)];
+    });
+
     await clickOnTheTransferFeatureItem(tester);
     await tester.pumpAndSettle(); //Pump faz o Rebuild do widget para fazer a próxima microtarefa no meio do caminho até o conteúdo ser carregado
     //Se tiver outra microtarefa pendente de ser executada, pump não vai funcionar
@@ -25,5 +31,14 @@ void main() {
     expect(contactsList, findsOneWidget);
 
     verify(mockContactDao.findAll()).called(1);
+
+    final contactItem = find.byWidgetPredicate((widget) {
+      if(widget is ContactItem) {
+        return widget.contact.name == 'Joyce' &&
+          widget.contact.accountNumber == 1234;
+      }
+      return false;
+    });
+    expect(contactItem, findsOneWidget);
   });
 }
